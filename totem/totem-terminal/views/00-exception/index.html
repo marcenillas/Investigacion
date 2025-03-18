@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+
+<head>
+	<script src="../assets/js/color-modes.js"></script>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>SIELCON Pay (maintenance)</title>
+
+	<link href="https://getbootstrap.com/docs/5.3/examples/cover/" rel="canonical">
+	<link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet">
+	<link href="../../node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+	<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../styles.css" rel="stylesheet">
+	<link href="index.css" rel="stylesheet">
+
+	<script src="../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+	<script src="../../js/app.js"></script>
+</head>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+	<div class="container-fluid">
+		<div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+			<header class="mb-auto">
+				<div>
+					<h3 class="float-md-start mb-0">SIELCON Pay</h3>				
+				</div>
+			</header>
+
+			<main class="px-2">
+				<h1>SE PRODUJO UN ERROR EN LA APLICACIÓN</h1>
+				<hr />
+				<div class="alert alert-danger">
+					<h4 id="alert-title" class="alert-heading"></h4>
+					<p id="alert-description"></p>
+					<hr>
+					<p id="alert-footer" class="mb-0"></p>
+				</div>
+				<hr />
+				<script>
+					switch (new URL(window.location.href).searchParams.get('ex')) {
+						case '1014':
+							document.getElementById("alert-title").innerText = "Código de error 1014";
+							document.getElementById("alert-description").innerText = "No se encontró el modo de operación.";
+							document.getElementById("alert-footer").innerText = "Verifique que esté configurado, al menos, un modo de operación.";
+							break;
+						case '1015':
+							document.getElementById("alert-title").innerText = "Error de conexión";
+							document.getElementById("alert-description").innerText = "No se pudo establecer conexión con el servidor.";
+							document.getElementById("alert-footer").innerText = "Verifique su conexión a internet.";
+							break;
+						case '1016':
+							document.getElementById("alert-title").innerText = "Otro error";
+							document.getElementById("alert-description").innerText = "No funciona.";
+							document.getElementById("alert-footer").innerText = "Verifique la aplicación.";
+							break;
+						case '1017':
+							document.getElementById("alert-title").innerText = "Error configurando terminal";
+							document.getElementById("alert-description").innerText = "No se pudo configurar la terninal.";
+							document.getElementById("alert-footer").innerText = "Verifique la aplicación.";
+							break;							
+						default:
+							document.getElementById("alert-title").innerText = "Error desconocido";
+					}
+				</script>
+			</main>
+
+			<footer class="mt-auto text-white-50">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-2 text-center mt-5">
+							NODE V<span id="node-version"></span>
+						</div>
+						<div class="col-md-2 text-center mt-5">
+							CHROME V<span id="chrome-version"></span>
+						</div>
+						<div class="col-md-2 text-center mt-5">
+							ELECTRON V<span id="electron-version"></span>
+						</div>
+						<div class="col-md-6 text-end mt-5">
+							<p>SIELCON Pay - Todos los derechos reservados.</p>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	<script src="../../js/renderer.js"></script>
+	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

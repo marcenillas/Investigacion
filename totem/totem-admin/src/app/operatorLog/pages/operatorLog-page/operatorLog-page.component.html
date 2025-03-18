@@ -1,0 +1,40 @@
+<div class="row g-3">
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>Detalle de Auditoria</span>
+        <div class="text-end">
+            <button class="btn btn-primary" [routerLink]="['/operatorLog']">Volver</button>
+        </div>
+    </h3>
+    <div class="col-md-5">
+        <label for="operador" class="form-label">Operador</label>
+        <label for="" class="form-control w-auto" id="operador">{{ OperatorLog?.operatorEmail }}</label>
+    </div>
+    <div class="col-md-5">
+        <label for="terminal" class="form-label">Terminal</label>
+        <label for="" class="form-control w-auto" id="stamp">{{ OperatorLog?.terminal?.name }}</label>
+    </div>
+    <div class="col-md-2">
+        <label for="stamp" class="form-label">Fecha y Hora</label>
+        <label for="" class="form-control w-auto" id="stamp">{{ OperatorLog?.stamp | date: 'dd/MM/yy HH:mm:ss' }}</label>
+    </div>
+    <div class="col-md-3">
+        <label for="type" class="form-label">Accion</label>
+        <label for="" class="form-control w-auto"  id="type">{{ OperatorLog?.operatorAction| operatorActionDescription}}</label>
+    </div>
+   
+    <div class="col-md-9">
+        <label for="description" class="form-label">Descripción</label>
+        <label for="" class="form-control" id="description">{{ OperatorLog?.description }}</label>
+    </div>
+    <div class="col-md-12 text-end pt-2 border-top">
+        <button class="btn btn-primary" [routerLink]="['/operatorLog']">Volver</button>
+    </div>
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>Información Adicional</span>
+    </h3>
+    <div class="row">
+
+        <pre [innerHTML]="OperatorLog?.data| defaultJsonString: [true, 3]"></pre>
+
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="modal fade" id="modalFilter" tabindex="-1" role="dialog" [ngClass]="{'show': show}"
+    [style.display]="show ? 'block' : 'none'">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5">Filtros de búsqueda</h5>
+                <button type="button" class="btn-close" aria-label="Close" (click)="hide()"></button>
+            </div>
+            <form [formGroup]="form">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row pb-3">
+
+
+                            <div class="col-mt-2">
+                                <span class="text-decoration-underline">Rango de Fechas</span>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="from" class="form-label">Desde</label>
+                                <input type="date" id="from" class="form-select form-select-sm mb-2" min="2024-01-01"
+                                    [max]="tomorrow" formControlName="from">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="from" class="form-label">Hasta</label>
+                                <input type="date" id="to" class="form-select form-select-sm" min="2024-01-01"
+                                    [max]="tomorrow" formControlName="to">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="text-decoration-underline">Terminales</span>
+                                &nbsp;&nbsp;<input class="form-check-input" type="checkbox" checked #terminalAll
+                                    (change)="onCheckboxTerminalAllChange($event)" id="0">&nbsp;
+                                <label class="form-check-label" for="0">(todos)</label>
+                                <div class="mt-2" *ngFor="let terminal of filter.terminalList; let i = index">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" [value]="terminal.terminalId"
+                                            checked #terminal (change)="onCheckboxTerminalChange($event)"
+                                            id="{{ terminal.terminalId }}">
+                                        <label class="form-check-label" for="">{{ terminal.name }}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                                <span class="text-decoration-underline">Operadores</span>
+                                &nbsp;&nbsp;<input class="form-check-input" type="checkbox" checked #operatorAll
+                                    (change)="onCheckboxOperatorAllChange($event)" id="0">&nbsp;
+                                <label class="form-check-label" for="0">(todos)</label>
+                                <div class="mt-2" *ngFor="let user of filter.operatorList; let i = index">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" [value]="user.email" checked
+                                            #operator (change)="onCheckboxOperatorChange($event)" id="{{ user.email }}">
+                                        <label class="form-check-label" for="">{{ user.email }}</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <span class="text-decoration-underline">Acciones del operador</span>
+                                &nbsp;&nbsp;<input class="form-check-input" type="checkbox" checked #actionAll
+                                    (change)="onCheckboxActionAllChange($event)" id="0">&nbsp;
+                                <label class="form-check-label" for="0">(todas)</label>
+                                <div class="mt-2" *ngFor="let enum of filter.operatorActionList let i = index ">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" [value]="enum" checked #action
+                                            (change)="onCheckboxActionChange($event)" id="{{ enum }}">
+                                        <label class="form-check-label" for="">{{ enum |
+                                            operatorActionDescription }}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" (click)="confirm()">Buscar</button>
+                    <button type="button" class="btn btn-secondary" (click)="hide()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

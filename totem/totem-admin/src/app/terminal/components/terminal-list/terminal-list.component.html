@@ -1,0 +1,27 @@
+<h3 class="text-light pt-2">Terminales
+    <a class="btn btn-primary fs-6 fw-bold py-1 w-auto" [routerLink]="['/terminal/new']">AGREGAR</a>
+</h3>
+<div class="row row-cols-1 row-cols-md-3 g-2 py-1">
+    <div class="col-md-4 mb-1" *ngFor="let terminal of terminalList;">
+        <div class="card" [ngClass]="terminal.status | termStatusClass_border">
+            <img class="card-img-top" src="https://cdn.pixabay.com/photo/2020/10/26/08/20/man-5686626_1280.png"
+                alt="terminal">
+            <div class="card-body text-white p-3" [ngClass]="terminal.status | termStatusClass_bg">
+                <h3 class="card-title">{{ terminal.name }}</h3>
+                <span class="badge" [ngClass]="terminal.enabled | termEnabledClass_text_bg">{{ terminal.enabled ? 'ACTIVO' :
+                    'INACTIVO'}}</span>
+                <p class="card-text"></p>
+                <a class="btn btn-light fs-5 fw-bold py-1 w-auto" [routerLink]="['/terminal', terminal.terminalId]">Ver
+                    Detalle</a>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item fw-bold">Estado: {{ terminal.status | termStatusDescription}}</li>
+            </ul>
+            <div class="card-footer">
+                <small class="text-muted">Último Evento: {{ terminal.lastEvent | date: 'dd/MM/yy HH:mm:ss'  }}</small><br>
+                <small class="text-muted">Última Transacción: {{ terminal.lastTransaction | date: 'dd/MM/yy HH:mm:ss' }}</small><br>
+                <small class="text-muted">Última Conexión: {{ terminal.lastConnection | date: 'dd/MM/yy HH:mm:ss' }}</small>
+            </div>
+        </div>
+    </div>
+</div>

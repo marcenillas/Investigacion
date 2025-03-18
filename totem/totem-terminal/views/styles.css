@@ -1,0 +1,212 @@
+ body {
+	/*
+	text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+	box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+	*/
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 96vh;
+	background-color: #f0f0f0;
+	box-sizing: content-box
+} 
+
+.container-fluid {
+	height: 95%;
+	
+}
+.container-custom {
+	border: 2px solid #0070ba;
+	height: 98%;
+	border-radius: 0.625em;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+
+
+}
+
+.container-int {
+	border: 2px solid #0070ba;
+	width: 95%;
+	height: 95%;
+	margin-top: 10px;
+	margin-bottom: 5px;
+
+	border-radius: 0.625em;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	align-self: center;
+}
+
+
+.cover-container {
+	max-width: 42em;
+}
+
+.btn-back {
+	font-size: 2em;
+	width: 200px;
+}
+
+.btn-continue {
+	font-size: 2em;
+}
+
+.btn-light,
+.btn-light:hover,
+.btn-light:focus {
+	color: #333;
+	text-shadow: none;
+}
+
+.nav-masthead .nav-link {
+	color: rgba(255, 255, 255, .5);
+	border-bottom: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+	border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.nav-masthead .nav-link+.nav-link {
+	margin-left: 1rem;
+}
+
+.nav-masthead .active {
+	color: #fff;
+	border-bottom-color: #fff;
+}
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+.logo-mp {
+	align-self: center;
+	height: auto;
+    /*width: 60%;*/
+	height: 80px;
+	margin-top: 3.125em;
+}
+
+.logo-footer {
+	align-self: center;
+	height: 45px;		
+}
+
+.footer {
+	height:50px;
+  }
+
+.title-custom {
+	color: #0070ba;
+	align-self: center;
+	text-align: center;
+	margin-top: 0.625em;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 2.5em;
+	font-weight: bold;
+}
+
+.description-custom {
+	color: black;		
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+	margin-left: 20px;
+	
+}
+
+.description-custom-bold {
+	color: black;		
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.5em;
+	margin-left: 20px;
+	font-weight: bold;
+}
+
+.button-ok {
+	background-color: #0070ba;
+	color: #ffffff;
+	border: none;
+	padding: 5px;
+	border-radius: 0.313em;
+	cursor: pointer;
+	font-size: 2.5em;
+	align-self: center;
+	margin-bottom: 0.625em;
+	font-weight: bold;
+}
+
+
+.button-cancel {
+	background-color: red;
+	color: #ffffff;
+	border: none;
+	padding: 5px;
+	border-radius: 0.313em;
+	cursor: pointer;
+	font-size: 2.5em;
+	align-self: center;
+	margin-bottom: 0.625em;
+	font-weight: bold;
+}
+
+
+.carousel {
+	width: 99%;
+	height: 99%;
+	background-color: transparent;
+}
+
+.carousel-inner {
+	/*position: relative;*/
+	position: absolute;
+	top: 50%; /* Ajusta según sea necesario */
+	left: 50%; /* Ajusta según sea necesario */
+	transform: translate(-50%, -50%);	
+	text-align: center;
+}
+
+.carousel-item {
+	
+	display: none;
+	
+	
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+   
+}
+
+.carousel-item.active {
+	display: block;
+}
+
+
+
+.carousel-control-prev,
+.carousel-control-next {
+	background-color: transparent;
+	border: none;
+	color: #0070ba;
+	font-size: 24px;
+}
+
+.carousel-image {
+	display: block;
+	margin: 1% auto;
+	max-width: 80%;
+	max-height: 300px;
+	object-fit:cover;
+}

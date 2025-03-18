@@ -1,0 +1,129 @@
+<shared-confirm-modal id="modal" [show]="showModalWindow" (confirmed)="onConfirm()" (canceled)="onCancel()"
+    message="Se eliminará el registro ¿Está seguro de continuar?">
+</shared-confirm-modal>
+<div class="row g-3">
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>Detalle de Terminal</span>
+        <div class="text-end">
+            <a class="btn btn-success me-2" [routerLink]="['/terminal/edit', terminal?.terminalId]">Modificar</a>
+            <button class="btn btn-danger me-2" (click)="showModal()">Eliminar</button>
+            <button class="btn btn-primary" [routerLink]="['/home']">Volver</button>
+        </div>
+    </h3>
+    <div class="col-md-4">
+        <label for="name" class="form-label">Nombre</label>
+        <label for="" class="form-control" id="name">{{ terminal?.name }}</label>
+    </div>
+    <div class="col-md-3">
+        <!-- <label for="code" class="form-label">Código</label>
+        <label for="" class="form-control" id="code">{{ terminal?.code }}</label> -->
+        <label for="code" class="form-label">Código</label>
+        <label for="" class="form-control" id="code">{{ terminal?.code??'-'}}</label>
+    </div>
+    <div class="col-md-1">
+        <label for="enabled" class="form-label">Activo</label>
+        <label for="" class="form-control" [ngClass]="terminal?.enabled | termEnabledClass_text_bg" id="enabled">{{
+            terminal?.enabled ? 'SÍ' : 'NO'}}</label>
+    </div>
+    <div class="col-md-2">
+        <label for="status" class="form-label">Estado</label>
+        <label for="" class="form-control" [ngClass]="
+            (terminal?.status | termStatusClass_border)  + ' ' +  
+            (terminal?.status | termStatusClass_text)" id="status">{{ terminal?.status | termStatusDescription
+            }}</label>
+    </div>
+    <div class="col-md-2">
+        <label for="lastConnection" class="form-label">Última actualización</label>
+        <label for="" class="form-control" id="lastConnection">{{ terminal?.lastConnection  | date: 'dd/MM/yy HH:mm:ss'}}</label>
+    </div>
+    <div class="col-md-12">
+        <label for="description" class="form-label">Descripción</label>
+        <label for="" class="form-control" id="description">{{ terminal?.description | defaultString }}</label>
+    </div>
+    <div class="col-md-2">
+        <label for="printTITO" class="form-label">Imprime TITO</label>
+        <label for="" class="form-control" id="printTITO">{{ terminal?.printTITO | booleanToYesNo }}</label>
+    </div>
+    <div class="col-md-2">
+        <label for="printerTITOCom" class="form-label">Puerto COM (TITO)</label>
+        <label for="" class="form-control" >{{ terminal?.printerTITOCom | defaultString }}</label>
+    </div>
+    <div class="col-md-2">
+        <label for="printTicket" class="form-label">Imprime Ticket</label>
+        <label for="" class="form-control" id="printTicket">{{ terminal?.printTicket | booleanToYesNo }}</label>
+    </div>
+    <div class="col-md-4">
+        <label for="printerTicketName" class="form-label">Nombre de Impresora (Ticket)</label>
+        <label for="" class="form-control" >{{ terminal?.printerTicketName | defaultString }}</label>
+    </div>
+
+    <div class="col-md-2">
+        <label for="useCashier" class="form-label">Usa Cashier</label>
+        <label for="" class="form-control" id="useCashier">{{ terminal?.useCashier | booleanToYesNo }}</label>
+    </div>
+
+    <!-- <div class="col-md-2">
+        <label for="modeQR" class="form-label">Modo QR</label>
+        <label for="" class="form-control" id="modeQR">{{ terminal?.modeQR | booleanToYesNo }}</label>
+    </div>
+    <div class="col-md-2">
+        <label for="modeFixed" class="form-label">Modo Fijo</label>
+        <label for="" class="form-control" id="modeFixed">{{ terminal?.modeFixed | booleanToYesNo }}</label>
+    </div> -->
+    <div class="col-md-6">
+        <label for="definedValues" class="form-label">Valores predefinidos</label>
+        <label for="" class="form-control" >{{ terminal?.definedValues | defaultString }}</label>
+    </div>
+    <div class="col-md-2">
+        <label for="storeId" class="form-label">ID Store</label>
+        <label for="" class="form-control" >{{ terminal?.storeId | defaultString }}</label>
+    </div>
+    <div class="col-md-2">
+        <label for="posId" class="form-label">ID Pos</label>
+        <label for="" class="form-control" >{{ terminal?.posId | defaultString }}</label>
+    </div>
+    <div class="col-md-4">
+        <label for="event" class="form-label">Último Evento</label>
+        <label for="" class="form-control" id="event">{{ terminal?.lastEvent  | date: 'dd/MM/yy HH:mm:ss' }}</label>
+    </div>
+    <div class="col-md-4">
+        <label for="lastTransaction" class="form-label">Última Transacción</label>
+        <label for="" class="form-control" id="lastTransaction">{{ terminal?.lastTransaction  | date: 'dd/MM/yy HH:mm:ss' }}</label>
+    </div>
+    <h5 class="border-top pt-2 mt-4">Imágenes de Publicidad</h5>
+    <div class="row mt-2">
+        <label for="carrouselImage01" class="col-md-1 col-form-label">Imagen 1</label>
+        <div class="col-md-11">
+            <label for="" class="form-control" id="carrouselImage01">{{ terminal?.carrouselImage01 | defaultString }}</label>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <label for="carrouselImage01" class="col-md-1 col-form-label">Imagen 2</label>
+        <div class="col-md-11">
+            <label for="" class="form-control" id="carrouselImage02">{{ terminal?.carrouselImage02 | defaultString }}</label>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <label for="carrouselImage01" class="col-md-1 col-form-label">Imagen 3</label>
+        <div class="col-md-11">
+            <label for="" class="form-control" id="carrouselImage03">{{ terminal?.carrouselImage03 | defaultString }}</label>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <label for="carrouselImage01" class="col-md-1 col-form-label">Imagen 4</label>
+        <div class="col-md-11">
+            <label for="" class="form-control" id="carrouselImage04">{{ terminal?.carrouselImage04 | defaultString }}</label>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <label for="carrouselImage01" class="col-md-1 col-form-label">Imagen 5</label>
+        <div class="col-md-11">
+            <label for="" class="form-control" id="carrouselImage05">{{ terminal?.carrouselImage05 | defaultString }}</label>
+        </div>
+    </div>
+    <div class="col-md-12 text-end pt-2 border-top">
+        <a class="btn btn-success me-2" [routerLink]="['/terminal/edit', terminal?.terminalId]">Modificar</a>
+        <button class="btn btn-danger me-2" (click)="showModal()">Eliminar</button>
+        <button class="btn btn-primary" [routerLink]="['/home']">Volver</button>
+    </div>
+</div>

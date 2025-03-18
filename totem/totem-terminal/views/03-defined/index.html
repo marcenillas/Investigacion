@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+
+<head>
+	<script src="../assets/js/color-modes.js"></script>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>SIELCON Pay (defined)</title>
+
+	<link href="https://getbootstrap.com/docs/5.3/examples/cover/" rel="canonical">
+	<link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet">
+	<link href="../../node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+	<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../styles.css" rel="stylesheet">
+	<link href="index.css" rel="stylesheet">
+
+	<script src="../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+	<script src="../../js/app.js"></script>
+
+	<script>
+		setInterval(() => {			
+			loadTime();
+			validateStatus(false);
+		}, 5000);
+
+		function validateInput(inputElement) {
+			const inputValue = inputElement.value;
+			const validInput = /^[\d,]*$/.test(inputValue);
+
+			if (!validInput) {
+				inputElement.value = inputValue.replace(/[^\d,]/g, '');
+			}
+		}
+	</script>
+</head>
+
+
+<body>
+	<div class="container-fluid">
+		<div class="container-custom">
+			<img src="../assets/img/logomp.png" alt="Logo Mercado Pago" class="logo-mp">
+			<span class="title-custom">Seleccione el valor a acreditar</span>
+			<p class="description-custom-bold">
+				Para seleccionar el valor a acreditar sume la cantidad desde los botones con montos predefinidos.
+			</p>
+			<p class="description-custom-bold">
+				Ejemplo: para acreditar $1500 toque el importe de $1000 y luego el de $500
+			</p>
+			<div class="container-int">								
+				<div class="container-ticket">
+					<img src="../assets/img/ticket.png" class="logo-ticket">
+					<input type="text" id="valueInput" class="form-control text-center input-ticket" oninput="validateInput(this)" disabled>
+				</div>
+				<div class="row">
+					<div class="row">
+						<div class="col-sm-4">
+							<button id="b1" class="btn-value"
+								onclick="addAmount(parseInt(getDefinedValues()[0]))"></button>
+						</div>
+						<div class="col-sm-4">
+							<button id="b2" class="btn-value"
+								onclick="addAmount(parseInt(getDefinedValues()[1]))"></button>
+						</div>
+						<div class="col-sm-4">
+							<button id="b3" class="btn-value"
+								onclick="addAmount(parseInt(getDefinedValues()[2]))"></button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4">
+							<button id="b4" class="btn-value"
+								onclick="addAmount(parseInt(getDefinedValues()[3]))"></button>
+						</div>
+						<div class="col-sm-4">
+							<button id="b5" class="btn-value "
+								onclick="addAmount(parseInt(getDefinedValues()[4]))"></button>
+						</div>
+						<div class="col-sm-4">
+							<button id="b6" class="btn-value "
+								onclick="addAmount(parseInt(getDefinedValues()[5]))"></button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4">
+							<button id="b7" class="btn-value "
+								onclick="addAmount(parseInt(getDefinedValues()[6]))"></button>
+						</div>
+						<div class="col-sm-4">
+							<button id="b8" class="btn-value "
+								onclick="addAmount(parseInt(getDefinedValues()[7]))"></button>
+						</div>
+						<div class="col-sm-4">
+							<button id="b9" class="btn-value-clean" onclick="clearAmount(0)">Borrar</button>
+						</div>
+
+					</div>
+
+				</div>
+			
+			</div>
+			<div class="div-operartion">
+				<a href="../01-main/index.html" class="btn button-cancel">Cancelar</a>
+				<button class="button-ok" onclick="goToConfirm()">Continuar</a>
+			</div>
+		</div>
+
+		<footer class="mt-auto text-white-50">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2 text-center mt-2">
+						<img src="../assets/img/logosielcon.png" alt="SielconPay" class="logo-footer">
+					</div>
+					<div class="col-md-8 text-center mt-8">
+						<p class="description-custom">SIELCON Pay - Todos los derechos reservados.</p>
+					</div>
+					<div class="col-md-2 text-center mt-2">
+						<img src="../assets/img/logosala.png" alt="sala" class="logo-footer">
+					</div>
+
+				</div>
+			</div>
+		</footer>
+
+
+	</div>
+
+	<script src="../../js/renderer.js"></script>
+	
+
+	<script>
+		document.getElementById("b1").innerText = getDefinedAmounts()[0];
+		document.getElementById("b2").innerText = getDefinedAmounts()[1];
+		document.getElementById("b3").innerText = getDefinedAmounts()[2];
+		document.getElementById("b4").innerText = getDefinedAmounts()[3];
+		document.getElementById("b5").innerText = getDefinedAmounts()[4];
+		document.getElementById("b6").innerText = getDefinedAmounts()[5];
+		document.getElementById("b7").innerText = getDefinedAmounts()[6];
+		document.getElementById("b8").innerText = getDefinedAmounts()[7];
+
+
+		redirectToMaintenancePage();
+		redirectToOperatorPage();
+
+	</script>
+
+	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

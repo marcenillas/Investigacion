@@ -1,0 +1,4 @@
+<div class="container">
+    <shared-loading *ngIf="loading"></shared-loading>
+    <operatorLog-grid *ngIf="!loading" [operatorLogList]="dataRows"  [dataCount]="dataCount"></operatorLog-grid>
+</div>

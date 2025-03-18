@@ -1,0 +1,194 @@
+<shared-confirm-modal [show]="showModalWindow" (confirmed)="onConfirm()" (canceled)="onCancel()"
+    message="Se perderán los cambios si cancela la operación ¿Está seguro de continuar?">
+</shared-confirm-modal>
+<div class="row g-3">
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>Editar Configuración General</span>
+        <div class="text-end">
+            <button class="btn btn-light me-2" (click)="onSubmit()">Aceptar</button>
+            <button class="btn btn-danger" (click)="onClose()">Cancelar</button>
+        </div>
+    </h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row mb-2">
+            <div class="col-md-9">
+                <label for="mpAuthorizationToken" class="form-label">Token de Mercado Pago</label>
+                <input type="text" class="form-control" id="mpAuthorizationToken"
+                    formControlName="mpAuthorizationToken" />
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-md-3">
+                <label for="mpUserId" class="form-label">UserId de Mercado Pago</label>
+                <input type="text" class="form-control" id="mpUserId" formControlName="mpUserId" />
+            </div>
+            <div class="col-md-3">
+                <label for="mpExpirateTransaction" class="form-label">Tiempo Expiración MP (Seg.)</label>
+                <input type="text" class="form-control text-end" id="taxPercentage" formControlName="mpExpirateTransaction" />
+                <span *ngIf="validationService.invalidField(form, 'mpExpirateTransaction')" class="form-text text-danger">
+                    {{ validationService.getFieldError(form, 'mpExpirateTransaction', 'Tiempo Expiración MP (Seg.)') }}
+                </span>
+            </div>
+
+
+
+            <div class="col-md-3 " style="padding-top: 2em;">                
+                <div class="form-check">                                   
+                    <label for="feeBorneClientCharge" class="form-label">Cobro Comisión Bill. Virtual</label>                    
+                    <input class="form-check-input" type="checkbox" id="feeBorneClientCharge" formControlName="feeBorneClientCharge">                     
+                </div>
+            </div>          
+        </div>
+        <div class="row mb-2">
+            <div class="col-md-9">
+                <label for="mpNotificationURL" class="form-label">URL de Notificación de Mercado Pago</label>
+                <input type="text" class="form-control" id="mpNotificationURL" formControlName="mpNotificationURL" />
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-md-2">
+                <label for="taxPercentage" class="form-label">% de Impuesto</label>
+                <input type="text" class="form-control text-end" id="taxPercentage" formControlName="taxPercentage" />
+                <span *ngIf="validationService.invalidField(form, 'taxPercentage')" class="form-text text-danger">
+                    {{ validationService.getFieldError(form, 'taxPercentage', '% de Impuesto') }}
+                </span>
+            </div>
+            <div class="col-md-2">
+                <label for="currencySymbol" class="form-label">Símbolo de Moneda</label>
+                <input type="text" class="form-control text-end" id="currencySymbol" formControlName="currencySymbol" />
+                <span *ngIf="validationService.invalidField(form, 'currencySymbol')" class="form-text text-danger">
+                    {{ validationService.getFieldError(form, 'currencySymbol', 'Símbolo de Moneda') }}
+                </span>
+            </div>
+            <div class="col-md-3 " style="padding-top: 2em;">                
+                <div class="form-check">                                   
+                    <label for="printCancelTransaction" class="form-label">Imprime Ticket de Cancelación</label>                    
+                    <input class="form-check-input" type="checkbox" id="printCancelTransaction" formControlName="printCancelTransaction">                     
+                </div>
+            </div>     
+        </div>
+        <div class="row mb-2">
+            <div class="col-md-5">
+                <label for="salaName" class="form-label">Nombre de Sala</label>
+                <input type="text" class="form-control" id="salaName" formControlName="salaName" />
+            </div>
+
+            <div class="col-md-4 " style="padding-top: 2em;">                
+                <div class="form-check">                                   
+                    <label for="takeSalaNameConfiguration" class="form-label">Toma Nombre de Sala de Configuración</label>                    
+                    <input class="form-check-input" type="checkbox" id="takeSalaNameConfiguration" formControlName="takeSalaNameConfiguration">                     
+                </div>
+            </div>   
+        </div>
+
+        <div class="row mb-2">
+
+            <div class="col-md-9">
+                <label for="salaAddress" class="form-label">Dirección de Sala</label>
+                <input type="text" class="form-control" id="salaAddress" formControlName="salaAddress" />
+            </div>
+
+        </div>
+
+        <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+            <span>Editar Configuración Imágenes</span>
+        </h3>
+        <div class="row mt-2 mb-2">
+            <div class="col-md-2">
+                <label for="logoMPImage" class="col-form-label">Logo MP</label>
+            </div>           
+        </div>
+        <div class="row mt-2 mb-2">
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="logoMPImage" formControlName="logoMPImage" readonly />
+            </div>
+            <div class="col-md-2">
+                <input type="file" class="form-control visually-hidden" id="logoMPImageData" accept=".jpeg, .jpg, .png" (change)="onFileSelected($event, 1)" />
+                <label for="logoMPImageData" class="btn btn-primary me-2">...</label>             
+                <button class="btn btn-danger" (click)="onFileDelete(1,$event)">X</button>
+            </div>            
+            <span *ngIf="validationService.hasErrors(form, 'logoMPImage')" class="form-text text-danger">
+                {{ validationService.getFieldError(form, 'logoMPImage', 'Logo MP') }}
+            </span>
+
+        </div>    
+        
+         <div class="row mt-2 mb-2">
+            <div class="col-md-2">
+                <label for="logoSalaImage" class="form-label">Logo Sala</label>
+            </div>         
+        </div>
+        <div class="row mt-2 mb-2">
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="logoSalaImage" formControlName="logoSalaImage" readonly />
+            </div>
+            <div class="col-md-2">
+                <input type="file" class="form-control visually-hidden" id="logoSalaImageData" accept=".jpeg, .jpg, .png"  (change)="onFileSelected($event, 2)" />
+                <label for="logoSalaImageData" class="btn btn-primary me-2">...</label>             
+                <button class="btn btn-danger" (click)="onFileDelete(2,$event)">X</button>
+            </div>
+            <span *ngIf="validationService.hasErrors(form, 'logoSalaImage')" class="form-text text-danger">
+                {{ validationService.getFieldError(form, 'logoSalaImage', 'Logo Sala') }}
+            </span>
+           
+        </div>
+        <div class="row mt-2 mb-2">
+            <div class="col-md-2">
+                <label for="logoSielconImage" class="form-label">Logo Sielcon</label>
+            </div>           
+        </div>
+        <div class="row mt-2 mb-2">
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="logoSielconImage" formControlName="logoSielconImage" readonly />
+            </div>
+            <div class="col-md-2">
+                <input type="file" class="form-control visually-hidden" id="logoSielconImageData" accept=".jpeg, .jpg, .png"  (change)="onFileSelected($event, 3)" />
+                <label for="logoSielconImageData" class="btn btn-primary me-2">...</label>             
+                <button class="btn btn-danger" (click)="onFileDelete(3,$event)">X</button>
+                
+            </div>
+            <span *ngIf="validationService.hasErrors(form, 'logoSielconImage')" class="form-text text-danger">
+                {{ validationService.getFieldError(form, 'logoSielconImage', 'Logo Sielcon') }}
+            </span>
+        </div>
+
+        <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+            <span>Editar Configuración TITO</span>
+        </h3>
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <label for="TITOTitle" class="form-label">Título</label>
+                <input type="text" class="form-control" id="TITOTitle" formControlName="TITOTitle" maxlength="19" />
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <label for="TITOLine1" class="form-label">Linea 1</label>
+                <input type="text" class="form-control" id="TITOLine1" formControlName="TITOLine1" maxlength="36" />
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <label for="TITOLine2" class="form-label">Linea 2</label>
+                <input type="text" class="form-control" id="TITOLine2" formControlName="TITOLine2" maxlength="32" />
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <label for="TITOLine3" class="form-label">Linea 1</label>
+                <input type="text" class="form-control" id="TITOLine3" formControlName="TITOLine3" maxlength="32" />
+            </div>
+        </div>
+
+
+
+
+
+    </form>
+    <div class="col-md-12 text-end pt-2 border-top">
+        <button class="btn btn-light me-2" (click)="onSubmit()">Aceptar</button>
+        <button class="btn btn-danger" (click)="onClose()">Cancelar</button>
+    </div>
+</div>

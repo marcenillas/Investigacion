@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+
+<head>
+	<script src="../assets/js/color-modes.js"></script>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>SIELCON Pay (maintenance)</title>
+
+	<link href="https://getbootstrap.com/docs/5.3/examples/cover/" rel="canonical">
+	<link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet">
+	<link href="../../node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+	<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
+		rel="stylesheet">
+
+	<link href="../styles.css" rel="stylesheet">
+	<link href="index.css" rel="stylesheet">
+
+	<script src="../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+	<script src="../../js/app.js"></script>
+	<script>
+
+		document.addEventListener('DOMContentLoaded', () => {
+			loadTerminal();
+		});
+
+		async function loadTerminal() {
+			try {
+
+				const initialData = await getTerminal()
+				const initialDataG = await getConfigGeneral()
+						
+				document.getElementById('name').textContent = initialData.terminalName;
+				document.getElementById('code').textContent = initialData.terminalcode;
+
+				document.getElementById('status').textContent = termStatusDescription(initialData.status);
+				document.getElementById('enabled').textContent = defaultboolean(initialData.enabled);
+
+				document.getElementById('description').textContent = initialData.description;
+
+				document.getElementById('modeQR').textContent = defaultboolean(initialData.modeQR);
+				document.getElementById('modeFixed').textContent = defaultboolean(initialData.modeFixed);
+				document.getElementById('useCashier').textContent = defaultboolean(initialData.useCashier);
+
+
+				document.getElementById('printTITO').textContent = defaultboolean(initialData.printTITO);
+				document.getElementById('printerTITOCom').textContent = initialData.printerTITOCom;
+
+				document.getElementById('printTicket').textContent = defaultboolean(initialData.printTicket);
+				document.getElementById('printerTicketName').textContent = initialData.printerTicketName;
+
+
+				document.getElementById('definedValues').textContent = initialData.definedValues;
+				document.getElementById('storeId').textContent = initialData.storeId;
+				document.getElementById('posId').textContent = initialData.posId;
+
+
+				//General
+
+
+				document.getElementById('mpAuthorizationToken').textContent = initialDataG.mpauthorizationtoken;
+				document.getElementById('mpUserId').textContent = initialDataG.mpUserId;
+
+				document.getElementById('mpExpirateTransaction').textContent = initialDataG.mpExpirateTransaction;
+				document.getElementById('feeBorneClientCharge').textContent =defaultboolean(initialDataG.feeBorneClientCharge);
+				document.getElementById('mpNotificationURL').textContent = initialDataG.mpNotificationURL;
+
+
+
+				document.getElementById('taxPercentage').textContent = initialDataG.taxPercentage;
+				document.getElementById('currencySymbol').textContent = initialDataG.currencySimbol;
+				document.getElementById('printCancelTransaction').textContent = defaultboolean(initialDataG.printCancelTransaction);
+
+
+				document.getElementById('salaName').textContent = initialDataG.salaName;
+				document.getElementById('takeSalaNameConfiguration').textContent = defaultboolean(initialDataG.takeSalaNameConfiguration);
+
+				document.getElementById('salaAddress').textContent = initialDataG.salaAddress;
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			} catch (error) {
+				console.error(error);
+			}
+		}
+
+		function defaultboolean(value) {
+			return value ? 'Si'
+				: 'No';
+		}
+
+
+
+		function termStatusDescription(value) {					
+			switch (value) {
+				case Status.Initializing: return 'Initializing';
+				case Status.Online: return 'Online';
+				case Status.Offline: return 'Offline';
+				case Status.Warning: return 'Error';
+				case Status.Cancel: return 'Warning';
+				default: return 'Unknown';
+			}
+		}
+
+		const Status = Object.freeze({
+			Initializing: 0,
+			Online: 1,
+			Offline: 2,
+			Warning: 3,
+		});
+
+	</script>
+</head>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+	<div class="container-fluid">
+		<div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+			<header class="mb-auto">
+				<div>
+					<h3 class="float-md-start mb-0">SIELCON Pay</h3>
+				</div>
+				<div>
+					<a class="float-md-end mb-0" href="../00-operator/index.html">Volver</a>
+
+				</div>
+
+
+			</header>
+
+			<main class="px-2 d-flex flex-column justify-content-center align-items-center h-100">
+			
+
+				<div style="display: flex; align-items: center;">
+					<h1 style="margin: 0;">Configuración</h1>
+					<button class="button-ok" onclick="ActionOperador(9 , '../00-Configuracion/index.html')">Actualizar</button>
+				  </div>		
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item" role="presentation">
+						<button class="nav-link active" id="terminal-tab" data-bs-toggle="tab"
+							data-bs-target="#terminal" type="button" role="tab" aria-controls="terminal"
+							aria-selected="true">Terminal</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" id="general-tab" data-bs-toggle="tab" data-bs-target="#general"
+							type="button" role="tab" aria-controls="general" aria-selected="false">Configuración
+							General</button>
+					</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="terminal" role="tabpanel" aria-labelledby="terminal-tab">
+						<form id="terminalForm">
+							<div class="row">
+								<div class="col-6 text-start">
+									<label for="name" class="form-label ">Nombre</label>
+									<label id="name" name="name" class="form-control"></label>
+								</div>
+								<div class="col-6 text-start">
+									<label for="code" class="form-label">Código:</label>
+									<label id="code" name="code" class="form-control"></label>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-6 text-center">
+									<label for="status" class="form-label ">Estado</label>
+									<label id="status" name="name" class="form-control"></label>
+								</div>
+								<div class="col-6 text-center">
+									<label for="enabled" class="form-label">Activo</label>
+									<label id="enabled" name="enabled" class="form-control"></label>
+								</div>
+							</div>
+
+							<div class="row ">
+								<div class="col-12 text-start">
+									<label for="description" class="form-label">Descripción</label>
+									<label id="description" name="description" class="form-control"></label>
+								</div>
+							</div>
+
+							<div class="row text-center">
+								<div class="col-4">
+									<label for="modeQR" class="form-label">Modo QR</label>
+									<label id="modeQR" name="modeQR" class="form-control"></label>
+								</div>
+								<div class="col-4">
+									<label for="modeFixed" class="form-label">Modo Fijo</label>
+									<label id="modeFixed" name="modeFixed" class="form-control"></label>
+								</div>
+								<div class="col-4">
+									<label for="useCashier" class="form-label">Usa Cashier</label>
+									<label id="useCashier" name="modeFixed" class="form-control"></label>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="col-6 text-center">
+									<label for="printTITO" class="form-label">Imprime TITO</label>
+									<label id="printTITO" name="printTITO" class="form-control"></label>
+								</div>
+								<div class="col-6 text-start">
+									<label for="printerTITOCom" class="form-label">Puerto Com (TITO)</label>
+									<label id="printerTITOCom" name="printerTITOCom" class="form-control"></label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-6 text-center">
+									<label for="printTicket" class="form-label">Imprime Ticket</label>
+									<label id="printTicket" name="printTicket" class="form-control"></label>
+								</div>
+								<div class="col-6 text-start">
+									<label for="printerTicketName" class="form-label">Nombre de Impresora
+										(Ticket)</label>
+									<label id="printerTicketName" name="printerTicketName" class="form-control"></label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 text-start">
+									<label for="definedValues" class="form-label">Valores Definidos:</label>
+									<label id="definedValues" name="definedValues" class="form-control"></label>
+								</div>
+								<div class="row">
+									<div class="col-6 text-start">
+										<label for="storeId" class="form-label">ID Store</label>
+										<label id="storeId" name="storeId" class="form-control"></label>
+									</div>
+									<div class="col-6 text-start">
+										<label for="posId" class="form-label">ID POS</label>
+										<label id="posId" name="posId" class="form-control"></label>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane fade" id="general" role="tabpanel" aria-labelledby="general-tab">
+						<!-- Contenido del formulario de Configuración General -->
+						<form id="generalForm">
+							<div class="row ">
+								<div class="col-12 text-start">
+									<label for="mpAuthorizationToken" class="form-label">Token de Mercado Pago</label>
+									<label id="mpAuthorizationToken" name="mpAuthorizationToken"
+										class="form-control"></label>
+								</div>
+							</div>
+							<div class="row ">
+								<div class="col-12 text-start">
+									<label for="mpUserId" class="form-label">UserId de Mercado Pago</label>
+									<label id="mpUserId" name="mpUserId" class="form-control"></label>
+								</div>
+
+							</div>
+
+							<div class="row ">
+
+								<div class="col-6 text-start">
+									<label for="mpExpirateTransaction" class="form-label">Tiempo Expiración MP
+										(Seg.)</label>
+									<label id="mpExpirateTransaction" name="mpExpirateTransaction"
+										class="form-control  text-end"></label>
+								</div>
+								<div class="col-6 text-center">
+									<label for="feeBorneClientCharge" class="form-label">Cobro Comisión Bill.
+										Virtual</label>
+									<label id="feeBorneClientCharge" name="feeBorneClientCharge"
+										class="form-control"></label>
+								</div>
+							</div>
+
+
+
+							<div class="row ">
+								<div class="col-12 text-start">
+									<label for="mpNotificationURL" class="form-label">URL de Notificación de Mercado
+										Pago</label>
+									<label id="mpNotificationURL" name="mpNotificationURL" class="form-control"></label>
+								</div>
+							</div>
+
+
+							<div class="row ">
+								<div class="col-6 text-start">
+									<label for="taxPercentage" class="form-label">% de Impuesto</label>
+									<label id="taxPercentage" name="taxPercentage" class="form-control text-end"></label>
+								</div>
+								<div class="col-6 text-start">
+									<label for="currencySymbol" class="form-label">Símbolo de Moneda</label>
+									<label id="currencySymbol" name="currencySymbol" class="form-control"></label>
+								</div>
+								
+							</div>
+
+							<div class="row ">
+								<div class="col-6 text-center">
+									<label for="printCancelTransaction" class="form-label">Imprime Ticket de
+										Cancelación</label>
+									<label id="printCancelTransaction" name="printCancelTransaction"
+										class="form-control"></label>
+								</div>
+
+								<div class="col-6 text-center">
+									<label for="takeSalaNameConfiguration" class="form-label">Toma Nombre de Sala de
+										Configuración</label>
+									<label id="takeSalaNameConfiguration" name="takeSalaNameConfiguration"
+										class="form-control"></label>
+								</div>
+
+							</div>
+
+
+							<div class="row ">
+								<div class="col-12 text-start">
+									<label for="salaName" class="form-label">Nombre de Sala</label>
+									<label id="salaName" name="salaName" class="form-control"></label>
+								</div>
+							</div>
+						
+
+							<div class="row ">
+								<div class="col-12 text-start">
+									<label for="salaAddress" class="form-label">Dirección de Sala</label>
+									<label id="salaAddress" name="salaAddress" class="form-control"></label>
+								</div>
+							</div>
+
+
+
+
+						</form>
+					</div>
+				</div>
+			</main>
+
+			<footer class="mt-auto text-white-50">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<p>NODE V<span id="node-version"></span> |
+								CHROME V<span id="chrome-version"></span> |
+								ELECTRON V<span id="electron-version"></span> |
+								SIELCON Pay - Todos los derechos reservados.</p>
+						</div>
+					</div>
+			</footer>
+		</div>
+	</div>
+
+	<script src="../../js/renderer.js"></script>
+	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

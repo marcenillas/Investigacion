@@ -1,0 +1,18 @@
+<div class="modal fade" tabindex="-1" role="dialog" [ngClass]="{'show': show}"
+    [style.display]="show ? 'block' : 'none'">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title m-1">SIELCON Pay</h5>
+                <button type="button" class="btn-close" aria-label="Close" (click)="hide()"></button>
+            </div>
+            <div class="modal-body">
+                <p>{{ message }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="confirm()">Aceptar</button>
+                <button type="button" class="btn btn-secondary" (click)="hide()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,185 @@
+{
+    "accounts_info": null,
+    "acquirer_reconciliation": [],
+    "additional_info": {
+        "authentication_code": null,
+        "available_balance": null,
+        "nsu": null
+    },
+    "authorization_code": null,
+    "binary_mode": true,
+    "brand_id": null,
+    "build_version": "3.50.0-rc-4",
+    "call_for_authorize_id": null,
+    "captured": true,
+    "card": {},
+    "charges_details": [
+        {
+            "accounts": {
+                "from": "collector",
+                "to": "mp"
+            },
+            "amounts": {
+                "original": 0.97,
+                "refunded": 0
+            },
+            "client_id": 0,
+            "date_created": "2024-05-02T12:31:57.000-04:00",
+            "id": "77468024890-001",
+            "last_updated": "2024-05-02T12:31:57.000-04:00",
+            "metadata": {},
+            "name": "mercadopago_fee",
+            "refund_charges": [],
+            "reserve_id": null,
+            "type": "fee"
+        },
+        {
+            "accounts": {
+                "from": "collector",
+                "to": "mp"
+            },
+            "amounts": {
+                "original": 3,
+                "refunded": 0
+            },
+            "client_id": 0,
+            "date_created": "2024-05-02T12:31:57.000-04:00",
+            "id": "77468024890-002",
+            "last_updated": "2024-05-02T12:31:57.000-04:00",
+            "metadata": {
+                "mov_detail": "tax_withholding_sirtac_noinsc",
+                "mov_financial_entity": "buenos_aires",
+                "mov_type": "expense",
+                "tax_id": 83927597521,
+                "tax_status": "applied",
+                "user_id": 1713092135
+            },
+            "name": "tax_withholding_sirtac_noinsc-buenos_aires",
+            "refund_charges": [],
+            "reserve_id": null,
+            "type": "tax"
+        }
+    ],
+    "collector_id": 1713092135,
+    "corporation_id": null,
+    "counter_currency": null,
+    "coupon_amount": 0,
+    "currency_id": "ARS",
+    "date_approved": "2024-05-02T12:31:57.000-04:00",
+    "date_created": "2024-05-02T12:31:57.000-04:00",
+    "date_last_updated": "2024-05-02T12:31:57.000-04:00",
+    "date_of_expiration": null,
+    "deduction_schema": null,
+    "description": "Carga",
+    "differential_pricing_id": null,
+    "external_reference": "3d7c944f-1924-4d40-b9b5-1536b58f66bf",
+    "fee_details": [
+        {
+            "amount": 0.97,
+            "fee_payer": "collector",
+            "type": "mercadopago_fee"
+        }
+    ],
+    "financing_group": null,
+    "id": 77468024890,
+    "installments": 1,
+    "integrator_id": null,
+    "issuer_id": "2005",
+    "live_mode": true,
+    "marketplace_owner": null,
+    "merchant_account_id": null,
+    "merchant_number": null,
+    "metadata": {},
+    "money_release_date": "2024-05-02T12:31:57.000-04:00",
+    "money_release_schema": null,
+    "money_release_status": "released",
+    "notification_url": "https://young-words-stick.loca.lt/api/transaction/ReceiveNotifications",
+    "operation_type": "regular_payment",
+    "order": {
+        "id": "18249927192",
+        "type": "mercadopago"
+    },
+    "payer": {
+        "id": "1712072899"
+    },
+    "payment_method": {
+        "id": "account_money",
+        "issuer_id": "2005",
+        "type": "account_money"
+    },
+    "payment_method_id": "account_money",
+    "payment_type_id": "account_money",
+    "platform_id": null,
+    "point_of_interaction": {
+        "application_data": {
+            "name": null,
+            "version": null
+        },
+        "business_info": {
+            "branch": "QR",
+            "sub_unit": "qr",
+            "unit": "wallet"
+        },
+        "location": {
+            "source": "store",
+            "state_id": "AR-B"
+        },
+        "transaction_data": {
+            "bank_info": {
+                "collector": {
+                    "account_holder_name": null,
+                    "account_id": null,
+                    "long_name": null,
+                    "transfer_account_id": null
+                },
+                "is_same_bank_account_owner": null,
+                "origin_bank_id": null,
+                "origin_wallet_id": null,
+                "payer": {
+                    "account_id": null,
+                    "external_account_id": null,
+                    "id": null,
+                    "identification": {},
+                    "long_name": null
+                }
+            },
+            "bank_transfer_id": null,
+            "e2e_id": null,
+            "financial_institution": null,
+            "infringement_notification": {
+                "status": null,
+                "type": null
+            },
+            "qr_code": null,
+            "ticket_url": null,
+            "transaction_id": null
+        },
+        "type": "INSTORE"
+    },
+    "pos_id": "98070069",
+    "processing_mode": "aggregator",
+    "refunds": [],
+    "shipping_amount": 0,
+    "sponsor_id": null,
+    "statement_descriptor": null,
+    "status": "approved",
+    "status_detail": "accredited",
+    "store_id": "60512938",
+    "tags": null,
+    "taxes_amount": 0,
+    "transaction_amount": 100,
+    "transaction_amount_refunded": 0,
+    "transaction_details": {
+        "acquirer_reference": null,
+        "bank_transfer_id": null,
+        "external_resource_url": null,
+        "financial_institution": null,
+        "installment_amount": 0,
+        "net_received_amount": 96.03,
+        "overpaid_amount": 0,
+        "payable_deferral_period": null,
+        "payment_method_reference_id": null,
+        "total_paid_amount": 100,
+        "transaction_id": null
+    }
+}

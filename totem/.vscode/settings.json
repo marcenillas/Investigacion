@@ -1,0 +1,12 @@
+{
+    "cSpell.words": [
+        "CABA",
+        "datetime",
+        "dtos",
+        "mercadolibre",
+        "postgres",
+        "timestamptz",
+        "tran"
+    ],
+    "vsicons.presets.nestjs": true
+}

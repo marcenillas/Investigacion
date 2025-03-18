@@ -1,0 +1,19 @@
+<div class="container">
+    <shared-loading *ngIf="loadingTerminal"></shared-loading>
+    <terminal-list *ngIf="!loadingTerminal" [terminalList]="dataRowsTerminal"></terminal-list>
+</div>
+<hr/>
+<div class="container">
+    <shared-loading *ngIf="loadingTransactions"></shared-loading>
+    <transaction-list *ngIf="!loadingTransactions" [transactionList]="dataRowsTransaction"></transaction-list>
+</div>
+<hr/>
+<div class="container">
+    <shared-loading *ngIf="loadingEvents"></shared-loading>
+    <event-list *ngIf="!loadingEvents" [eventList]="dataRowsEvent"></event-list>
+</div>
+<hr/>
+<div class="container">
+    <shared-loading *ngIf="loadingOperatorLog"></shared-loading>
+    <operatorLog-list *ngIf="!loadingOperatorLog" [operatorLogList]="dataRowsOperatorLog"></operatorLog-list>
+</div>

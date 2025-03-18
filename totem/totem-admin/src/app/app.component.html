@@ -1,0 +1,5 @@
+<shared-loading *ngIf="!finishedAuthCheck()"></shared-loading>
+<shared-toast></shared-toast>
+<main class="container-xl py-1 border-top">    
+    <router-outlet *ngIf="finishedAuthCheck()"></router-outlet>
+</main>

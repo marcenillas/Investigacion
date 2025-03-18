@@ -1,0 +1,12 @@
+{
+    "devTools": true,    
+    "window": {
+        "hideMenuBar": false,
+        "fullScreen": false,
+        "width": 768,
+        "height": 1024
+    },
+    "api": {
+        "url": "http://localhost:3030/api"
+    }
+}

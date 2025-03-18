@@ -1,0 +1,76 @@
+<shared-confirm-modal [show]="showModalWindow" (confirmed)="onConfirm()" (canceled)="onCancel()"
+    message="Se perderán los cambios si cancela la operación ¿Está seguro de continuar?">
+</shared-confirm-modal>
+<div class="row g-3">
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>
+            {{ current.userId ? 'Editar' : 'Agregar Usuario' }}
+            <small *ngIf="current.userId">{{ current.fullName }}</small>
+        </span>
+
+        <div class="text-end">
+            <button class="btn btn-light me-2" (click)="onSubmit()">Aceptar</button>
+            <button class="btn btn-danger" (click)="onClose()">Cancelar</button>
+        </div>
+    </h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="name" class="form-label">Nombre Completo</label>
+                <input type="text"  class="form-control" id="fullName" formControlName="fullName" />
+                <span *ngIf="validationService.invalidField(form, 'fullName')" class="form-text text-danger">
+                    {{ validationService.getFieldError(form, 'fullName', 'Nombre Completo') }}
+                </span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email"   class="form-control" id="email" formControlName="email" />
+                <span *ngIf="validationService.invalidField(form, 'email')" class="form-text text-danger">
+                    {{ validationService.getFieldError(form, 'email', 'Email') }}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 mb-3" *ngIf="!current.userId">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" autocomplete="new-password" class="form-control" id="password" formControlName="password" />
+                <span *ngIf="validationService.invalidField(form, 'password')" class="form-text text-danger">
+                    {{ validationService.getFieldError(form, 'password', 'Contraseña') }}
+                </span>
+            </div>
+            <div class="col-12 mb-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="enabled" formControlName="enabled">
+                    <label class="form-check-label" for="enabled">Activo</label>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <label for="me" class="form-label">Roles</label>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="user" formControlName="user">
+                            <label class="form-check-label" for="user">Usuario</label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="admin" formControlName="admin">
+                            <label class="form-check-label" for="admin">Administrador</label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="operator" formControlName="operator">
+                            <label class="form-check-label" for="operator">Operador</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+    <div class="col-md-12 text-end pt-2 border-top">
+        <button class="btn btn-light me-2" (click)="onSubmit()">Aceptar</button>
+        <button class="btn btn-danger" (click)="onClose()">Cancelar</button>
+    </div>
+</div>

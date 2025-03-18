@@ -1,0 +1,4 @@
+<div class="container">
+    <shared-loading *ngIf="loading"></shared-loading>
+    <user-list *ngIf="!loading" [userList]="dataRows"></user-list>
+</div>

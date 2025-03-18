@@ -1,0 +1,4 @@
+<div class="container">
+    <shared-loading *ngIf="loading"></shared-loading>
+    <transaction-grid *ngIf="!loading" [transactionList]="dataRows" [dataCount]="dataCount"></transaction-grid>
+</div>

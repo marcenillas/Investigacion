@@ -1,0 +1,26 @@
+{
+    "method": "POST",
+    "maxBodyLength": null,
+    "url": "https://api.mercadopago.com/instore/orders/qr/seller/collectors/1713092135/pos/99988/qrs",
+    "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer APP_USR-6407024715531601-030609-c9114c3665d2c6cc85a26704d5cb545f-1713092135"
+    },
+    "data": {
+        "external_reference": "42bc982c-f374-4d6a-b211-eed2620a0b16",
+        "total_amount": 200,
+        "title": "Carga",
+        "description": "Carga",
+        "items": [
+            {
+                "title": "Ticket",
+                "description": "Ticket",
+                "quantity": 1,
+                "unit_measure": "unit",
+                "unit_price": 200,
+                "total_amount": 200
+            }
+        ],
+        "notification_url": "https://fluffy-clocks-smash.loca.lt/api/transaction/ReceiveNotifications"
+    }
+}

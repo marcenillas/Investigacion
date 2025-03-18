@@ -1,0 +1,249 @@
+{
+    "terminal": [
+        {
+            "id": "240317134500",
+            "image": "https://cdn.pixabay.com/photo/2020/10/26/08/20/man-5686626_1280.png",
+            "name": "Terminal Planta Baja",
+            "description": "Terminal ubicado en Planta Baja, habilitado sólo en horario diurno, modo QR Fijo y billetes de denominación general.",
+            "enabled": true,
+            "modeQR": true,
+            "modeFixed": true,
+            "status": 1,
+            "carrouselImage01": "https://cdn.pixabay.com/photo",
+            "carrouselImage02": "https://cdn.pixabay.com/photo",
+            "carrouselImage03": "https://cdn.pixabay.com/photo",
+            "carrouselImage04": "https://cdn.pixabay.com/photo",
+            "carrouselImage05": "https://cdn.pixabay.com/photo",
+            "event": "Online - Ok",
+            "lastTransaction": "2024-02-10 16:59:12",
+            "lastConnection": "2024-02-10 17:20:21"
+        },
+        {
+            "id": "240315194600",
+            "name": "Terminal Hall Secundario",
+            "image": "https://cdn.pixabay.com/photo/2020/10/26/08/20/man-5686626_1280.png",
+            "description": "Terminal ubicado en el Hall Secundario, configurado para operar en horario de corrido, con ambos modos de operación y billetes de denominación general.",
+            "enabled": true,
+            "modeQR": true,
+            "modeFixed": true,
+            "status": 1,
+            "carrouselImage01": "https://cdn.pixabay.com/photo",
+            "carrouselImage02": "https://cdn.pixabay.com/photo",
+            "carrouselImage03": "https://cdn.pixabay.com/photo",
+            "carrouselImage04": "https://cdn.pixabay.com/photo",
+            "carrouselImage05": "https://cdn.pixabay.com/photo",
+            "event": "Online - Ok",
+            "lastTransaction": "2024-02-10 17:11:54",
+            "lastConnection": "2024-02-10 17:20:21"
+        },
+        {
+            "id": "240314194600",
+            "name": "Terminal Bar Bingo",
+            "image": "https://cdn.pixabay.com/photo/2020/10/26/08/20/man-5686626_1280.png",
+            "description": "Terminal ubicado en el Bar de Bingo, modo QR Fijo y billetes de baja denominación. Opera sólo en el horario de Bingo.",
+            "enabled": true,
+            "modeQR": true,
+            "modeFixed": true,
+            "status": 2,
+            "carrouselImage01": "https://cdn.pixabay.com/photo",
+            "carrouselImage02": "https://cdn.pixabay.com/photo",
+            "carrouselImage03": "https://cdn.pixabay.com/photo",
+            "carrouselImage04": "https://cdn.pixabay.com/photo",
+            "carrouselImage05": "https://cdn.pixabay.com/photo",
+            "event": "Offline - Sin respuesta",
+            "lastTransaction": "2024-02-09 14:45:12",
+            "lastConnection": "2024-02-09 16:20:21"
+        },
+        {
+            "id": "240217194600",
+            "name": "Terminal Sala Ruletas",
+            "image": "https://cdn.pixabay.com/photo/2020/10/26/08/20/man-5686626_1280.png",
+            "description": "Terminal ubicado en la Sala de Ruletas, opera en ambos modos y billetes de denominación general. Opera en horario de corrido.",
+            "enabled": true,
+            "modeQR": true,
+            "modeFixed": true,
+            "status": 2,
+            "carrouselImage01": "https://cdn.pixabay.com/photo",
+            "carrouselImage02": "https://cdn.pixabay.com/photo",
+            "carrouselImage03": "https://cdn.pixabay.com/photo",
+            "carrouselImage04": "https://cdn.pixabay.com/photo",
+            "carrouselImage05": "https://cdn.pixabay.com/photo",
+            "event": "Offline - Sin respuesta",
+            "lastTransaction": "2024-02-09 14:45:12",
+            "lastConnection": "2024-02-10 17:20:21"
+        },
+        {
+            "id": "240317194610",
+            "name": "Terminal Slots VIP",
+            "image": "https://cdn.pixabay.com/photo/2020/10/26/08/20/man-5686626_1280.png",
+            "description": "Terminal ubicado en la Sala VIP de Slots, opera en ambos modos y billetes de alta general. Opera en horario nocturno.",
+            "enabled": true,
+            "modeQR": true,
+            "modeFixed": true,
+            "status": 3,
+            "carrouselImage01": "https://cdn.pixabay.com/photo",
+            "carrouselImage02": "https://cdn.pixabay.com/photo",
+            "carrouselImage03": "https://cdn.pixabay.com/photo",
+            "carrouselImage04": "https://cdn.pixabay.com/photo",
+            "carrouselImage05": "https://cdn.pixabay.com/photo",
+            "event": "Impresora TITO Offline",
+            "lastTransaction": "2024-02-09 14:45:12",
+            "lastConnection": "2024-02-10 17:20:21"
+        },
+        {
+            "id": "240317194600",
+            "name": "Terminal Terraza",
+            "description": "Terminal ubicada en zona para Clientes VIP, en la terraza norte del local. Atiende sólo en turno noche de Jueves a Domingo",
+            "enabled": true,
+            "status": 0,
+            "modeQR": false,
+            "modeFixed": false,
+            "carrouselImage01": "",
+            "carrouselImage02": "",
+            "carrouselImage03": "",
+            "carrouselImage04": "",
+            "carrouselImage05": ""
+        }
+    ],
+    "event": [
+        {
+            "id": "240337194600",
+            "name": "Transacción Exitosa - TITO 1354322 ($100.00)",
+            "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
+            "type": 0,
+            "stamp": "2024-02-10 17:11:54",
+            "terminalId": 1,
+            "terminalName": "Terminal Planta Baja"
+        },
+        {
+            "id": "240317192600",
+            "name": "Transacción Exitosa - TITO 1354322 ($100.00)",
+            "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
+            "type": 0,
+            "stamp": "2024-02-10 17:11:54",
+            "terminalId": 1,
+            "terminalName": "Terminal Planta Baja"
+        },
+        {
+            "id": "240217194600",
+            "name": "Impresora TITO Offline",
+            "description": "No se pudo establecer conexión con la impresora TITO del terminal de Planta Baja.",
+            "type": 2,
+            "stamp": "2024-02-10 17:11:54",
+            "terminalId": 1,
+            "terminalName": "Terminal Planta Baja"
+        },
+        {
+            "id": "240317194599",
+            "name": "Terminal Offline",
+            "description": "El terminal de Planta Baja se encuentra offline. No se pudo establecer conexión.",
+            "type": 2,
+            "stamp": "2024-02-10 17:11:54",
+            "terminalId": 1,
+            "terminalName": "Terminal Planta Baja"
+        },
+        {
+            "id": "240317188600",
+            "name": "Impresora Térmica (No fiscal) baja de papel",
+            "description": "La Impresora Térmica (No fiscal) del terminal de Planta Baja se encuentra con bajo nivel de papel. Requiere cambio de insumo.",
+            "type": 1,
+            "stamp": "2024-02-10 17:11:54",
+            "terminalId": 1,
+            "terminalName": "Terminal Planta Baja"
+        }
+    ],
+    "transaction": [
+        {
+            "id": "240337194600",
+            "name": "Transacción Registrada - TITO 1354322 ($100.00)",
+            "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
+            "status": 0,
+            "stamp": "2024-02-10 17:11:54",
+            "terminalId": 1,
+            "terminalName": "Terminal Planta Baja"
+        },
+        {
+            "id": "240637194600",
+            "name": "Transacción Registrada - TITO 1354322 ($100.00)",
+            "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
+            "status": 0,
+            "stamp": "2024-02-10 17:11:54",
+            "terminalId": 1,
+            "terminalName": "Terminal Planta Baja"
+        },
+        {
+            "id": "240327194600",
+            "name": "Transacción Registrada - TITO 1354322 ($100.00)",
+            "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
+            "status": 0,
+            "stamp": "2024-02-10 17:11:54",
+            "terminalId": 1,
+            "terminalName": "Terminal Planta Baja"
+        },
+        {
+            "id": "240337794600",
+            "name": "Transacción Registrada - TITO 1354322 ($100.00)",
+            "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
+            "status": 0,
+            "stamp": "2024-02-10 17:11:54",
+            "terminalId": 1,
+            "terminalName": "Terminal Planta Baja"
+        },
+        {
+            "id": "240337194400",
+            "name": "Transacción Registrada - TITO 1354322 ($100.00)",
+            "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
+            "status": 0,
+            "stamp": "2024-02-10 17:11:54",
+            "terminalId": 1,
+            "terminalName": "Terminal Planta Baja"
+        }
+    ],
+    "user": [
+        {
+            "_id": "240327194600",
+            "name": "Emilio Peralta",
+            "email": "epe@si.com",
+            "password": "1234",
+            "enabled": true
+        },
+        {
+            "_id": "240317184600",
+            "name": "Jorge Barrios",
+            "email": "jba@si.com",
+            "password": "1234",
+            "enabled": true
+        },
+        {
+            "_id": "240316194600",
+            "name": "Paula Miranda",
+            "email": "pmi@si.com",
+            "password": "1234",
+            "enabled": false
+        },
+        {
+            "_id": "240322172910",
+            "name": "Carlos Apache",
+            "email": "capa@sielcon.com",
+            "enabled": true,
+            "password": "1234"
+        }
+    ],
+    "configuration": {
+        "id": "1",
+        "name": "Configuración General",
+        "description": "Configuración general del sistema.",
+        "enabled": true,
+        "modeQR": true,
+        "modeFixed": true,
+        "status": 1,
+        "carrouselImage01": "https://cdn.pixabay.com/photo",
+        "carrouselImage02": "https://cdn.pixabay.com/photo",
+        "carrouselImage03": "https://cdn.pixabay.com/photo",
+        "carrouselImage04": "https://cdn.pixabay.com/photo",
+        "carrouselImage05": "https://cdn.pixabay.com/photo",
+        "event": "Online - Ok",
+        "lastTransaction": "2024-02-10 16:59:12",
+        "lastConnection": "2024-02-10 17:20:21"
+    }
+}

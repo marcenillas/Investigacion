@@ -1,0 +1,78 @@
+.table-container {
+  max-height: 1200px;
+  overflow-y: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+
+
+tbody {  
+  overflow-y: auto; 
+}
+/*
+th {  
+  border: 1px solid #ddd;
+}
+*/
+td {  
+  border: 1px solid #ddd;
+  
+}
+
+button {
+  padding: 1px 2px; 
+  cursor: pointer;
+}
+
+
+
+.text-light {
+  color: lightgray;
+}
+
+.text-warning {
+  color: orange;
+}
+
+.text-success {
+  color: green;
+}
+
+.text-danger {
+  color: red;
+}
+
+.text-dark {
+  color: black;
+}
+
+
+/* .btn-light {
+  background-color: lightgray;
+  color: black;
+}
+
+.btn-warning {
+  background-color: orange;
+  color: black;
+}
+
+.btn-success {
+  background-color: green;
+  color: white;
+}
+
+.btn-danger {
+  background-color: red;
+  color: white;
+}
+
+.btn-dark {
+  background-color: black;
+  color: white;
+} */

@@ -1,0 +1,4 @@
+<div class="container">
+    <shared-loading *ngIf="loading"></shared-loading>
+    <event-grid *ngIf="!loading" [eventList]="dataRows"  [dataCount]="dataCount"></event-grid>
+</div>

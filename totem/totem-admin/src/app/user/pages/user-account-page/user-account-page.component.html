@@ -1,0 +1,62 @@
+<shared-confirm-modal [show]="showModalWindow" (confirmed)="onConfirm()" (canceled)="onCancel()"
+    message="Se perderán los cambios si cancela la operación ¿Está seguro de continuar?">
+</shared-confirm-modal>
+<div class="row g-3">
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>
+            Mi Cuenta ({{ getSession() }})
+        </span>
+        <div class="text-end">
+            <button class="btn btn-light me-2" (click)="onSubmit()">Aceptar</button>
+            <button class="btn btn-danger" (click)="onClose()">Cancelar</button>
+        </div>
+    </h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="name" class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" id="fullName" formControlName="fullName" />
+                <span *ngIf="validationService.invalidField(form, 'fullName')" class="form-text text-danger">
+                    {{ validationService.getFieldError(form, 'fullName', 'Nombre Completo') }}
+                </span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" formControlName="email" />
+                <span *ngIf="validationService.invalidField(form, 'email')" class="form-text text-danger">
+                    {{ validationService.getFieldError(form, 'email', 'Email') }}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="password" class="form-label">Contraseña Actual</label>
+                <input type="password" class="form-control" id="password" formControlName="password" />
+                <span *ngIf="validationService.invalidField(form, 'password')" class="form-text text-danger">
+                    {{ validationService.getFieldError(form, 'password', 'Contraseña') }}
+                </span>
+            </div>
+        </div>
+        <h5 class="border-top pt-2 mt-3 mb-4">Cambio de Contraseña</h5>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label for="newPassword" class="form-label">Nueva Contraseña</label>
+                <input type="password" class="form-control" id="newPassword" formControlName="newPassword" />
+                <span *ngIf="validationService.invalidField(form, 'newPassword')" class="form-text text-danger">
+                    {{ validationService.getFieldError(form, 'newPassword', 'Nueva Contraseña') }}
+                </span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="confirmPassword" class="form-label">Confirmación de Nueva Contraseña</label>
+                <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" />
+                <span *ngIf="validationService.invalidField(form, 'confirmPassword')" class="form-text text-danger">
+                    {{ validationService.getFieldError(form, 'confirmPassword', 'Confirmación de Nueva Contraseña', "Nueva Contraseña") }}
+                </span>
+            </div>
+        </div>
+    </form>
+    <div class="col-md-12 text-end pt-2 border-top">
+        <button class="btn btn-light me-2" (click)="onSubmit()">Aceptar</button>
+        <button class="btn btn-danger" (click)="onClose()">Cancelar</button>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+<transaction-filter [show]="showModalWindow" (confirmed)="onConfirm($event)" (canceled)="onCancel()" />
+<h3 class="text-light pt-2">Consulta de Transacciones
+    <button class="btn btn-primary fs-6 fw-bold py-1 w-auto me-2" (click)="showModal()">Filtrar</button>
+    <button class="btn btn-primary fs-6 fw-bold py-1 w-auto me-2" (click)="resetFilter()">Limpiar</button>
+    <button class="btn btn-primary fs-6 fw-bold py-1 w-auto me-2" (click)="refresh()">Refrescar</button>
+</h3>
+<form [formGroup]="form">
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle small">
+            <caption>
+                <div class="row">
+                    <div class="col-md-6 justify-content-start">
+                        <div class="d-flex  align-items-center mb-3">
+                            <label for="itemsPerPageSelect" class="me-2">Cantidad de registros:</label>
+                            <select id="itemsPerPageSelect" formControlName="itemsPerPage" (change)="updateItemsPerPage($event)">
+                                <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        <nav>
+                            <ul class="pagination pagination-sm justify-content-end">
+                                <li class="page-item"><button class="page-link" [disabled]="currentPage === 1"
+                                        (click)="changePage(1)">&lt;&lt;</button></li>
+                                <li class="page-item"><button class="page-link" [disabled]="currentPage === 1"
+                                        (click)="changePage(currentPage - 1)">&lt;</button></li>
+                                <li class="page-item" *ngFor="let page of visiblePages">
+                                    <button class="page-link" [ngClass]="{ 'active': page === this.currentPage}"
+                                        (click)="changePage(page)"> {{ page }}</button>
+                                </li>
+                                <li class="page-item" *ngIf="AddPoints">
+                                    <button class="page-link" (click)="changePage(currentPage + 1)">...</button>
+                                </li>
+
+                                <li class="page-item"> <button class="page-link" (click)="changePage(currentPage + 1)"
+                                        [disabled]="currentPage === totalPages">&gt;</button></li>
+                                <li class="page-item"> <button class="page-link" (click)="changePage(totalPages)"
+                                        [disabled]="currentPage === totalPages">&gt;&gt;</button></li>
+                            </ul>
+                        </nav>
+                    </div>
+                   
+                </div>
+            </caption>
+            <thead>
+                <tr>
+                    <th  style="width: 20%">Terminal</th>
+                    <th style="width: 10%" >Estado</th>
+                    <th style="width: 20%" >Fecha y Hora</th>
+                    <th style="width: 10%" >Pago</th>
+                    <th style="width: 10%" >Usuario</th>
+                    <th style="width: 5%" class="text-end">SubTotal</th>
+                    <th style="width: 5%"class="text-end">Impuesto</th>
+                    <th style="width: 5%"class="text-end">Comisión</th>                    
+                    <th style="width: 5%"class="text-end">Total</th>
+                    <th style="width: 5%"class="text-end">Retención</th>
+                    <th style="width: 5%"class="text-end">Recibido</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let transaction of transactionList; let i = index">
+                    <!-- <td [ngClass]="[transaction.status | tranStatusClass_text]" class="text-center">{{ transaction.transactionId }}</td> -->
+                    <td [ngClass]="[transaction.status | tranStatusClass_text]" class="col-2">{{ transaction.terminal.name }}</td>
+                    <td [ngClass]="[transaction.status | tranStatusClass_text]" class="text-center col-2">{{transaction.status | tranStatusDescription }}</td>
+                    <!-- <td [ngClass]="[transaction.status | tranStatusClass_text]" class="">{{ transaction.name }}</td> -->
+                    <td [ngClass]="[transaction.status | tranStatusClass_text]" class="text-center col-2">{{ transaction.stamp| date: 'dd/MM/yy HH:mm:ss' }}</td>
+                    <td [ngClass]="[transaction.status | tranStatusClass_text]" class="text-center col-2">{{ transaction.paymentId }}</td>
+                    <td [ngClass]="[transaction.status | tranStatusClass_text]" class="text-center col-2">{{ transaction.paymentUser }}</td>
+                    <td [ngClass]="[transaction.status | tranStatusClass_text]" class="text-end col-1">{{config?.currencySymbol}}{{ transaction.total | defaultCeroForDecimalNumbers}}</td>
+                    <td [ngClass]="[transaction.status | tranStatusClass_text]" class="text-end col-1">{{config?.currencySymbol}}{{ transaction.tax  | defaultCeroForDecimalNumbers}}</td>
+                    <td [ngClass]="[transaction.status | tranStatusClass_text]" class="text-end col-1">{{config?.currencySymbol}}{{ transaction.mpFee  | defaultCeroForDecimalNumbers}}</td>
+                    <td [ngClass]="[transaction.status | tranStatusClass_text]" class="text-end col-1">{{config?.currencySymbol}}{{ transaction.amount | defaultCeroForDecimalNumbers}}
+                        <td [ngClass]="[transaction.status | tranStatusClass_text]" class="text-end col-1">{{config?.currencySymbol}}{{ transaction.mpTax | defaultCeroForDecimalNumbers}}
+                            <td [ngClass]="[transaction.status | tranStatusClass_text]" class="text-end col-1">{{config?.currencySymbol}}{{ transaction.mptotal | defaultCeroForDecimalNumbers}}
+                    <td class="text-center"><a type="button" class="btn btn-sm"
+                            [routerLink]="['/transaction', transaction.transactionId]"
+                            [ngClass]="[transaction.status | tranStatusClass_btn]">...</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</form>

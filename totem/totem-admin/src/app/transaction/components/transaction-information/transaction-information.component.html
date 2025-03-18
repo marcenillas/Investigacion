@@ -1,0 +1,26 @@
+<div class="modal fade" id="modalInformation" tabindex="-1" role="dialog" [ngClass]="{'show': show}"
+    [style.display]="show ? 'block' : 'none'">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5">Información</h5>
+                <button type="button" class="btn-close" aria-label="Close" (click)="hide()"></button>
+            </div>
+          
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+
+                            <pre [innerHTML]="informationmsg  | defaultJsonString: [true, 3]"></pre>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">                 
+                    <button type="button" class="btn btn-secondary" (click)="hide()">Salir</button>
+                </div>
+        
+        </div>
+
+    </div>
+</div>

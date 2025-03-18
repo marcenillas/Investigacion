@@ -1,0 +1,42 @@
+#valueInput {
+    text-align: center;
+    font-size: 3em;
+    width: 400px;
+}
+
+.value-btn {
+    font-size: 2em;
+    margin: 0 0.5em;
+    width: 200px;
+}
+
+.tran-custom {
+	color: black;    
+	align-self: center;
+	text-align: center;
+	margin-top: 1px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+    font-weight: bold;
+}
+
+
+.container-qr {
+	position: relative;
+	display: inline-block;
+	align-self:center;
+}
+.logo-qr {
+	display: block;
+	margin-top: 60%;
+	margin-bottom: 10%;
+	
+}
+.image-qr {
+	position: absolute;
+	top: 60%; /* Ajusta según sea necesario */
+	left: 50%; /* Ajusta según sea necesario */
+	transform: translate(-50%, -50%);	
+	text-align: center;
+}
+

@@ -1,0 +1,54 @@
+<shared-confirm-modal id="modal" [show]="showModalWindow" (confirmed)="onConfirm()" (canceled)="onCancel()"
+    message="Se eliminará el registro ¿Está seguro de continuar?">
+</shared-confirm-modal>
+<div class="row g-3">
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>Detalle de Usuario</span>
+        <div class="text-end">
+            <a class="btn btn-success me-2" [routerLink]="['/user/edit', user?.userId]">Modificar</a>
+            <button class="btn btn-danger me-2" (click)="showModal()">Eliminar</button>
+            <button class="btn btn-primary" [routerLink]="['/user']">Volver</button>
+        </div>
+    </h3>
+    <div class="col-md-6">
+        <label for="name" class="form-label">Nombre Completo</label>
+        <label for="" class="form-control" id="name">{{ user?.fullName }}</label>
+    </div>
+    <div class="col-md-5">
+        <label for="email" class="form-label">Email</label>
+        <label for="" class="form-control" id="email">{{ user?.email }}</label>
+    </div>
+    <div class="col-md-1">
+        <label for="status" class="form-label">Activo</label>
+        <label for="" class="form-control" [ngClass]="user?.enabled | enabledClass_text_bg" id="enabled">{{
+            user?.enabled ? 'SÍ' : 'NO'}}</label>
+    </div>
+    <div class="col-md-5">
+        <label for="me" class="form-label">Roles</label>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="user" disabled [checked]="user?.user">
+                    <label class="form-check-label" for="user" disabled>Usuario</label>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="admin" disabled [checked]="user?.admin">
+                    <label class="form-check-label" for="admin" disabled>Administrador</label>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="operator" disabled [checked]="user?.operator">
+                    <label class="form-check-label" for="operator" disabled>Operador</label>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-12 text-end pt-2 border-top">
+        <a class="btn btn-success me-2" [routerLink]="['/user/edit', user?.userId]">Modificar</a>
+        <button class="btn btn-danger me-2" (click)="showModal()">Eliminar</button>
+        <button class="btn btn-primary" [routerLink]="['/user']">Volver</button>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<h3 class="text-light pt-2">Usuarios
+    <a class="btn btn-primary fs-6 fw-bold py-1 w-auto" [routerLink]="['/user/new']">AGREGAR</a>
+</h3>
+<div class="row row-cols-1 row-cols-md-3 g-2 py-1">
+    <div class="col-md-3 mb-1" *ngFor="let user of userList;">
+        <div class="card" [ngClass]="user.enabled | enabledClass_border">
+            <div class="card-body text-white p-3" [ngClass]="user.enabled| enabledClass_text">
+                <h3 class="card-title">{{ user.fullName }}</h3>
+                <span class="badge" [ngClass]="user.enabled| enabledClass_text_bg">{{ user.enabled ? 'ACTIVO' :
+                    'INACTIVO'}}</span>
+                <p class="card-text">{{ user.email }}</p>
+                <a class="btn btn-light fs-5 fw-bold py-1 w-auto" [routerLink]="['/user', user.userId]">Ver Detalle</a>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="user" disabled [checked]="user.user">
+                            <label class="form-check-label" for="user" disabled>Usuario</label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="admin" disabled [checked]="user.admin">
+                            <label class="form-check-label" for="admin" disabled>Administrador</label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="operator" disabled [checked]="user.operator">
+                            <label class="form-check-label" for="operator" disabled>Operador</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

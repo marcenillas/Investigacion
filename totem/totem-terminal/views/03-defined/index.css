@@ -1,0 +1,59 @@
+#valueInput {
+	font-size: 3em;
+	background-color: #ffffff;
+	color: #000000;
+	width: 60%;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	align-self: center;
+}
+
+.div-operartion {
+	align-self: center;
+	margin-bottom: 0.625em;
+}
+
+.btn-value {
+	background-color: #0070ba;
+	color: #ffffff;
+	border: none;
+	font-size: 2em;
+	border-radius: 0.313em;
+	cursor: pointer;
+	margin: 2px;
+	width: 90%;
+	margin-left: 20px;
+	font-weight: bold;
+}
+
+.btn-value-clean {
+	background-color: red;
+	color: #ffffff;
+	border: none;
+	font-size: 2em;
+	border-radius: 0.313em;
+	cursor: pointer;
+	margin: 2px;
+	width: 90%;
+	margin-left: 20px;
+	font-weight: bold;
+}
+
+.container-ticket {
+	position: relative;
+	display: inline-block;
+	align-self:center;
+}
+.logo-ticket {
+	display: block;
+	margin-top: 40%;
+	margin-bottom: 10%;
+	
+}
+.input-ticket {
+	position: absolute;
+	top: 63%; /* Ajusta según sea necesario */
+	left: 50%; /* Ajusta según sea necesario */
+	transform: translate(-50%, -50%);	
+	text-align: center;
+}

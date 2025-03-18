@@ -1,0 +1,138 @@
+<div class="row g-3">
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>Configuración General</span>
+        <div class="text-end">
+            <button class="btn btn-success me-2" [routerLink]="['/config/edit']">Modificar</button>
+            <button class="btn btn-primary" [routerLink]="['/home']">Volver</button>
+        </div>
+    </h3>
+    <div class="row mb-2">
+        <div class="col-md-9">
+            <label for="mpAuthorizationToken" class="form-label">Token de Mercado Pago</label>
+            <label for="" class="form-control" id="mpAuthorizationToken">{{ config?.mpAuthorizationToken | defaultString
+                }}</label>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-3">
+            <label for="mpUserId" class="form-label">UserId de Mercado Pago</label>
+            <label for="" class="form-control" id="mpUserId">{{ config?.mpUserId | defaultString }}</label>
+        </div>
+
+        <div class="col-md-3">
+            <label for="mpExpirateTransaction" class="form-label">Tiempo Expiración MP (Seg.)</label>
+            <label for="" class="form-control text-end" id="mpExpirateTransaction">{{ config?.mpExpirateTransaction | defaultStringForNumbers }}</label>
+        </div>
+        <div class="col-md-3">
+            <label for="feeBorneClientCharge" class="form-label">Cobro Comisión Bill. Virtual</label>
+            <label for="" class="form-control" id="feeBorneClientCharge">{{ config?.feeBorneClientCharge | booleanToYesNo }}</label>
+        </div>
+
+   
+
+    </div>
+    
+    <div class="row mb-2">
+        <div class="col-md-9">
+            <label for="mpNotificationURL" class="form-label">URL de Notificación de Mercado Pago</label>
+            <label for="" class="form-control" id="mpNotificationURL">{{ config?.mpNotificationURL | defaultString
+                }}</label>
+        </div>
+    </div>
+    <div class="row mb-2">
+       
+        <div class="col-md-3">
+            <label for="taxPercentage" class="form-label">% de Impuesto</label>
+            <label for="" class="form-control text-end" id="taxPercentage">{{ config?.taxPercentage | defaultStringForDecimalNumbers }}</label>
+        </div>
+    
+        <div class="col-md-3">
+            <label for="currencySymbol" class="form-label">Símbolo de Moneda</label>
+            <label for="" class="form-control text-end" id="currencySymbol">{{ config?.currencySymbol |
+                defaultString }}</label>
+        </div>
+        <div class="col-md-3">
+            <label for="printCancelTransaction" class="form-label">Imprime Ticket de Cancelación</label>
+            <label for="" class="form-control" id="printCancelTransaction">{{ config?.printCancelTransaction | booleanToYesNo }}</label>
+        </div>
+
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-5">
+            <label for="salaName" class="form-label">Nombre de Sala</label>
+            <label for="" class="form-control" id="salaName">{{ config?.salaName | defaultString
+                }}</label>
+        </div>
+        <div class="col-md-4">
+            <label for="takeSalaNameConfiguration" class="form-label">Toma Nombre de Sala de Configuración</label>
+            <label for="" class="form-control" id="takeSalaNameConfiguration">{{ config?.takeSalaNameConfiguration | booleanToYesNo }}</label>
+        </div>
+       
+    </div>
+    <div class="row mb-2">
+
+        <div class="col-md-9">
+            <label for="salaAddress" class="form-label">Dirección de Sala</label>
+            <label for="" class="form-control" id="salaAddress">{{ config?.salaAddress | defaultString
+                }}</label>
+        </div>
+
+    </div>
+
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>Configuración Imágenes</span>
+    </h3>
+    <div class="row mb-2">
+        <div class="col-md-8">
+            <label for="logoMPImage" class="form-label">Logo MP</label>
+            <label for="" class="form-control" id="logoMPImage">{{ config?.logoMPImage | defaultString }}</label>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-8">
+            <label for="logoSalaImage" class="form-label">Logo Sala</label>
+
+            <label for="" class="form-control" id="logoSalaImage">{{ config?.logoSalaImage | defaultString }}</label>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-8">
+            <label for="logoSielconImage" class="form-label">Logo Sielcon</label>
+
+            <label for="" class="form-control" id="logoSielconImage">{{ config?.logoSielconImage | defaultString
+                }}</label>
+        </div>
+    </div>
+
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>Configuración TITO</span>
+    </h3>
+
+
+    <div class="row mb-2">
+        <div class="col-md-8">
+            <label for="TITOTitle" class="form-label">Título</label>
+            <label for="" class="form-control" id="TITOTitle">{{ config?.TITOTitle | defaultString }}</label>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-8">
+            <label for="TITOLine1" class="form-label">Linea 1</label>
+            <label for="" class="form-control" id="TITOLine1">{{ config?.TITOLine1 | defaultString }}</label>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-8">
+            <label for="TITOLine2" class="form-label">Linea 2</label>
+            <label for="" class="form-control" id="TITOLine2">{{ config?.TITOLine2 | defaultString }}</label>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-8">
+            <label for="TITOLine3" class="form-label">Linea 3</label>
+            <label for="" class="form-control" id="TITOLine3">{{ config?.TITOLine3 | defaultString }}</label>
+        </div>
+    </div>
+
+
+</div>

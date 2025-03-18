@@ -1,0 +1,17 @@
+ALTER TABLE "operatorLog" DROP CONSTRAINT "FK_7c31c2b4fdb595ec0c60650ec2b";
+ALTER TABLE "transaction" DROP CONSTRAINT "FK_71bf4f5ef5281da71e23ede3be3";
+ALTER TABLE "transactionLog" DROP CONSTRAINT "FK_1550f0cb5904e8b062859eccf3f";
+ALTER TABLE "event" DROP CONSTRAINT "FK_128120d9fd6c994c186265be4f9";
+DROP TABLE "configuration";
+DROP TABLE "users";
+DROP TYPE "public"."users_roles_enum";
+DROP TABLE "operatorLog";
+DROP TYPE "public"."operatorLog_operatoraction_enum";
+DROP TABLE "terminal";
+DROP TYPE "public"."terminal_status_enum";
+DROP TABLE "transaction";
+DROP TYPE "public"."transaction_status_enum";
+DROP TABLE "transactionLog";
+DROP TYPE "public"."transactionLog_step_enum";
+DROP TABLE "event";
+DROP TYPE "public"."event_type_enum";

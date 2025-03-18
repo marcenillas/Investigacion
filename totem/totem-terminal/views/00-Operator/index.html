@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+
+<head>
+	<script src="../assets/js/color-modes.js"></script>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>SIELCON Pay (maintenance)</title>
+
+	<link href="https://getbootstrap.com/docs/5.3/examples/cover/" rel="canonical">
+	<link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet">
+	<link href="../../node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+	<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../styles.css" rel="stylesheet">
+	<link href="index.css" rel="stylesheet">
+
+	<script src="../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+	<script src="../../js/app.js"></script>
+	<script>
+
+
+
+
+		window.onload = function () {
+
+		}
+
+
+	</script>
+</head>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+	<div class="container-fluid">
+		<div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+			<header class="mb-auto">
+				<div>
+					<h3 class="float-md-start mb-0">SIELCON Pay</h3>
+				</div>
+			</header>
+
+			<main class="px-2 d-flex flex-column justify-content-center align-items-center h-100">
+				<h1>Modo Operador</h1>
+				<hr />
+				<div class="col-md-6 d-flex justify-content-center p-2" id="printTestTicket">
+					<button class="button-ok button-full-width action-button"
+						onclick="ActionOperador(8 , '../00-Configuracion/index.html')">Configuración</button>
+				</div>
+				<div class="col-md-6 d-flex justify-content-center p-2" id="printTestTicket">
+					<button class="button-ok button-full-width action-button" onclick="operadorPrint(1)">Prueba
+						Impresora de Comprobante</button>
+				</div>
+				<div class="col-md-6 d-flex justify-content-center p-2" id="printTestTito">
+					<button class="button-ok button-full-width action-button" onclick="operadorPrint(2)">Prueba
+						Impresora de TITO</button>
+				</div>
+				<div class="col-md-6 d-flex justify-content-center p-2" id="Transacciones">
+					<button class="button-ok button-full-width action-button"
+						onclick="ActionOperador(6 , '../00-Transaction/index.html')">Transacciones</button>
+				</div>
+				<div class="col-md-6 d-flex justify-content-center p-2" id="printerTickets">
+					<button class="btn button-cancel button-full-width action-button"
+						onclick="ActionOperador(5 , '../01-main/index.html')">Salir</button>
+				</div>
+
+				<div class="col-md-6 d-flex justify-content-center p-2" id="printerTickets">
+					<div class="countdown-label" id="countdownLabel" style="color: white; font-size: 1.2em;"></div>
+				</div>
+				<hr />
+			</main>
+
+
+
+			<footer class="mt-auto text-white-50">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<p>NODE V<span id="node-version"></span> |
+								CHROME V<span id="chrome-version"></span> |
+								ELECTRON V<span id="electron-version"></span> |
+								SIELCON Pay - Todos los derechos reservados.</p>
+						</div>
+					</div>
+			</footer>
+		</div>
+	</div>
+
+	<script src="../../js/renderer.js"></script>
+	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+        controlDoor();
+		function setupInactivityTimer() {
+			let time;
+			let countdown;
+			let countdownDisplayed = false;
+
+
+			function logout() {
+				ActionOperador(5 , '../01-main/index.html')
+			}
+
+
+			function startCountdown() {
+				let seconds = 10;
+				countdownDisplayed = true;
+				const countdownLabel = document.getElementById('countdownLabel');
+				countdown = setInterval(() => {
+					if (seconds > 0) {
+						countdownLabel.innerText = `Saliendo en ${seconds} segundos...`;
+						seconds--;
+					} else {
+						clearInterval(countdown);
+						logout();
+					}
+				}, 1000);
+			}
+
+
+			function resetTimer() {
+				if (countdownDisplayed) {
+					countdownDisplayed = false;
+					clearInterval(countdown);
+					document.getElementById('countdownLabel').innerText = ''; 
+				}
+				clearTimeout(time);
+				time = setTimeout(() => {
+					startCountdown(); 
+				}, 0.5 * 60 * 1000 - 10 * 1000); 
+			}			
+			document.querySelectorAll('.action-button').forEach(button => {
+				button.addEventListener('click', resetTimer);
+			});
+			resetTimer(); 
+		}	
+		window.onload = setupInactivityTimer;
+	</script>
+
+</body>
+
+</html>

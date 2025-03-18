@@ -1,0 +1,196 @@
+<shared-confirm-modal [show]="showModalWindow" (confirmed)="onConfirm()" (canceled)="onCancel()"
+    message="Se perderán los cambios si cancela la operación ¿Está seguro de continuar?">
+</shared-confirm-modal>
+<div class="row g-3">
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>
+            {{ current.terminalId ? 'Editar' : 'Agregar Terminal' }}
+            <small *ngIf="current.terminalId">{{ current.name }}</small>
+        </span>
+        <div class="text-end">
+            <button class="btn btn-light me-2" (click)="onSubmit()">Aceptar</button>
+            <button class="btn btn-danger" (click)="onClose()">Cancelar</button>
+        </div>
+    </h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row align-items-center mb-2">
+            <div class="col-6 mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" formControlName="name" />
+                <span *ngIf="validationService.invalidField(form, 'name')" class="form-text text-danger">
+                    {{ validationService.getFieldError(form, 'name', 'Nombre') }}
+                </span>
+            </div>
+            <div class="col-4 mb-4">
+                <label for="code" class="form-label">Código</label>
+                <input type="text" class="form-control" id="code" formControlName="code" />
+                <span *ngIf="validationService.invalidField(form, 'code')" class="form-text text-danger">
+                    {{ validationService.getFieldError(form, 'code', 'Código') }}
+                </span>
+            </div>
+            <div class="col-2 mb-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="enabled" formControlName="enabled">
+                    <label class="form-check-label" for="enabled">Activo</label>
+                </div>
+            </div>
+
+            <div class="col-12 mb-3">
+                <label for="description" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="description" formControlName="description" />
+            </div>
+        </div>
+        <div class="row align-items-center mb-2">
+           
+           
+            <div class="col-3 mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="useCashier" formControlName="useCashier">
+                    <label class="form-check-label" for="useCashier">Usa Cashier</label>
+                </div>
+            </div>
+
+            <div class="col-2 text-end">
+                <label for="definedValues" class="form-label">Valores Definidos</label>
+            </div>
+            <div class="col-7">
+                <input type="text" class="form-control" id="definedValues" formControlName="definedValues" />
+            </div>
+        </div>
+
+
+        <!-- <div class="row align-items-center mb-2">
+         
+            <div class="col-2 mb-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="modeQR" formControlName="modeQR">
+                    <label class="form-check-label" for="modeQR">Modo QR</label>
+                </div>
+            </div>
+            <div class="col-2 mb-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="modeFixed" formControlName="modeFixed">
+                    <label class="form-check-label" for="modeFixed">Modo Fijo</label>
+                </div>
+            </div>
+          
+        </div> -->
+
+        <div class="row align-items-center mb-2">
+            <div class="col-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="printTITO" formControlName="printTITO">
+                    <label class="form-check-label" for="printTITO">Imprime TITO -- ></label>
+                </div>
+            </div>
+            <div class="col-3 text-end">
+                <label for="printerTITOCom" class="form-label" style="margin-bottom: 2px">Puerto COM (TITO)</label>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" id="printerTITOCom" formControlName="printerTITOCom" />
+            </div>
+            <div class="col-2 text-end">
+                <label for="storeId" class="form-label" style="margin-bottom: 2px">Store ID</label>
+            </div>
+            <div class="col-2">
+                <input type="text" class="form-control" id="storeId" formControlName="storeId" />
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="printTicket" formControlName="printTicket">
+                    <label class="form-check-label" for="printTicket">Imprime Ticket -- ></label>
+                </div>
+            </div>
+            <div class="col-3 text-end">
+                <label for="printerTicketName" class="form-label" style="margin-bottom: 2px">Nombre de Impresora (Ticket)</label>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" id="printerTicketName" formControlName="printerTicketName" />
+            </div>
+            <div class="col-2 text-end">
+                <label for="postId" class="form-label" style="margin-bottom: 2px">Pos ID</label>
+            </div>
+            <div class="col-2">
+                <input type="text" class="form-control" id="posId" formControlName="posId" />
+            </div>
+        </div>
+        <h5 class="border-top pt-2 mt-3 mb-4">Imágenes de Publicidad</h5>
+        <div class="row mt-2 mb-2">
+            <label for="carrouselImage01" class="col-md-1 col-form-label">Imagen 1</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="carrouselImage01" formControlName="carrouselImage01" readonly/>
+            </div>
+            <div class="col-md-2">
+                <input type="file" class="form-control visually-hidden" id="carrouselImageData01"   accept=".jpeg, .jpg, .png"   (change)="onFileSelected($event, 1)" />
+                <label for="carrouselImageData01" class="btn btn-primary me-2">...</label>             
+                <button class="btn btn-danger" (click)="onFileDelete(1,$event)">X</button>
+            </div> 
+            <span *ngIf="validationService.hasErrors(form, 'carrouselImage01')" class="form-text text-danger">
+                {{ validationService.getFieldError(form, 'carrouselImage01', 'Imagen 1') }}
+            </span>
+        </div>
+        <div class="row mt-2 mb-2">
+            <label for="carrouselImage02" class="col-md-1 col-form-label">Imagen 2</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="carrouselImage02" formControlName="carrouselImage02" readonly/>
+            </div>           
+            <div class="col-md-2">
+                <input type="file" class="form-control visually-hidden" id="carrouselImageData02" accept=".jpeg, .jpg, .png" (change)="onFileSelected($event, 2)" />
+                <label for="carrouselImageData02" class="btn btn-primary me-2">...</label>             
+                <button class="btn btn-danger" (click)="onFileDelete(2,$event)">X</button>
+            </div>
+            <span *ngIf="validationService.hasErrors(form, 'carrouselImage02')" class="form-text text-danger">
+                {{ validationService.getFieldError(form, 'carrouselImage02', 'Imagen 2') }}
+            </span>            
+        </div>
+        <div class="row mt-2 mb-2">
+            <label for="carrouselImage03" class="col-md-1 col-form-label">Imagen 3</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="carrouselImage03" formControlName="carrouselImage03" readonly/>
+            </div>           
+            <div class="col-md-2">
+                <input type="file" class="form-control visually-hidden" id="carrouselImageData03" accept=".jpeg, .jpg, .png"  (change)="onFileSelected($event, 3)" />
+                <label for="carrouselImageData03" class="btn btn-primary me-2">...</label>             
+                <button class="btn btn-danger" (click)="onFileDelete(3,$event)">X</button>
+            </div> 
+            <span *ngIf="validationService.hasErrors(form, 'carrouselImage03')" class="form-text text-danger">
+                {{ validationService.getFieldError(form, 'carrouselImage03', 'Imagen 3') }}
+            </span>            
+        </div>
+        <div class="row mt-2 mb-2">
+            <label for="carrouselImage04" class="col-md-1 col-form-label">Imagen 4</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="carrouselImage04" formControlName="carrouselImage04" readonly />
+            </div>         
+            <div class="col-md-2">
+                <input type="file" class="form-control visually-hidden" id="carrouselImageData04" accept=".jpeg, .jpg, .png"  (change)="onFileSelected($event, 4)" />
+                <label for="carrouselImageData04" class="btn btn-primary me-2">...</label>             
+                <button class="btn btn-danger" (click)="onFileDelete(4,$event)">X</button>
+            </div> 
+            <span *ngIf="validationService.hasErrors(form, 'carrouselImage04')" class="form-text text-danger">
+                {{ validationService.getFieldError(form, 'carrouselImage04', 'Imagen 4') }}
+            </span>            
+        </div>
+        
+        <div class="row mt-2 mb-2">
+            <label for="carrouselImage05" class="col-md-1 col-form-label">Imagen 5</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="carrouselImage05" formControlName="carrouselImage05" readonly/>
+            </div>           
+            <div class="col-md-2">
+                <input type="file" class="form-control visually-hidden" id="carrouselImageData05" accept=".jpeg, .jpg, .png" (change)="onFileSelected($event, 5)" />
+                <label for="carrouselImageData05" class="btn btn-primary me-2">...</label>             
+                <button class="btn btn-danger" (click)="onFileDelete(5,$event)">X</button>
+            </div> 
+            <span *ngIf="validationService.hasErrors(form, 'carrouselImage05')" class="form-text text-danger">
+                {{ validationService.getFieldError(form, 'carrouselImage05', 'Imagen 5') }}
+            </span>            
+        </div> 
+    </form>
+    <div class="col-md-12 text-end pt-2 border-top">
+        <button class="btn btn-light me-2" (click)="onSubmit()">Aceptar</button>
+        <button class="btn btn-danger" (click)="onClose()">Cancelar</button>
+    </div>
+</div>

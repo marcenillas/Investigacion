@@ -1,0 +1,4 @@
+node_modules
+logs
+/sielcon-pay-terminal/views/assets/img
+/sielcon-pay-terminal/dist

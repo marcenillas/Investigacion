@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+
+<head>
+	<script src="../assets/js/color-modes.js"></script>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>SIELCON Pay (maintenance)</title>
+
+	<link href="https://getbootstrap.com/docs/5.3/examples/cover/" rel="canonical">
+	<link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet">
+	<link href="../../node_modules/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+	<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
+		rel="stylesheet">
+
+	<link href="../styles.css" rel="stylesheet">
+	<link href="index.css" rel="stylesheet">
+
+	<script src="../../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+	<script src="../../js/app.js"></script>
+	<script>
+
+		document.addEventListener('DOMContentLoaded', () => {
+			loadTransaction();
+		});
+
+		async function loadTransaction() {
+			try {
+
+				const ltransactions = await getOperatorTran()
+
+				const transactions = processTransactions(ltransactions.data)
+
+				const tableBody = document.getElementById('transactionTableBody');
+
+				transactions.forEach(transaction => {
+					const row = document.createElement('tr');
+					//row.className = tranStatusClassBorder(transaction.status);
+					//<td class="${tranStatusClassText(transaction.status)} text-end">${config.currencySymbol}${defaultCeroForDecimalNumbers(transaction.mpTax)}</td>
+					//<<td class="${tranStatusClassText(transaction.status)}">${transaction.terminal.name}</td>//
+					//<td style="width: 10%;" class="${tranStatusClassText(transaction.status)} text-end">${config.currencySymbol}${defaultCeroForDecimalNumbers(transaction.mptotal)}</td>
+					//<td style="width: 10%;" class="${tranStatusClassText(transaction.status)}">${transaction.paymentUser}</td>
+					row.innerHTML = `
+          			  					
+ 					<td style="width: 18%;" class="${tranStatusClassText(transaction.status)}">${formatDateTime(transaction.stamp)}</td>
+					<td style="width: 10%;" class="${tranStatusClassText(transaction.status)}">${tranStatusDescription(transaction.status)}</td>
+          			<td style="width: 10%;" class="${tranStatusClassText(transaction.status)}">${transaction.mpCode ?? '-'}</td>
+                    
+           			 
+				    <td style="width: 10%;" class="${tranStatusClassText(transaction.status)} text-end">${config.currencySymbol}${defaultCeroForDecimalNumbers(transaction.total)}</td>
+                    <td style="width: 10%;" class="${tranStatusClassText(transaction.status)} text-end">${config.currencySymbol}${defaultCeroForDecimalNumbers(transaction.tax)}</td>
+                    <td style="width: 10%;" class="${tranStatusClassText(transaction.status)} text-end">${config.currencySymbol}${defaultCeroForDecimalNumbers(transaction.mpFee)}</td>
+                    <td style="width: 10%;" class="${tranStatusClassText(transaction.status)} text-end">${config.currencySymbol}${defaultCeroForDecimalNumbers(transaction.amount)}</td>                                        
+          		    <td style="width: 5%;" ><button class= "btn btn-sm ${tranStatusClassBtn(transaction.status)}" onclick="reprint(1,'${transaction.transactionId}')"><i class="bi bi-printer"></i></button></td>`;
+					if (transaction.status == 2 || transaction.status == 7) {
+						row.innerHTML += `<td style="width: 5%;" ><button class="btn btn-sm ${tranStatusClassBtn(transaction.status)}" onclick="reprint(2,'${transaction.transactionId}')"> <i class="bi bi-ticket-fill"></i></button></td>`;
+					}
+					else {
+
+						row.innerHTML += `<td style="width: 5%;" ></td>`;
+					}
+
+
+					tableBody.appendChild(row);
+				});
+
+
+
+			} catch (error) {
+				console.error(error);
+			}
+		}
+
+		const config = {
+			currencySymbol: '$'
+		};
+
+		const Status = Object.freeze({
+			New: 0,
+			InProcess: 1,
+			Finished: 2,
+			Error: 3,
+			Cancel: 4,
+			CancelPayment: 5,
+			CancelCashierError: 6,
+			FinishTITOError: 7
+		});
+
+
+		function processTransactions(transactions) {
+			return transactions.map(transaction => {
+				try {
+					const data = JSON.parse(transaction.merchantOrderData);					
+					const paymentId = data?.id || '-';
+					const paymentUser = data?.payer?.id || '-';
+					const updatedTransaction = {
+						...transaction,
+						paymentId,
+						paymentUser
+					};
+					return updatedTransaction;
+				} catch (error) {
+					console.error(`Error  ${transaction.transactionId}:`, error);
+
+				}
+			});
+		}
+
+
+
+
+
+		function tranStatusDescription(value) {
+			switch (value) {
+				case Status.New: return 'Nueva';
+				case Status.InProcess: return 'En Proceso';
+				case Status.Finished: return 'Finalizada';
+				case Status.Error: return 'Error';
+				case Status.Cancel: return 'Cancelada';
+				case Status.CancelPayment: return 'Canc. Pagada';
+				case Status.CancelCashierError: return 'Canc. Error Caja';
+				case Status.FinishTITOError: return 'Fin. Error Imp.';
+				default: return 'Unknown';
+			}
+		}
+
+
+
+		function tranStatusClassText(value) {
+			switch (value) {
+				case Status.New: return 'text-light';
+				case Status.InProcess: return 'text-warning';
+				case Status.Finished: return 'text-success';
+				case Status.Error: return 'text-danger';
+				case Status.Cancel: return 'text-danger';
+				case Status.CancelPayment: return 'text-danger';
+				case Status.CancelCashierError: return 'text-danger';
+				case Status.FinishTITOError: return 'text-success';
+				default: return 'text-dark';
+			}
+		}
+
+
+
+
+
+		function tranStatusClassBtn(value) {
+			switch (value) {
+				case Status.New: return 'btn-light';
+				case Status.InProcess: return 'btn-warning';
+				case Status.Finished: return 'btn-success';
+				case Status.Error: return 'btn-danger';
+				case Status.Cancel: return 'btn-danger';
+				case Status.CancelPayment: return 'btn-danger';
+				case Status.CancelCashierError: return 'btn-danger';
+				case Status.FinishTITOError: return 'btn-success';
+				default: return 'btn-dark';
+			}
+		}
+
+
+
+
+
+		function defaultCeroForDecimalNumbers(value) {
+			return value ? parseFloat(value).toLocaleString('es-AR', {
+				minimumFractionDigits: 2,
+				maximumFractionDigits: 2
+			}) : '0.00';
+		}
+
+		function formatDateTime(date) {
+			return new Date(date).toLocaleString('es-AR', {
+				day: '2-digit',
+				month: '2-digit',
+				year: '2-digit',
+				hour: '2-digit',
+				minute: '2-digit',
+				second: '2-digit'
+			});
+		}
+
+
+		function reprint(op, transactionId) {		
+			operadorRePrint(op, transactionId);
+		}
+
+
+	</script>
+</head>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+	<div class="container-fluid">
+		<div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
+			<header class="mb-auto">
+				<div>
+					<h3 class="float-md-start mb-0">SIELCON Pay</h3>
+				</div>
+				<div>
+					<a class="float-md-end mb-0" href="../00-operator/index.html">Volver</a>
+
+				</div>
+
+
+			</header>
+
+			<main class="px-2 d-flex flex-column justify-content-top align-items-top h-100">
+				<h1>Lista de Transacciones</h1>
+				<table  style="width:96%; float: left top;">
+					<thead>
+						<tr>
+							<!-- <th>Terminal</th>-->
+							<th style="width: 16%;">Fecha y Hora</th>
+							<th style="width: 10%;">Estado</th>
+							<th style="width: 10%;">Pago</th>
+							<!--<th style="width: 10%;">Usuario</th>-->
+							<th style="width: 10%;">SubTotal</th>
+							<th style="width: 10%;">Imp.</th>
+							<th style="width: 10%;">Com.</th>
+							<th style="width: 10%;">Total</th>
+							<!-- <th>Retención</th>-->
+							<!--<th style="width: 10%;">Recibido</th>-->
+							<th style="width: 5%;">TCK.</th>
+							<th style="width: 5%;">TITO</th>
+						</tr>
+					</thead>
+
+				</table>
+				<div class="table-container">
+					<table>
+						<tbody id="transactionTableBody">
+							<!-- Las filas de transacciones se insertarán aquí -->
+						</tbody>
+					</table>
+				</div>
+			</main>
+
+			<footer class="mt-auto text-white-50">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<p>NODE V<span id="node-version"></span> |
+								CHROME V<span id="chrome-version"></span> |
+								ELECTRON V<span id="electron-version"></span> |
+								SIELCON Pay - Todos los derechos reservados.</p>
+						</div>
+					</div>
+			</footer>
+		</div>
+	</div>
+
+	<script src="../../js/renderer.js"></script>
+	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

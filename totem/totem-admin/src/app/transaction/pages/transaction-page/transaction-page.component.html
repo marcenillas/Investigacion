@@ -1,0 +1,159 @@
+<app-transaction-information [show]="showModalWindow" (canceled)="onCancel()" />
+<div class="row g-3">
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>Detalle de Transacción</span>
+        <div class="text-end">
+            <button class="btn btn-primary" [routerLink]="['/transaction']">Volver</button>
+        </div>
+    </h3>
+    <div class="col-md-4">
+        <label for="terminal" class="form-label">Terminal</label>
+        <label for="" class="form-control w-auto" id="stamp">{{ transaction?.terminal?.name }}</label>
+    </div>
+    <div class="col-md-4">
+        <label for="status" class="form-label">Estado</label>
+        <label for="" class="form-control w-auto" [ngClass]="transaction?.status | tranStatusClass_text_bg"
+            id="status">{{ transaction?.status | tranStatusDescription}}</label>
+    </div>
+    <div class="col-md-4">
+        <label for="stamp" class="form-label">Fecha y Hora</label>
+        <label for="" class="form-control w-auto" id="stamp">{{ transaction?.stamp | date: 'dd/MM/yy HH:mm:ss'
+            }}</label>
+    </div>
+    <div class="col-md-3">
+        <label for="pago" class="form-label">Pago</label>
+        <label for="" class="form-control" id="pago">{{ transaction?.paymentId }}</label>
+    </div>
+    <div class="col-md-3">
+        <label for="usuario" class="form-label">Usuario</label>
+        <label for="" class="form-control" id="descusuarioription">{{ transaction?.paymentUser }}</label>
+    </div>
+    
+    <div class="col-md-3">
+        <label for="paymentMethod" class="form-label">Medio de Pago</label>
+        <label for="" class="form-control" id="paymentMethod">{{ transaction?.paymentMethod |tranPaymentMethodDescription }}</label>
+    </div>
+
+    <div class="col-md-3">
+        <label for="subtotal" class="form-label">Cobro Comisión Bill. Virtual</label>
+        <label for="" class="form-control w-auto text" id="subtotal">{{ transaction?.feeBorneClientCharge
+            |booleanToYesNo }}</label>
+    </div>
+
+    
+    <div class="col-md-2">
+        <label for="subtotal" class="form-label">Subtotal</label>
+        <label for="" class="form-control w-auto text-end" id="subtotal">{{config?.currencySymbol}}{{ transaction?.total
+            |defaultCeroForDecimalNumbers }}</label>
+    </div>
+
+
+
+    <div class="col-md-2">
+        <label for="tax" class="form-label">Tax</label>
+        <label for="" class="form-control w-auto text-end" id="tax">{{config?.currencySymbol}}{{ transaction?.tax
+            |defaultCeroForDecimalNumbers }}</label>
+    </div>
+
+
+    <div class="col-md-2">
+        <label for="tax" class="form-label">Comisión</label>
+        <label for="" class="form-control w-auto text-end" id="tax">{{config?.currencySymbol}}{{ transaction?.mpFee
+            |defaultCeroForDecimalNumbers }}</label>
+    </div>
+
+    <div class="col-md-2">
+        <label for="total" class="form-label">Total</label>
+        <label for="" class="form-control w-auto text-end" id="total">{{config?.currencySymbol}}{{ transaction?.amount
+            |defaultStringForDecimalNumbers }}</label>
+    </div>
+
+    <div class="col-md-2">
+        <label for="tax" class="form-label">Retención</label>
+        <label for="" class="form-control w-auto text-end" id="tax">{{config?.currencySymbol}}{{ transaction?.mpTax
+            |defaultCeroForDecimalNumbers }}</label>
+    </div>
+
+
+    <div class="col-md-2">
+        <label for="tax" class="form-label">Recibido</label>
+        <label for="" class="form-control w-auto text-end" id="tax">{{config?.currencySymbol}}{{ transaction?.mptotal
+            |defaultCeroForDecimalNumbers }}</label>
+    </div>
+
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>Historial</span>
+
+    </h3>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle small">
+                <thead>
+                    <tr>
+                        <th>Fecha y Hora</th>
+                        <th>Descripción</th>
+                        <th>Información</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let transaction of transactionLogList; let i = index">
+                        <td class="text-center col-2">{{ transaction.stamp | date: 'dd/MM/yy HH:mm:ss' }}</td>
+                        <td class="col-5">{{ transaction.description }}</td>
+                        <td class="col-5">{{ transaction.info }}</td>
+                        <td class="text-center"><a type="button" class="btn btn-sm"
+                            (click)="showInformation(transaction.data)">...</a>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
+        <span>Datos Mercado Pago</span>
+    </h3>
+    <div id="tabs" #tabs>
+
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link active" href="#requestOrder" [ngClass]="{ 'active':activeTab==='requestOrder'}" 
+            data-toggle="tab" (click)="changeTab('requestOrder', $event)">Solicitud</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="#reponseOrder" [ngClass]="{ 'active':activeTab==='reponseOrder'}" 
+            data-toggle="tab" (click)="changeTab('reponseOrder', $event)">QR</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="#merchantOrder" [ngClass]="{ 'active':activeTab==='merchantOrder'}" 
+            data-toggle="tab" (click)="changeTab('merchantOrder', $event)">Orden Compra</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="#payment" [ngClass]="{ 'active':activeTab==='payment'}" 
+            data-toggle="tab" (click)="changeTab('payment', $event)">Pago</a>
+          </li>
+
+        </ul>
+
+       
+    
+        <div class="tab-content">
+          <div class="tab-pane" id="requestOrder" [ngClass]="{ 'active':activeTab==='requestOrder'}">
+            <pre [innerHTML]="transaction?.orderRequestData  | defaultJsonString: [true, 3]"></pre>
+          
+              </div>
+          <div class="tab-pane" id="reponseOrder" [ngClass]="{ 'active':activeTab==='reponseOrder'}">
+            <pre [innerHTML]="transaction?.orderResponseData  | defaultJsonString: [true, 3]"></pre>
+            </div>
+          <div class="tab-pane" id="merchantOrder" [ngClass]="{ 'active':activeTab==='merchantOrder'}">
+            <pre [innerHTML]="transaction?.merchantOrderData  | defaultJsonString: [true, 3]"></pre>
+            </div>
+          <div class="tab-pane" id="payment" [ngClass]="{ 'active':activeTab==='payment'}">
+            <pre [innerHTML]="transaction?.paymentData  | defaultJsonString: [true, 3]"></pre>
+            </div>
+        </div>
+
+      </div>
+
+
+    <div class="col-md-12 text-end pt-2 border-top">
+        <button class="btn btn-primary" [routerLink]="['/transaction']">Volver</button>
+    </div>
+</div>
