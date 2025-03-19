@@ -35,24 +35,24 @@ export class ConfigFormPageComponent implements OnInit {
             mpUserId: [''],
             mpNotificationURL: [''],
             taxPercentage: [0, [Validators.min(0), Validators.max(100), validationService.decimalPointValidator()]],
-            TITOTitle: [''],
-            TITOLine1: [''],
-            TITOLine2: [''],
-            TITOLine3: [''],
+            voucherTitle: [''],
+            voucherLine1: [''],
+            voucherLine2: [''],
+            voucherLine3: [''],
             logoMPImage: [''],
-            logoSielconImage: [''],
-            logoSalaImage: [''],
+            logoCompanyImage: [''],
+            logoBranchImage: [''],
             logoMPImageDataS: [''],
-            logoSielconImageDataS: [''],
-            logoSalaImageDataS: [''],
+            logoCompanyImageDataS: [''],
+            logoBranchImageDataS: [''],
             currencySymbol:  ['', [Validators.required]],
             feeBorneClientCharge:[false],
 
-            salaName: [''],
-            takeSalaNameConfiguration:[false],
+            branchName: [''],
+            takeBranchNameConfiguration:[false],
             printCancelTransaction:[false],
             mpExpirateTransaction:[false],
-            salaAddress: [''],
+            branchAddress: [''],
 
         });
 
@@ -123,11 +123,11 @@ export class ConfigFormPageComponent implements OnInit {
                     break;
                 case 2:
                     configImage = this.configService.getImageConfig("logoGeneral");
-                    control = "logoSalaImage";
+                    control = "logoBranchImage";
                     break;
                 case 3:
                     configImage = this.configService.getImageConfig("logoGeneral");
-                    control = "logoSielconImage";
+                    control = "logoCompanyImage";
                     break;
             };
             const reader = new FileReader();
@@ -167,13 +167,13 @@ export class ConfigFormPageComponent implements OnInit {
 
                         break;
                     case 2:
-                        this.form.get('logoSalaImage')?.setValue(imageName);
-                        this.form.get('logoSalaImageDataS')?.setValue(base64String);
+                        this.form.get('logoBranchImage')?.setValue(imageName);
+                        this.form.get('logoBranchImageDataS')?.setValue(base64String);
 
                         break;
                     case 3:
-                        this.form.get('logoSielconImage')?.setValue(imageName);
-                        this.form.get('logoSielconImageDataS')?.setValue(base64String);
+                        this.form.get('logoCompanyImage')?.setValue(imageName);
+                        this.form.get('logoCompanyImageDataS')?.setValue(base64String);
                         break;
 
                 };
@@ -192,13 +192,13 @@ export class ConfigFormPageComponent implements OnInit {
                 this.form.get('logoMPImageDataS')?.setValue("");
                 break;
             case 2:
-                this.form.get('logoSalaImage')?.setValue("");
-                this.form.get('logoSalaImageDataS')?.setValue("");
+                this.form.get('logoBranchImage')?.setValue("");
+                this.form.get('logoBranchImageDataS')?.setValue("");
 
                 break;
             case 3:
-                this.form.get('logoSielconImage')?.setValue("");
-                this.form.get('logoSielconImageDataS')?.setValue("");
+                this.form.get('logoCompanyImage')?.setValue("");
+                this.form.get('logoCompanyImageDataS')?.setValue("");
                 break;
 
         };

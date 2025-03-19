@@ -4,21 +4,21 @@ export interface Config {
     mpUserId?: string;
     mpNotificationURL?: string;
     taxPercentage?: number;
-    TITOTitle? : string;
-    TITOLine1? : string;
-    TITOLine2? : string;
-    TITOLine3? : string;
+    voucherTitle? : string;
+    voucherLine1? : string;
+    voucherLine2? : string;
+    voucherLine3? : string;
     logoMPImage: string;
-    logoSielconImage: string;
-    logoSalaImage: string;
+    logoCompanyImage: string;
+    logoBranchImage: string;
     logoMPImageDataS?: string;
-    logoSielconImageDataS?: string;
-    logoSalaImageDataS?: string;   
+    logoCompanyImageDataS?: string;
+    logoBranchImageDataS?: string;   
     currencySymbol?: string;     
     feeBorneClientCharge? : boolean
-    salaName?: string;
-    takeSalaNameConfiguration?: boolean;    
+    branchName?: string;
+    takeBranchNameConfiguration?: boolean;    
     printCancelTransaction?: boolean;
     mpExpirateTransaction?: number;
-    salaAddress? : string
+    branchAddress? : string
 }

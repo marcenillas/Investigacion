@@ -59,21 +59,21 @@
     </div>
     <div class="row mb-2">
         <div class="col-md-5">
-            <label for="salaName" class="form-label">Nombre de Sala</label>
-            <label for="" class="form-control" id="salaName">{{ config?.salaName | defaultString
+            <label for="branchName" class="form-label">Nombre de Sucursal</label>
+            <label for="" class="form-control" id="branchName">{{ config?.branchName | defaultString
                 }}</label>
         </div>
         <div class="col-md-4">
-            <label for="takeSalaNameConfiguration" class="form-label">Toma Nombre de Sala de Configuración</label>
-            <label for="" class="form-control" id="takeSalaNameConfiguration">{{ config?.takeSalaNameConfiguration | booleanToYesNo }}</label>
+            <label for="takeBranchNameConfiguration" class="form-label">Toma Nombre de la Sucursal de Configuración</label>
+            <label for="" class="form-control" id="takeBranchNameConfiguration">{{ config?.takeBranchNameConfiguration | booleanToYesNo }}</label>
         </div>
        
     </div>
     <div class="row mb-2">
 
         <div class="col-md-9">
-            <label for="salaAddress" class="form-label">Dirección de Sala</label>
-            <label for="" class="form-control" id="salaAddress">{{ config?.salaAddress | defaultString
+            <label for="branchAddress" class="form-label">Dirección de Sucursal</label>
+            <label for="" class="form-control" id="branchAddress">{{ config?.branchAddress | defaultString
                 }}</label>
         </div>
 
@@ -90,47 +90,47 @@
     </div>
     <div class="row mb-2">
         <div class="col-md-8">
-            <label for="logoSalaImage" class="form-label">Logo Sala</label>
+            <label for="logoBranchImage" class="form-label">Logo Sucursal</label>
 
-            <label for="" class="form-control" id="logoSalaImage">{{ config?.logoSalaImage | defaultString }}</label>
+            <label for="" class="form-control" id="logoBranchImage">{{ config?.logoBranchImage | defaultString }}</label>
         </div>
     </div>
     <div class="row mb-2">
         <div class="col-md-8">
-            <label for="logoSielconImage" class="form-label">Logo Sielcon</label>
+            <label for="logoCompanyImage" class="form-label">Logo Empresa</label>
 
-            <label for="" class="form-control" id="logoSielconImage">{{ config?.logoSielconImage | defaultString
+            <label for="" class="form-control" id="logoCompanyImage">{{ config?.logoCompanyImage | defaultString
                 }}</label>
         </div>
     </div>
 
     <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
-        <span>Configuración TITO</span>
+        <span>Configuración Cupón</span>
     </h3>
 
 
     <div class="row mb-2">
         <div class="col-md-8">
-            <label for="TITOTitle" class="form-label">Título</label>
-            <label for="" class="form-control" id="TITOTitle">{{ config?.TITOTitle | defaultString }}</label>
+            <label for="VoucherTitle" class="form-label">Título</label>
+            <label for="" class="form-control" id="VoucherTitle">{{ config?.voucherTitle | defaultString }}</label>
         </div>
     </div>
     <div class="row mb-2">
         <div class="col-md-8">
-            <label for="TITOLine1" class="form-label">Linea 1</label>
-            <label for="" class="form-control" id="TITOLine1">{{ config?.TITOLine1 | defaultString }}</label>
+            <label for="VoucherLine1" class="form-label">Linea 1</label>
+            <label for="" class="form-control" id="VoucherLine1">{{ config?.voucherLine1 | defaultString }}</label>
         </div>
     </div>
     <div class="row mb-2">
         <div class="col-md-8">
-            <label for="TITOLine2" class="form-label">Linea 2</label>
-            <label for="" class="form-control" id="TITOLine2">{{ config?.TITOLine2 | defaultString }}</label>
+            <label for="VoucherLine2" class="form-label">Linea 2</label>
+            <label for="" class="form-control" id="VoucherLine2">{{ config?.voucherLine2 | defaultString }}</label>
         </div>
     </div>
     <div class="row mb-2">
         <div class="col-md-8">
-            <label for="TITOLine3" class="form-label">Linea 3</label>
-            <label for="" class="form-control" id="TITOLine3">{{ config?.TITOLine3 | defaultString }}</label>
+            <label for="VoucherLine3" class="form-label">Linea 3</label>
+            <label for="" class="form-control" id="VoucherLine3">{{ config?.voucherLine3 | defaultString }}</label>
         </div>
     </div>
 

@@ -6,8 +6,8 @@ export interface Terminal {
     modeQR: boolean;
 	modeFixed: boolean;
     status: Status;
-    printTITO: boolean;
-    printerTITOCom: string;
+    printVoucher: boolean;
+    printerVoucherCom: string;
     printTicket: boolean;
     printerTicketName: string;
     storeId: string;
@@ -27,7 +27,7 @@ export interface Terminal {
     carrouselImageData04S? : string;
     carrouselImageData05S? : string
     code?: string;
-    useCashier: boolean;
+    useCash: boolean;
 }
 
 export enum Status {

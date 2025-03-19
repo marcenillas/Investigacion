@@ -11,7 +11,7 @@ import { OperatorLogService } from '../../../operatorLog/operatorLog.service';
 })
 export class OperatorLogHomePageComponent implements OnInit {
 
-    public title = 'SIELCON Pay Admin';
+    public title = 'Totem Admin';
 
     public loading = true;
 

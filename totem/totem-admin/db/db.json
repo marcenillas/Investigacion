@@ -56,9 +56,9 @@
         },
         {
             "id": "240217194600",
-            "name": "Terminal Sala Ruletas",
+            "name": "Terminal  Ruletas",
             "image": "https://cdn.pixabay.com/photo/2020/10/26/08/20/man-5686626_1280.png",
-            "description": "Terminal ubicado en la Sala de Ruletas, opera en ambos modos y billetes de denominación general. Opera en horario de corrido.",
+            "description": "Terminal ubicado en el salon de Ruletas, opera en ambos modos y billetes de denominación general. Opera en horario de corrido.",
             "enabled": true,
             "modeQR": true,
             "modeFixed": true,
@@ -76,7 +76,7 @@
             "id": "240317194610",
             "name": "Terminal Slots VIP",
             "image": "https://cdn.pixabay.com/photo/2020/10/26/08/20/man-5686626_1280.png",
-            "description": "Terminal ubicado en la Sala VIP de Slots, opera en ambos modos y billetes de alta general. Opera en horario nocturno.",
+            "description": "Terminal ubicado en la Salon VIP de Slots, opera en ambos modos y billetes de alta general. Opera en horario nocturno.",
             "enabled": true,
             "modeQR": true,
             "modeFixed": true,
@@ -86,7 +86,7 @@
             "carrouselImage03": "https://cdn.pixabay.com/photo",
             "carrouselImage04": "https://cdn.pixabay.com/photo",
             "carrouselImage05": "https://cdn.pixabay.com/photo",
-            "event": "Impresora TITO Offline",
+            "event": "Impresora Cupón Offline",
             "lastTransaction": "2024-02-09 14:45:12",
             "lastConnection": "2024-02-10 17:20:21"
         },
@@ -108,7 +108,7 @@
     "event": [
         {
             "id": "240337194600",
-            "name": "Transacción Exitosa - TITO 1354322 ($100.00)",
+            "name": "Transacción Exitosa - Cupón 1354322 ($100.00)",
             "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
             "type": 0,
             "stamp": "2024-02-10 17:11:54",
@@ -117,7 +117,7 @@
         },
         {
             "id": "240317192600",
-            "name": "Transacción Exitosa - TITO 1354322 ($100.00)",
+            "name": "Transacción Exitosa - Cupón 1354322 ($100.00)",
             "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
             "type": 0,
             "stamp": "2024-02-10 17:11:54",
@@ -126,8 +126,8 @@
         },
         {
             "id": "240217194600",
-            "name": "Impresora TITO Offline",
-            "description": "No se pudo establecer conexión con la impresora TITO del terminal de Planta Baja.",
+            "name": "Impresora Cupón Offline",
+            "description": "No se pudo establecer conexión con la impresora de Cupón del terminal de Planta Baja.",
             "type": 2,
             "stamp": "2024-02-10 17:11:54",
             "terminalId": 1,
@@ -155,7 +155,7 @@
     "transaction": [
         {
             "id": "240337194600",
-            "name": "Transacción Registrada - TITO 1354322 ($100.00)",
+            "name": "Transacción Registrada - Cupón 1354322 ($100.00)",
             "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
             "status": 0,
             "stamp": "2024-02-10 17:11:54",
@@ -164,7 +164,7 @@
         },
         {
             "id": "240637194600",
-            "name": "Transacción Registrada - TITO 1354322 ($100.00)",
+            "name": "Transacción Registrada - Cupón 1354322 ($100.00)",
             "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
             "status": 0,
             "stamp": "2024-02-10 17:11:54",
@@ -173,7 +173,7 @@
         },
         {
             "id": "240327194600",
-            "name": "Transacción Registrada - TITO 1354322 ($100.00)",
+            "name": "Transacción Registrada - Cupón 1354322 ($100.00)",
             "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
             "status": 0,
             "stamp": "2024-02-10 17:11:54",
@@ -182,7 +182,7 @@
         },
         {
             "id": "240337794600",
-            "name": "Transacción Registrada - TITO 1354322 ($100.00)",
+            "name": "Transacción Registrada - Cupón 1354322 ($100.00)",
             "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
             "status": 0,
             "stamp": "2024-02-10 17:11:54",
@@ -191,7 +191,7 @@
         },
         {
             "id": "240337194400",
-            "name": "Transacción Registrada - TITO 1354322 ($100.00)",
+            "name": "Transacción Registrada - Cupón 1354322 ($100.00)",
             "description": "Se registró una nueva transacción exitosa en el terminal de Planta Baja, con un ticket de denominación $100.00.",
             "status": 0,
             "stamp": "2024-02-10 17:11:54",
@@ -224,7 +224,7 @@
         {
             "_id": "240322172910",
             "name": "Carlos Apache",
-            "email": "capa@sielcon.com",
+            "email": "capa@admin.com",
             "enabled": true,
             "password": "1234"
         }

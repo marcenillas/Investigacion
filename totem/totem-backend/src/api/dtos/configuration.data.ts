@@ -39,12 +39,12 @@ export class ConfigurationInsertDTO {
     @ApiProperty()
     @IsString()
     @IsOptional()
-    VoucherLine2? : string;
+    voucherLine2? : string;
 
     @ApiProperty()
     @IsString()
     @IsOptional()
-    VoucherLine3? : string;
+    voucherLine3? : string;
 
 
     @ApiProperty()

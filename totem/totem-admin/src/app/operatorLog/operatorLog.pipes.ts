@@ -6,8 +6,8 @@ export class OperatorActionDescription implements PipeTransform {
     transform(value: OperatorAction | undefined): string {        
         if (value === OperatorAction.Entry) return 'Ingreso';
         if (value === OperatorAction.PrintTestTicket) return 'Impresión Ticket';
-        if (value === OperatorAction.PrintTitoTicket ) return 'Impresión TITO';
-        if (value === OperatorAction.RePrintTransactionTITO) return 'Re Impresión  TITO';
+        if (value === OperatorAction.PrintVoucherTicket ) return 'Impresión Cupón';
+        if (value === OperatorAction.RePrintTransactionVoucher) return 'Re Impresión  Cupón';
         if (value === OperatorAction.Exit ) return 'Salir';
         if (value === OperatorAction.Transactions) return 'Transacciones';
         if (value === OperatorAction.RePrintTransactionTicket) return 'Re Impresión  Ticket';

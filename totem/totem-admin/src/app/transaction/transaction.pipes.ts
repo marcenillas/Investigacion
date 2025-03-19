@@ -10,8 +10,8 @@ export class StatusDescription implements PipeTransform {
         if (value === Status.Error) return 'Error';
         if (value === Status.Cancel) return 'Cancelada';
         if (value === Status.CancelPayment ) return 'Cancelada Pagada';
-        if (value === Status.CancelCashierError) return 'Cancelada Error Caja';
-        if (value === Status.FinishTITOError) return 'Finalizada Error Impresión';
+        if (value === Status.CancelCashError) return 'Cancelada Error Caja';
+        if (value === Status.FinishVoucherError) return 'Finalizada Error Impresión';
         return 'Unknown';
     }
 }
@@ -40,8 +40,8 @@ export class StatusClassBorder implements PipeTransform {
         if (value === Status.Error) return 'border-danger alert-danger';
         if (value === Status.Cancel) return 'border-danger alert-danger';
         if (value === Status.CancelPayment ) return 'border-danger alert-danger';
-        if (value === Status.CancelCashierError) return 'border-danger alert-danger';
-        if (value === Status.FinishTITOError) return 'border-success alert-success';
+        if (value === Status.CancelCashError) return 'border-danger alert-danger';
+        if (value === Status.FinishVoucherError) return 'border-success alert-success';
         return 'border-dark';
     }
 }
@@ -55,8 +55,8 @@ export class StatusClassText implements PipeTransform {
         if (value === Status.Error) return 'text-danger';
         if (value === Status.Cancel) return 'text-danger';
         if (value === Status.CancelPayment ) return 'text-danger';
-        if (value === Status.CancelCashierError) return 'text-danger';
-        if (value === Status.FinishTITOError) return 'text-success';
+        if (value === Status.CancelCashError) return 'text-danger';
+        if (value === Status.FinishVoucherError) return 'text-success';
         return 'text-dark';
     }
 }
@@ -70,8 +70,8 @@ export class StatusClassBg implements PipeTransform {
         if (value === Status.Error) return 'bg-danger';
         if (value === Status.Cancel) return 'bg-danger';
         if (value === Status.CancelPayment ) return 'bg-danger';
-        if (value === Status.CancelCashierError) return 'bg-danger';
-        if (value === Status.FinishTITOError) return 'bg-success';
+        if (value === Status.CancelCashError) return 'bg-danger';
+        if (value === Status.FinishVoucherError) return 'bg-success';
         return 'bg-dark';
     }
 }
@@ -85,8 +85,8 @@ export class StatusClassTextBg implements PipeTransform {
         if (value === Status.Error) return 'text-bg-danger';
         if (value === Status.Cancel) return 'text-bg-danger';
         if (value === Status.CancelPayment ) return 'text-bg-danger';
-        if (value === Status.CancelCashierError) return 'text-bg-danger';
-        if (value === Status.FinishTITOError) return 'text-bg-success';
+        if (value === Status.CancelCashError) return 'text-bg-danger';
+        if (value === Status.FinishVoucherError) return 'text-bg-success';
 
         return 'text-bg-dark';
     }
@@ -101,8 +101,8 @@ export class StatusClassBtn implements PipeTransform {
         if (value === Status.Error) return 'btn-danger';
         if (value === Status.Cancel) return 'btn-danger';
         if (value === Status.CancelPayment) return 'btn-danger';
-        if (value === Status.CancelCashierError) return 'btn-danger';
-        if (value === Status.FinishTITOError) return 'btn-success';
+        if (value === Status.CancelCashError) return 'btn-danger';
+        if (value === Status.FinishVoucherError) return 'btn-success';
       
         return 'btn-dark';
     }

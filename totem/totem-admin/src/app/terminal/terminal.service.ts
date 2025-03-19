@@ -4,7 +4,7 @@ import { catchError, map, Observable, of } from 'rxjs';
 
 import { Terminal } from './terminal.interfaces';
 import { environment } from '../../environments/environment';
-import { PaginationDTO } from '../../../../sielcon-pay-backend/src/common/dtos/pagination.data';
+import { PaginationDTO } from '../../../../totem-backend/src/common/dtos/pagination.data';
 import { ConfigJsonService } from '../services/configJson.service';
 
 @Injectable({ providedIn: 'root' })

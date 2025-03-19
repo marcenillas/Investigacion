@@ -10,7 +10,7 @@ import { AuthStatus } from './auth/auth.interfaces';
 })
 
 export class AppComponent {
-    public title = 'SIELCON Pay Admin';
+    public title = 'Totem Admin';
 
     private authService = inject(AuthService);
     private router = inject(Router);

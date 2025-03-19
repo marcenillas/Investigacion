@@ -1,4 +1,4 @@
-import { PaginationDTO } from "../../../../sielcon-pay-backend/src/common/dtos/pagination.data";
+import { PaginationDTO } from "../../../../totem-backend/src/common/dtos/pagination.data";
 
 export interface Transaction {
     transactionId: number;    
@@ -45,8 +45,8 @@ export enum Status {
     Error = 3,
     Cancel = 4,
     CancelPayment = 5,
-    CancelCashierError = 6,
-    FinishTITOError = 7    
+    CancelCashError = 6,
+    FinishVoucherError = 7    
 }
 
 export interface Filter

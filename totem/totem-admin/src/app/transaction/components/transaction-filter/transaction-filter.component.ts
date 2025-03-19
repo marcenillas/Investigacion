@@ -3,7 +3,7 @@ import { Status, Terminal } from '../../transaction.interfaces';
 import { Filter } from '../../transaction.interfaces';
 import { TerminalService } from '../../../terminal/terminal.service';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { PaginationDTO } from '../../../../../../sielcon-pay-backend/src/common/dtos/pagination.data';
+import { PaginationDTO } from '../../../../../../totem-backend/src/common/dtos/pagination.data';
 
 @Component({
     selector: 'transaction-filter',

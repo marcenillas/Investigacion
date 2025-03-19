@@ -41,12 +41,12 @@
         <label for="" class="form-control" id="description">{{ terminal?.description | defaultString }}</label>
     </div>
     <div class="col-md-2">
-        <label for="printTITO" class="form-label">Imprime TITO</label>
-        <label for="" class="form-control" id="printTITO">{{ terminal?.printTITO | booleanToYesNo }}</label>
+        <label for="printVoucher" class="form-label">Imprime Cupón</label>
+        <label for="" class="form-control" id="printVoucher">{{ terminal?.printVoucher | booleanToYesNo }}</label>
     </div>
     <div class="col-md-2">
-        <label for="printerTITOCom" class="form-label">Puerto COM (TITO)</label>
-        <label for="" class="form-control" >{{ terminal?.printerTITOCom | defaultString }}</label>
+        <label for="printerVoucherCom" class="form-label">Puerto COM (Cupón)</label>
+        <label for="" class="form-control" >{{ terminal?.printerVoucherCom | defaultString }}</label>
     </div>
     <div class="col-md-2">
         <label for="printTicket" class="form-label">Imprime Ticket</label>
@@ -58,8 +58,8 @@
     </div>
 
     <div class="col-md-2">
-        <label for="useCashier" class="form-label">Usa Cashier</label>
-        <label for="" class="form-control" id="useCashier">{{ terminal?.useCashier | booleanToYesNo }}</label>
+        <label for="useCash" class="form-label">Usa Cash</label>
+        <label for="" class="form-control" id="useCash">{{ terminal?.useCash | booleanToYesNo }}</label>
     </div>
 
     <!-- <div class="col-md-2">

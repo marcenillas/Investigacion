@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'sielcon-pay-admin'`, () => {
+  it(`should have as title 'totem-admin'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('sielcon-pay-admin');
+    expect(app.title).toEqual('totem-admin');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, sielcon-pay-admin');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, totem-admin');
   });
 });

@@ -11,7 +11,7 @@ import { EventService } from '../../../event/event.service';
 })
 export class EventHomePageComponent implements OnInit {
 
-    public title = 'SIELCON Pay Admin';
+    public title = 'Totem Admin';
 
     public loading = true;
 

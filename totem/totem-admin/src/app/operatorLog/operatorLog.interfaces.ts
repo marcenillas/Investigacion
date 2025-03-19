@@ -22,9 +22,9 @@ export interface Terminal {
 export enum OperatorAction {
     Entry= 1,
     PrintTestTicket = 2,
-    PrintTitoTicket = 3,
+    PrintVoucherTicket = 3,
     Transactions=6,
-    RePrintTransactionTITO = 4,      
+    RePrintTransactionVoucher = 4,      
     RePrintTransactionTicket=7,
     Configuration = 8,
     UpdateConfiguration = 9,

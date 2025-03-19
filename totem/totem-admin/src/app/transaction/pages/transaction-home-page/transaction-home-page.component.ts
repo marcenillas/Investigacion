@@ -11,7 +11,7 @@ import { TransactionService } from '../../../transaction/transaction.service';
 })
 export class TransactionHomePageComponent implements OnInit {
 
-    public title = 'SIELCON Pay Admin';
+    public title = 'Totem Admin';
 
     public loading = true;
 

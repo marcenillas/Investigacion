@@ -68,8 +68,8 @@ export class OriginDescription implements PipeTransform {
         if (value ===  "statusCENTRAL") return 'Estado del Sistema Central';
         if (value === "statusTERMINAL") return 'Estado de la Terminal';
         if (value === "statusMP") return 'Estado de Mercado Pago';
-        if (value === "statusCashier") return 'Estado de Cashier';
-        if (value === "statusprintersTITO") return 'Estado de Impresora de TITO';
+        if (value === "statusCash") return 'Estado de Cash';
+        if (value === "statusprintersVoucher") return 'Estado de Impresora de Cupón';
         if (value === "statusprintersTICKETS") return 'Estado de Impresora de Tickets';       
         return value;
     }

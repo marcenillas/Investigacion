@@ -40,8 +40,8 @@ export class TerminalFormPageComponent implements OnInit {
             modeFixed: [false],
             definedValues: [''],
             printTicket: [false],
-            printTITO: [false],
-            printerTITOCom: [''],
+            printVoucher: [false],
+            printerVoucherCom: [''],
             printerTicketName: [''],
             storeId: [''],
             posId: [''],
@@ -56,7 +56,7 @@ export class TerminalFormPageComponent implements OnInit {
             carrouselImageData04S: [''],
             carrouselImageData05S: [''],            
             code:  ['', [Validators.required]],
-            useCashier: [false],
+            useCash: [false],
         });
 
         this.form.valueChanges.subscribe(() => {

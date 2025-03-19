@@ -69,14 +69,14 @@
         </div>
         <div class="row mb-2">
             <div class="col-md-5">
-                <label for="salaName" class="form-label">Nombre de Sala</label>
-                <input type="text" class="form-control" id="salaName" formControlName="salaName" />
+                <label for="branchName" class="form-label">Nombre de Sucursal</label>
+                <input type="text" class="form-control" id="branchName" formControlName="branchName" />
             </div>
 
             <div class="col-md-4 " style="padding-top: 2em;">                
                 <div class="form-check">                                   
-                    <label for="takeSalaNameConfiguration" class="form-label">Toma Nombre de Sala de Configuración</label>                    
-                    <input class="form-check-input" type="checkbox" id="takeSalaNameConfiguration" formControlName="takeSalaNameConfiguration">                     
+                    <label for="takeBranchNameConfiguration" class="form-label">Toma Nombre de la Sucursal de Configuración</label>                    
+                    <input class="form-check-input" type="checkbox" id="takeBranchNameConfiguration" formControlName="takeBranchNameConfiguration">                     
                 </div>
             </div>   
         </div>
@@ -84,8 +84,8 @@
         <div class="row mb-2">
 
             <div class="col-md-9">
-                <label for="salaAddress" class="form-label">Dirección de Sala</label>
-                <input type="text" class="form-control" id="salaAddress" formControlName="salaAddress" />
+                <label for="branchAddress" class="form-label">Dirección de Sucursal</label>
+                <input type="text" class="form-control" id="branchAddress" formControlName="branchAddress" />
             </div>
 
         </div>
@@ -115,70 +115,70 @@
         
          <div class="row mt-2 mb-2">
             <div class="col-md-2">
-                <label for="logoSalaImage" class="form-label">Logo Sala</label>
+                <label for="logoBranchImage" class="form-label">Logo Sucursal</label>
             </div>         
         </div>
         <div class="row mt-2 mb-2">
             <div class="col-md-8">
-                <input type="text" class="form-control" id="logoSalaImage" formControlName="logoSalaImage" readonly />
+                <input type="text" class="form-control" id="logoBranchImage" formControlName="logoBranchImage" readonly />
             </div>
             <div class="col-md-2">
-                <input type="file" class="form-control visually-hidden" id="logoSalaImageData" accept=".jpeg, .jpg, .png"  (change)="onFileSelected($event, 2)" />
-                <label for="logoSalaImageData" class="btn btn-primary me-2">...</label>             
+                <input type="file" class="form-control visually-hidden" id="logoBranchImageData" accept=".jpeg, .jpg, .png"  (change)="onFileSelected($event, 2)" />
+                <label for="logoBranchImageData" class="btn btn-primary me-2">...</label>             
                 <button class="btn btn-danger" (click)="onFileDelete(2,$event)">X</button>
             </div>
-            <span *ngIf="validationService.hasErrors(form, 'logoSalaImage')" class="form-text text-danger">
-                {{ validationService.getFieldError(form, 'logoSalaImage', 'Logo Sala') }}
+            <span *ngIf="validationService.hasErrors(form, 'logoBranchImage')" class="form-text text-danger">
+                {{ validationService.getFieldError(form, 'logoBranchImage', 'Logo Sucursal') }}
             </span>
            
         </div>
         <div class="row mt-2 mb-2">
             <div class="col-md-2">
-                <label for="logoSielconImage" class="form-label">Logo Sielcon</label>
+                <label for="logoCompanyImage" class="form-label">Logo Empresa</label>
             </div>           
         </div>
         <div class="row mt-2 mb-2">
             <div class="col-md-8">
-                <input type="text" class="form-control" id="logoSielconImage" formControlName="logoSielconImage" readonly />
+                <input type="text" class="form-control" id="logoCompanyImage" formControlName="logoCompanyImage" readonly />
             </div>
             <div class="col-md-2">
-                <input type="file" class="form-control visually-hidden" id="logoSielconImageData" accept=".jpeg, .jpg, .png"  (change)="onFileSelected($event, 3)" />
-                <label for="logoSielconImageData" class="btn btn-primary me-2">...</label>             
+                <input type="file" class="form-control visually-hidden" id="logoCompanyImageData" accept=".jpeg, .jpg, .png"  (change)="onFileSelected($event, 3)" />
+                <label for="logoCompanyImageData" class="btn btn-primary me-2">...</label>             
                 <button class="btn btn-danger" (click)="onFileDelete(3,$event)">X</button>
                 
             </div>
-            <span *ngIf="validationService.hasErrors(form, 'logoSielconImage')" class="form-text text-danger">
-                {{ validationService.getFieldError(form, 'logoSielconImage', 'Logo Sielcon') }}
+            <span *ngIf="validationService.hasErrors(form, 'logoCompanyImage')" class="form-text text-danger">
+                {{ validationService.getFieldError(form, 'logoCompanyImage', 'Logo Empresa') }}
             </span>
         </div>
 
         <h3 class="d-flex justify-content-between align-items-center pt-2 mt-4 pb-2 border-bottom">
-            <span>Editar Configuración TITO</span>
+            <span>Editar Configuración Cupón</span>
         </h3>
         <div class="row mb-2">
             <div class="col-md-8">
-                <label for="TITOTitle" class="form-label">Título</label>
-                <input type="text" class="form-control" id="TITOTitle" formControlName="TITOTitle" maxlength="19" />
+                <label for="VoucherTitle" class="form-label">Título</label>
+                <input type="text" class="form-control" id="VoucherTitle" formControlName="VoucherTitle" maxlength="19" />
             </div>
         </div>
 
         <div class="row mb-2">
             <div class="col-md-8">
-                <label for="TITOLine1" class="form-label">Linea 1</label>
-                <input type="text" class="form-control" id="TITOLine1" formControlName="TITOLine1" maxlength="36" />
+                <label for="VoucherLine1" class="form-label">Linea 1</label>
+                <input type="text" class="form-control" id="VoucherLine1" formControlName="VoucherLine1" maxlength="36" />
             </div>
         </div>
 
         <div class="row mb-2">
             <div class="col-md-8">
-                <label for="TITOLine2" class="form-label">Linea 2</label>
-                <input type="text" class="form-control" id="TITOLine2" formControlName="TITOLine2" maxlength="32" />
+                <label for="VoucherLine2" class="form-label">Linea 2</label>
+                <input type="text" class="form-control" id="VoucherLine2" formControlName="VoucherLine2" maxlength="32" />
             </div>
         </div>
         <div class="row mb-2">
             <div class="col-md-8">
-                <label for="TITOLine3" class="form-label">Linea 1</label>
-                <input type="text" class="form-control" id="TITOLine3" formControlName="TITOLine3" maxlength="32" />
+                <label for="VoucherLine3" class="form-label">Linea 1</label>
+                <input type="text" class="form-control" id="VoucherLine3" formControlName="VoucherLine3" maxlength="32" />
             </div>
         </div>
 

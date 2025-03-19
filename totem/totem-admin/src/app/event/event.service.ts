@@ -4,7 +4,7 @@ import { catchError, Observable, of } from 'rxjs';
 
 import { Event, Filter } from './event.interfaces';
 import { environment } from './../../environments/environment';
-import { PaginationDTO } from '../../../../sielcon-pay-backend/src/common/dtos/pagination.data';
+import { PaginationDTO } from '../../../../totem-backend/src/common/dtos/pagination.data';
 import { map } from 'rxjs/operators'
 import { ConfigJsonService } from '../services/configJson.service';
 

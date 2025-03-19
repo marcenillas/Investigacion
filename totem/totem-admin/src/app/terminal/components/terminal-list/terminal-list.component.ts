@@ -19,8 +19,8 @@ export class TerminalListComponent {
         modeQR: true,
 		modeFixed: true,
 		status: Status.Initializing,
-        printTITO: false,
-        printerTITOCom: '',
+        printVoucher: false,
+        printerVoucherCom: '',
         printTicket: false,
         printerTicketName: '',
         storeId: '',
@@ -34,6 +34,6 @@ export class TerminalListComponent {
         lastTransaction: new Date(),
 		lastEvent: new Date(),
 		lastConnection: new Date(),
-		useCashier:false,
+		useCash:false,
 	}];
 }

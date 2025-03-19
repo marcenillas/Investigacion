@@ -11,7 +11,7 @@ import { UserService } from '../../../user/user.service';
 })
 export class UserHomePageComponent implements OnInit {
 
-    public title = 'SIELCON Pay Admin';
+    public title = 'Totem Admin';
 
     public loading = true;
 
