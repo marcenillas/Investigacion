@@ -23,10 +23,10 @@ export class ConfigurationService {
 
             if (d.logoMPImageDataS)
                 row.logoMPImageData = Buffer.from(d.logoMPImageDataS, 'base64')
-            if (d.logoSalaImageDataS)
-                row.logoSalaImageData = Buffer.from(d.logoSalaImageDataS, 'base64')
-            if (d.logoSielconImageDataS)
-                row.logoSielconImageData = Buffer.from(d.logoSielconImageDataS, 'base64')
+            if (d.logoBranchImageDataS)
+                row.logoBranchImageData = Buffer.from(d.logoCompanyImageDataS, 'base64')
+            if (d.logoCompanyImageDataS)
+                row.logoCompanyImageData = Buffer.from(d.logoCompanyImageDataS, 'base64')
 
             return await this.repo.save(row);
 
@@ -44,19 +44,19 @@ export class ConfigurationService {
 
             if (d.logoMPImageDataS)
                 row.logoMPImageData = Buffer.from(d.logoMPImageDataS, 'base64')
-            if (d.logoSalaImageDataS)
-                row.logoSalaImageData = Buffer.from(d.logoSalaImageDataS, 'base64')
-            if (d.logoSielconImageDataS)
-                row.logoSielconImageData = Buffer.from(d.logoSielconImageDataS, 'base64')
+            if (d.logoBranchImageDataS)
+                row.logoBranchImageData = Buffer.from(d.logoCompanyImageDataS, 'base64')
+            if (d.logoCompanyImageDataS)
+                row.logoCompanyImageData = Buffer.from(d.logoCompanyImageDataS, 'base64')
 
             if (!d.logoMPImage) 
                 row.logoMPImageData = null;
             
-            if (!d.logoSalaImage) 
-                row.logoSalaImageData = null;
+            if (!d.logoBranchImage) 
+                row.logoBranchImageData = null;
             
-            if (!d.logoSielconImage) 
-                row.logoSielconImageData = null;
+            if (!d.logoCompanyImage) 
+                row.logoCompanyImageData = null;
         
 
             return await this.repo.save(row);
@@ -101,11 +101,11 @@ export class ConfigurationService {
                     break;
                 case 2:
 
-                    row.logoSalaImageData = logo ? logo.buffer : null;
+                    row.logoBranchImageData = logo ? logo.buffer : null;
                     break;
                 case 3:
 
-                    row.logoSielconImageData = logo ? logo.buffer : null;
+                    row.logoCompanyImageData = logo ? logo.buffer : null;
                     break;
 
                 default:

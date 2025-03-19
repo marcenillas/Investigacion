@@ -29,22 +29,22 @@ export class ConfigurationInsertDTO {
     @ApiProperty()
     @IsString()
     @IsOptional()
-    TITOTitle? : string;
+    voucherTitle? : string;
 
     @ApiProperty()
     @IsString()
     @IsOptional()
-    TITOLine1? : string;
+    voucherLine1? : string;
 
     @ApiProperty()
     @IsString()
     @IsOptional()
-    TITOLine2? : string;
+    VoucherLine2? : string;
 
     @ApiProperty()
     @IsString()
     @IsOptional()
-    TITOLine3? : string;
+    VoucherLine3? : string;
 
 
     @ApiProperty()
@@ -55,12 +55,12 @@ export class ConfigurationInsertDTO {
     @ApiProperty()
     @IsString()
     @IsOptional()
-    logoSielconImage?: string;
+    logoCompanyImage?: string;
 
     @ApiProperty()
     @IsString()
     @IsOptional()
-    logoSalaImage?: string;
+    logoBranchImage?: string;
 
 
     @ApiProperty()
@@ -71,13 +71,13 @@ export class ConfigurationInsertDTO {
     @ApiProperty()
     @IsString()
     @IsOptional()
-    logoSielconImageDataS?: string;
+    logoCompanyImageDataS?: string;
 
 
     @ApiProperty()
     @IsString()
     @IsOptional()
-    logoSalaImageDataS?: string;    
+    logoBranchImageDataS?: string;    
 
     @ApiProperty()
     @IsString()
@@ -92,17 +92,17 @@ export class ConfigurationInsertDTO {
     @ApiProperty()
     @IsString()
     @IsOptional()
-    salaName?: string;
+    branchName?: string;
 
     @ApiProperty()
     @IsString()
     @IsOptional()
-    salaAddress?: string;
+    branchAddress?: string;
 
     @ApiProperty()
     @IsBoolean()
     @IsOptional()
-    takeSalaNameConfiguration?: boolean;
+    takeBranchNameConfiguration?: boolean;
     
     @ApiProperty()
     @IsBoolean()

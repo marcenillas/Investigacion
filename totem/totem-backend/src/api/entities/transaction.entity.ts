@@ -54,7 +54,7 @@ export class Transaction {
     paymentData: string;
 
     @Column('text', { nullable: true })
-    cashierData: string;
+    cashData: string;
 
     @Column('int', { nullable: true })
     copies: number;

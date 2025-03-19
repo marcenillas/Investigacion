@@ -31,31 +31,31 @@ export class Configuration {
     logoMPImage?: string;
 
     @Column('text', { nullable: true })
-    logoSielconImage?: string;
+    logoCompanyImage?: string;
 
     @Column('text', { nullable: true })
-    logoSalaImage?: string;
+    logoBranchImage?: string;
 
     @Column({ type: 'bytea', nullable: true })
     logoMPImageData: Buffer; 
 
     @Column({ type: 'bytea', nullable: true })
-    logoSielconImageData: Buffer; 
+    logoCompanyImageData: Buffer; 
 
     @Column({ type: 'bytea', nullable: true })
-    logoSalaImageData: Buffer; 
+    logoBranchImageData: Buffer; 
 
     @Column('text', { nullable: true })
-    TITOTitle : string;
+    voucherTitle : string;
 
     @Column('text', { nullable: true })
-    TITOLine1 : string;
+    voucherLine1 : string;
 
     @Column('text', { nullable: true })
-    TITOLine2 : string;
+    voucherLine2 : string;
 
     @Column('text', { nullable: true })
-    TITOLine3 : string;
+    voucherLine3 : string;
 
     @Column('text', { nullable: true })
     currencySymbol: string;
@@ -64,14 +64,14 @@ export class Configuration {
     feeBorneClientCharge: boolean;
 
     @Column('text', { nullable: true })
-    salaName: string;
+    branchName: string;
 
     @Column('text', { nullable: true })
-    salaAddress: string;
+    branchAddress: string;
 
 
     @Column('boolean',  {default:0})
-    takeSalaNameConfiguration: boolean;
+    takeBranchNameConfiguration: boolean;
     
     @Column('boolean',  {default:0})
     printCancelTransaction: boolean;

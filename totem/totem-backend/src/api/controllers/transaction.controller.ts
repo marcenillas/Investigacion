@@ -3,14 +3,14 @@ import { PaginationDTO } from '../../common/dtos/pagination.data'
 import { TransactionFilterDTO, TransactionFilterTerminalDTO, TransactionInsertDTO, TransactionUpdateDTO } from '../dtos/transaction.data';
 import { TransactionService } from '../services/transaction.service';
 import { ApiTags } from '@nestjs/swagger';
-import { Cashierservice } from '../services/cashier.service';
+import { CashService } from '../services/cash.service';
 
 @ApiTags('Transaction')
 @Controller('transaction')
 export class TransactionController {
 
     constructor(private readonly s: TransactionService,
-        private  readonly c: Cashierservice,
+        private  readonly c: CashService,
     ) { }
 
     @Post() create(@Body() dto: TransactionInsertDTO) { return this.s.create(dto); }

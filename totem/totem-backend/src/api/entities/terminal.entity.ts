@@ -29,7 +29,7 @@ export class Terminal {
     status: TerminalStatus;
 
     @Column('boolean',)
-    printTITO: boolean;
+    printVoucher: boolean;
 
     @Column('boolean',)
     printTicket: boolean;
@@ -38,7 +38,7 @@ export class Terminal {
     printerTicketName: string;
 
     @Column('text',{ nullable: true })
-    printerTITOCom: string;
+    printerVoucherCom: string;
 
     @Column('text', { nullable: true })
     carrouselImage01?: string;
@@ -104,7 +104,7 @@ export class Terminal {
     code: string;
 
     @Column('boolean', {default:1})
-    useCashier: boolean;
+    useCash: boolean;
 
     @OneToMany(() => Event, (event) => event.terminal, { cascade: true })
     @JoinColumn({

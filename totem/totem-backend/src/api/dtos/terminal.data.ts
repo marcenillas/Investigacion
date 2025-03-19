@@ -72,7 +72,7 @@ export class TerminalInsertDTO {
 
     @ApiProperty()
     @IsBoolean()
-    printTITO: boolean;
+    printVoucher: boolean;
 
     @ApiProperty()
     @IsBoolean()
@@ -86,7 +86,7 @@ export class TerminalInsertDTO {
     @ApiProperty()
     @IsString()
     @IsOptional()
-    printerTITOCom?: string;
+    printerVoucherCom?: string;
 
     @ApiProperty()
     @IsString()
@@ -125,7 +125,7 @@ export class TerminalInsertDTO {
     @ApiProperty()
     @IsBoolean()  
     @IsOptional()  
-    useCashier?: boolean;
+    useCash?: boolean;
 
 
 }

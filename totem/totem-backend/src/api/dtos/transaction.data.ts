@@ -57,7 +57,7 @@ export class TransactionUpdateDTO {
 
     @ApiProperty()
     @IsString()
-    cashierData: string;
+    cashData: string;
 
     @ApiProperty()
     @IsEnum(TransactionStatus)

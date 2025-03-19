@@ -66,8 +66,8 @@ export class TransactionService implements OnModuleInit{
         try {
             delete d.orderRequestData;
             delete d.orderResponseData;
-            if (d.cashierData == null || d.cashierData == "")
-                delete d.cashierData
+            if (d.cashData == null || d.cashData == "")
+                delete d.cashData
             if (d.copies == null || d.copies <= 0)
                 delete d.copies
             const row = await this.repo.preload({ transactionId: id, ...d });

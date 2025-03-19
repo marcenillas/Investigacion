@@ -20,7 +20,7 @@ async function bootstrap() {
     app.setGlobalPrefix(apiPrefix);
 
     const config = new DocumentBuilder()
-        .setTitle('SIELCON Pay - Admin')
+        .setTitle('totem - Admin')
         .setVersion('1.0-beta')
         .build();
     const document = SwaggerModule.createDocument(app, config);

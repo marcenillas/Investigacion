@@ -1,11 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { Cashierservice } from '../services/cashier.service';
-import { CahierRequest } from '../dtos/cashier.data';
-import { TransactionInsertDTO } from '../dtos/transaction.data';
-import { TerminalInsertDTO, TerminalStateDTO } from '../dtos/terminal.data';
-import { MPservice } from '../services/mp.service';
+;
+import { TransactionInsertDTO } from '../dtos/transaction.data';import { MPservice } from '../services/mp.service';
 import { TransactionStatus } from '../interfaces/transactions.interfaces';
+import { TerminalStateDTO } from '../dtos/terminal.data';
 
 @ApiTags('mp')
 @Controller('mp')

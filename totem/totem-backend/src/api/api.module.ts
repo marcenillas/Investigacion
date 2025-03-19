@@ -21,8 +21,8 @@ import { TransactionLogController } from './controllers/transactionLog.controlle
 import { TransactionLogService } from './services/transactionLog.service';
 import { SeedController } from './controllers/seed.controller';
 import { SeedService } from './services/seed.service';
-import { Cashierservice } from './services/cashier.service';
-import { CashierController } from './controllers/cashier.controller';
+import { CashService } from './services/cash.service';
+import { CashController } from './controllers/cash.controller';
 import { OperatorLog } from './entities/operatorLog.entity';
 import { OperatorLogController } from './controllers/operatorLog.controller';
 import { OperatorLogService } from './services/operatorLog.service';
@@ -38,7 +38,7 @@ import { MPservice } from './services/mp.service';
         TerminalController,
         TransactionController,
         TransactionLogController,
-        CashierController,
+        CashController,
         OperatorLogController,
         MPController
     ],
@@ -50,7 +50,7 @@ import { MPservice } from './services/mp.service';
         TerminalService,
         TransactionService,
         TransactionLogService,
-        Cashierservice,
+        CashService,
         OperatorLogService,
         MPservice
     ],
