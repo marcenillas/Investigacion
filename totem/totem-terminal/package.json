@@ -1,17 +1,17 @@
 {
-  "name": "SielconPayTerminal",
+  "name": "TotemTerminal",
   "version": "1.0.0",
-  "description": "Terminal de Venta de Tito",
+  "description": "Terminal de Venta de Cupones",
   "main": "main.js",
   "scripts": {
     "electron-trace": "electron . --trace-warnings --config=config/config.development.json",
     "start": "electron . --config=config/config.development.json",
     "pack": "electron-packager . --icon=icons/icon.ico --platform=win32 --arch=x64 --out=dist --overwrite && npm run copy-config && npm run copy-Exe",
-    "copy-config": "xcopy /E /I \"config\" \"dist\\SielconPayTerminal-win32-x64\\config\"",
-    "copy-Exe": "xcopy /E /I \"Exe\" \"dist\\SielconPayTerminal-win32-x64\"",
+    "copy-config": "xcopy /E /I \"config\" \"dist\\TotemTerminal-win32-x64\\config\"",
+    "copy-Exe": "xcopy /E /I \"Exe\" \"dist\\TotemTerminal-win32-x64\"",
     "dist": "npm run pack && electron-builder"
   },
-  "author": "Sielcon",
+  "author": ".",
   "license": "ISC",
   "devDependencies": {
     "@types/bootstrap": "^5.2.10",
@@ -32,7 +32,7 @@
     "yargs": "^17.7.2"
   },
   "build": {
-    "appId": "com.sielcon.pay.terminal",
+    "appId": "com.totem.terminal",
     "win": {
       "target": "nsis",
       "icon": "icons/icon.ico",
@@ -41,7 +41,7 @@
     "nsis": {
       "installerIcon": "icons/icon.ico",
       "uninstallerIcon": "icons/icon.ico",
-      "uninstallDisplayName": "SielconPayTerminal",
+      "uninstallDisplayName": "TotemTerminal",
       "license": "license.txt",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true

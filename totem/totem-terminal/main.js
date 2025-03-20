@@ -13,7 +13,7 @@ const util = require('./util');
 const admin = require('./admin');
 const transaction = require('./transaction');
 const operator = require('./operator');
-const titoPrinter = require('./titoprinter');
+const voucherPrinter = require('./voucherprinter');
 const ticketPrinter = require('./ticketprinter');
 
 if (!argv.config)  { throw new Error('Argumento config requerido para iniciar');  }
@@ -34,8 +34,8 @@ let currentStatusData =
     statusCENTRAL: "online",
     statusTERMINAL: "enabled",
     statusMP: "online",
-    statusCashier: "online",
-    statusprintersTITO: "online",
+    statusCash: "online",
+    statusprintersVoucher: "online",
     statusprintersTICKETS: "online",
     statusDoor: "close"
 };
@@ -65,7 +65,7 @@ const createWindow = async () => {
         vcode = 1017
         await admin.setConfigTerminal();
         vcode = 1016
-        titoPrinter.init();
+        voucherPrinter.init();
         ticketPrinter.init()
         transaction.init()
         operator.init()
@@ -132,8 +132,8 @@ async function setStatus() {
         statusCENTRAL: currentStatusData.statusCENTRAL,
         statusTERMINAL: currentStatusData.statusTERMINAL,
         statusMP: currentStatusData.statusMP,
-        statusCashier: currentStatusData.statusCashier,
-        statusprintersTITO: currentStatusData.statusprintersTITO,
+        statusCash: currentStatusData.statusCash,
+        statusprintersVoucher: currentStatusData.statusprintersVoucher,
         statusprintersTICKETS: currentStatusData.statusprintersTICKETS,
         statusDoor: currentStatusData.statusDoor,
     };
@@ -198,39 +198,39 @@ async function setStatus() {
         generateEvent("statusMP:" + statusData.statusMP);
     }
 
-    if (admin.getTerminal().useCashier) {
+    if (admin.getTerminal().useCash) {
         try {
-            const config = await util.sendData(admin.cashierComunication('Status', '', ''));
+            const config = await util.sendData(admin.cashComunication('Status', '', ''));
             if (config.Value == 0) {
-                statusData.statusCashier = "online";
+                statusData.statusCash = "online";
             }
             else {
-                statusData.statusCashier = "offline";
+                statusData.statusCash = "offline";
             }
         }
         catch (e) {
             console.error(e);
-            statusData.statusCashier = "offline";
+            statusData.statusCash = "offline";
         }
     }
     else {
-        statusData.statusCashier = "online";
+        statusData.statusCash = "online";
     }
-    mainWindow.webContents.executeJavaScript(`localStorage.setItem("status.CASHIER", "${statusData.statusCashier}");`, true);
-    if (currentStatusData.statusCashier != statusData.statusCashier) {
-        currentStatusData.statusCashier = statusData.statusCashier;
-        generateEvent("statusCashier:" + statusData.statusCashier);
+    mainWindow.webContents.executeJavaScript(`localStorage.setItem("status.CASH", "${statusData.statusCash}");`, true);
+    if (currentStatusData.statusCash != statusData.statusCash) {
+        currentStatusData.statusCash = statusData.statusCash;
+        generateEvent("statusCash:" + statusData.statusCash);
     }
 
-    const statusp = titoPrinter.status();
+    const statusp = voucherPrinter.status();
     setTimeout(() => {
     }, 3000);
-    statusData.statusprintersTITO = statusp;
+    statusData.statusprintersVoucher = statusp;
 
-    mainWindow.webContents.executeJavaScript(`localStorage.setItem("status.printers.TITO", "${statusData.statusprintersTITO}");`, true);
-    if (currentStatusData.statusprintersTITO != statusData.statusprintersTITO) {
-        currentStatusData.statusprintersTITO = statusData.statusprintersTITO;
-        generateEvent("statusprintersTITO:" + statusData.statusprintersTITO);
+    mainWindow.webContents.executeJavaScript(`localStorage.setItem("status.printers.Voucher", "${statusData.statusprintersVoucher}");`, true);
+    if (currentStatusData.statusprintersVoucher != statusData.statusprintersVoucher) {
+        currentStatusData.statusprintersVoucher = statusData.statusprintersVoucher;
+        generateEvent("statusprintersVoucher:" + statusData.statusprintersVoucher);
     }
 
 
@@ -287,7 +287,7 @@ async function generateEvent(vdata) {
 
 
 app.whenReady().then(() => {
-    ipcMain.handle('loadTime', () => 'SIELCON Pay')
+    ipcMain.handle('loadTime', () => 'TOT')
     ipcMain.handle('generateQR', transaction.handlegenerateQR)
     ipcMain.handle('generateTran', transaction.handlegenerateTran)
     ipcMain.handle('cancelTran', transaction.handlecancelTran)
@@ -297,7 +297,7 @@ app.whenReady().then(() => {
     ipcMain.handle('operatorPrint', operator.handleOperatorPrint);
     ipcMain.handle('operatorTran', operator.handleOperatorTran);
     ipcMain.handle('operatorRePrintTicket', operator.handleOperatorRePrintTicket);
-    ipcMain.handle('operatorRePrintTito', operator.handleOperatorRePrintTito);
+    ipcMain.handle('operatorRePrintVoucher', operator.handleOperatorRePrintVoucher);
     ipcMain.handle('getTerminal', () => admin.getTerminal());
     ipcMain.handle('getConfigGeneral', () => admin.getConfigGeneral());
     ipcMain.handle('setDoor', setDoor);

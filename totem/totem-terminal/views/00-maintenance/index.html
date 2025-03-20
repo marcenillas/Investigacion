@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>SIELCON Pay (maintenance)</title>
+	<title>Totem (maintenance)</title>
 
 	<link href="https://getbootstrap.com/docs/5.3/examples/cover/" rel="canonical">
 	<link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet">
@@ -28,8 +28,8 @@
 			const centralElement = document.getElementById('central');
 			const terminalElement = document.getElementById('dterm');
 			const mpElement = document.getElementById('mp');
-			const cashierElement = document.getElementById('cashier');
-			const printerTITOElement = document.getElementById('printerTITO');
+			const cashElement = document.getElementById('cash');
+			const printerVoucherElement = document.getElementById('printerVoucher');
 			const printerTicketsElement = document.getElementById('printerTickets');
 			const doorElement = document.getElementById('door');
 
@@ -37,8 +37,8 @@
 			const scentral = document.getElementById('scentral');
 			const sterminal = document.getElementById('sterm');
 			const smp = document.getElementById('smp');
-			const scashier = document.getElementById('scashier');
-			const sprinterTITO = document.getElementById('sprinterTITO');
+			const scash = document.getElementById('scash');
+			const sprinterVoucher = document.getElementById('sprinterVoucher');
 			const sprinterTickets = document.getElementById('sprinterTickets');
 			const sdoor = document.getElementById('sdoor');
 
@@ -46,8 +46,8 @@
 			const CENTRALStatus = statusData.statusCENTRAL == 'online';
 			const TERMINALStatus = statusData.statusTERMINAL == 'enabled';
 			const MPStatus = statusData.statusMP == 'online';
-			const CASHIERStatus = statusData.statusCASHIER == 'online';
-			const TITOStatus = statusData.statusprintersTITO == 'online';
+			const CASHStatus = statusData.statusCASH == 'online';
+			const VoucherStatus = statusData.statusprintersVoucher == 'online';
 			const TICKETSStatus = statusData.statusprintersTICKETS == 'online';
 			const doorStatus = statusData.statusDoor == 'close';
 
@@ -61,8 +61,8 @@
 			updateElemet(CENTRALStatus, centralElement, scentral , true);
 			updateElemet(TERMINALStatus, terminalElement, sterminal, true);
 			updateElemet(MPStatus, mpElement, smp, true);
-			updateElemet(CASHIERStatus, cashierElement, scashier, true);
-			updateElemet(TITOStatus, printerTITOElement, sprinterTITO, true);
+			updateElemet(CASHStatus, cashElement, scash, true);
+			updateElemet(VoucherStatus, printerVoucherElement, sprinterVoucher, true);
 			updateElemet(TICKETSStatus, printerTicketsElement, sprinterTickets, true);
 			updateElemet(doorStatus, doorElement, sdoor, false);
 
@@ -105,7 +105,7 @@
 		<div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
 			<header class="mb-auto">
 				<div>
-					<h3 class="float-md-start mb-0">SIELCON Pay</h3>
+					<h3 class="float-md-start mb-0">Totem</h3>
 				</div>
 			</header>
 
@@ -123,12 +123,12 @@
 					<span id="smpd"></span> </span> <span id="smp"></span>.
 				</div>
 
-				<div class="alert text-start p-2" id="cashier">
-					Conexión con Cashier <span id="scashier"></span>.
+				<div class="alert text-start p-2" id="cash">
+					Conexión con Cash <span id="scash"></span>.
 				</div>
 
-				<div class="alert text-start p-2" id="printerTITO">
-					Conexión con la impresora de TITO <span id="sprinterTITO"></span>.
+				<div class="alert text-start p-2" id="printerVoucher">
+					Conexión con la impresora de Cupón <span id="sprinterVoucher"></span>.
 				</div>
 				<div class="alert text-start p-2" id="printerTickets">
 					Conexión con la impresora de tickets <span id="sprinterTickets"></span>.
@@ -152,7 +152,7 @@
 							<p>NODE V<span id="node-version"></span> |
 								CHROME V<span id="chrome-version"></span> |
 								ELECTRON V<span id="electron-version"></span> |
-								SIELCON Pay - Todos los derechos reservados.</p>
+								Totem - Todos los derechos reservados.</p>
 						</div>
 					</div>
 			</footer>

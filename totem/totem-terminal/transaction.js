@@ -1,7 +1,8 @@
 const util = require('./util');
 const admin = require('./admin');
-const titoPrinter = require('./titoprinter');
+const voucherPrinter = require('./voucherprinter');
 const ticketPrinter = require('./ticketprinter');
+const { Console } = require('winston/lib/winston/transports');
 
 let urlApi;
 let termId;
@@ -13,27 +14,27 @@ const TransactionStatus = {
     Error: 3,
     Cancel: 4,
     CancelPayment: 5,
-    CancelCashierError: 6,
-    FinishTITOError: 7
+    CancelCashError: 6,
+    FinishVoucherError: 7
 };
 
 
 const TransactionStep = {
     New: { value: 0, description: 'Nueva transacción' },
-    SendToCashier: { value: 1, description: 'Enviar la transacción al cajero' },
-    ReceiveFromCashier: { value: 2, description: 'Recibir la transacción del cajero' },
+    SendToCash: { value: 1, description: 'Enviar la transacción al cajero' },
+    ReceiveFromCash: { value: 2, description: 'Recibir la transacción del cajero' },
     SendToMP: { value: 3, description: 'Enviar la transacción a MercadoPago' },
     ReceiveFromMP: { value: 4, description: 'Recibir la transacción de MercadoPago' },
     ReceivePayment: { value: 5, description: 'Recibir el pago' },
     CancelPayment: { value: 6, description: 'Cancelar el pago' },
-    PrintTITO: { value: 7, description: 'Imprimir el ticket TITO' },
+    PrintVoucher: { value: 7, description: 'Imprimir el ticket Cupón' },
     PrintTicket: { value: 8, description: 'Imprimir el ticket' },
     OrderErrorFromMP: { value: 9, description: 'Recibir un error de orden de MercadoPago' },
     ReceiveMerchantOrder: { value: 10, description: 'Recibir la orden del comerciante' },
     ReceiveMPError: { value: 11, description: 'Recibir un error de MercadoPago' },
-    PrintTITOError: { value: 12, description: 'Error al Imprimir el ticket TITO' },
-    ReceiveCashierError: { value: 13, description: 'Error al recibir información del cajero' },
-    RePrintTITO: { value: 14, description: 'Reimpresion de TITO' },
+    PrintVoucherError: { value: 12, description: 'Error al Imprimir el ticket Cupón' },
+    ReceiveCashError: { value: 13, description: 'Error al recibir información del cajero' },
+    RePrintVoucher: { value: 14, description: 'Reimpresion de Cupón' },
     RePrintTicket: { value: 15, description: 'Reimpresion de ticket' },
 };
 
@@ -270,7 +271,7 @@ const updateTransaction = (code, vstatus, request, response) => {
             status: vstatus,
             orderRequestData: request,
             orderResponseData: response,
-            cashierData: '',
+            cashData: '',
             updatedBy: termId
         })
     };
@@ -278,7 +279,7 @@ const updateTransaction = (code, vstatus, request, response) => {
 
 }
 
-const updateDataTransaction = (code, vstatus, vcashierData, vcopies) => {
+const updateDataTransaction = (code, vstatus, vcashData, vcopies) => {
 
     const options = {
         method: 'Patch',
@@ -291,7 +292,7 @@ const updateDataTransaction = (code, vstatus, vcashierData, vcopies) => {
             status: vstatus,
             orderRequestData: '',
             orderResponseData: '',
-            cashierData: vcashierData,
+            cashData: vcashData,
             copies: vcopies,
             updatedBy: termId
         })
@@ -361,17 +362,17 @@ async function generateTranLog(tid, vstep, vdata, vOperatormail, vOpertorlogId) 
 
 }
 
-async function PrintTicket(tran, cashierData) {
+async function PrintTicket(tran, cashData) {
 
     let rtn = {};
 
     if (admin.getTerminal().printTicket && admin.getTerminal().printerTicketName != null && admin.getTerminal().printerTicketName != "") {
 
-        if (tran.status == 2 || (tran.status == 4 && admin.getConfigGeneral().printCancelTransaction) || tran.status != 4 || cashierData.Message != "") {
+        if (tran.status == 2 || (tran.status == 4 && admin.getConfigGeneral().printCancelTransaction) || tran.status != 4 || cashData.Message != "") {
 
             try {
                 generateTranLog(tran.transactionId, TransactionStep.PrintTicket, JSON.stringify(await util.generateDataLog("", "")))
-                let datap = ticketPrinter.generateData(tran, cashierData, false)
+                let datap = ticketPrinter.generateData(tran, cashData, false)
                 ticketPrinter.printTicket(datap)
 
 
@@ -396,42 +397,40 @@ async function PrintTicket(tran, cashierData) {
 
 }
 
-async function PrintTito(tran, cashierData) {
+async function PrintVoucher(tran, cashData) {
     let rtn = {};
     if (tran.status == 2) {
-        if (admin.getTerminal().printTITO && admin.getTerminal().printerTITOCom != null && admin.getTerminal().printerTITOCom != "") {
-            try {
+        if (admin.getTerminal().printVoucher && admin.getTerminal().printerVoucherCom != null && admin.getTerminal().printerVoucherCom != "") {
+            try {                
+                if (cashData.Code == 0) {
 
-                if (cashierData.Code == 0) {
-
-                    let data = titoPrinter.generateData(tran, cashierData, admin.getConfigGeneral().TITOTitle);
-
-                    let dataStatus = titoPrinter.status();
+                    let data = voucherPrinter.generateData(tran, cashData, admin.getConfigGeneral().voucherTitle);                    
+                    let dataStatus = voucherPrinter.status();
                     setTimeout(() => {
-                    }, 2000);
-                    if (dataStatus == "online") {
-                        titoPrinter.printTito(data);
-                        generateTranLog(tran.transactionId, TransactionStep.PrintTITO, JSON.stringify(await util.generateDataLog(data.validationFormat, data)))
+                    }, 5000);                    
+                    if (dataStatus == "online") {                      
+                        voucherPrinter.printVoucher(data);
+                        generateTranLog(tran.transactionId, TransactionStep.PrintVoucher, JSON.stringify(await util.generateDataLog(data.validationFormat, data)))
                     }
                     else {
-                        const trans = await util.sendData(updateDataTransaction(tran.transactionId, TransactionStatus.FinishTITOError, JSON.stringify(cashierData), 0));
-                        generateTranLog(tran.transactionId, TransactionStep.PrintTITOError, JSON.stringify(await util.generateDataLog("Error:" + currentStatusData.statusprintersTITO, "")))
+                        const trans = await util.sendData(updateDataTransaction(tran.transactionId, TransactionStatus.FinishVoucherError, JSON.stringify(cashData), 0));
+                        generateTranLog(tran.transactionId, TransactionStep.PrintVoucherError, JSON.stringify(await util.generateDataLog("Error:" + currentStatusData.statusprintersVoucher, "")))
                     }
                 }
             }
             catch (e) {
-                const trans = await util.sendData(updateDataTransaction(tran.transactionId, TransactionStatus.FinishTITOError, JSON.stringify(cashierData), 0));
-                generateTranLog(tran.transactionId, TransactionStep.PrintTITOError, JSON.stringify(await util.generateDataLog("Error:" + e.message, "")))
+                const trans = await util.sendData(updateDataTransaction(tran.transactionId, TransactionStatus.FinishVoucherError, JSON.stringify(cashData), 0));
+                generateTranLog(tran.transactionId, TransactionStep.PrintVoucherError, JSON.stringify(await util.generateDataLog("Error:" + e.message, "")))
                 rtn = {
-                    info: "Error al imprimir Tito.",
+                    info: "Error al imprimir Cupón.",
                     error: e.name,
                     message: e.message
                 };
             }
         }
         else {
-            const trans = await util.sendData(updateDataTransaction(tran.transactionId, TransactionStatus.Finished, cashierData, 0));
-            generateTranLog(tran.transactionId, TransactionStep.PrintTITO, JSON.stringify(await util.generateDataLog("IMPRESIÓN DESHABILITADA POR CONFIGURACIÓN", "")))
+            const trans = await util.sendData(updateDataTransaction(tran.transactionId, TransactionStatus.Finished, cashData, 0));
+            generateTranLog(tran.transactionId, TransactionStep.PrintVoucher, JSON.stringify(await util.generateDataLog("IMPRESIÓN DESHABILITADA POR CONFIGURACIÓN", "")))
         }
     }
     return rtn;
@@ -442,63 +441,63 @@ async function PrintTito(tran, cashierData) {
 async function printTran(tran) {
     let rtn = {};
     let errorcom = false;
-    let cashierData =
+    let cashData =
     {
         Message: "",
     }
     if (tran.status == 2) {
-        let op = admin.cashierComunication('Generar', '', parseFloat(tran.amount));
-        generateTranLog(tran.transactionId, TransactionStep.SendToCashier, JSON.stringify(await util.generateDataLog("Terminal: " + admin.getTerminal().terminalcode + " Monto: " + (parseFloat(tran.amount) * 100).toString(), op)))
+        let op = admin.cashComunication('Generar', '', parseFloat(tran.amount));
+        generateTranLog(tran.transactionId, TransactionStep.SendToCash, JSON.stringify(await util.generateDataLog("Terminal: " + admin.getTerminal().terminalcode + " Monto: " + (parseFloat(tran.amount) * 100).toString(), op)))
         try {
 
-            if (admin.getTerminal().useCashier) {
-                cashierData = await util.sendData(op);
+            if (admin.getTerminal().useCash) {
+                cashData = await util.sendData(op);
             }
             else {
-                cashierData =
+                cashData =
                 {
                     Code: 0,
                     Message: '',
                     ValidationId: '002411143240808173',
                     CreateDate: '20240627180149',
                     ExpirateDate: '20240727',
-                    Sala: 'SALA CASHIER',
+                    Branch: 'Sucursal CASH',
                     Data1: '',
                     Data2: '',
                 }
             }
 
-            if (cashierData.Code == 0) {
-                generateTranLog(tran.transactionId, TransactionStep.ReceiveFromCashier, JSON.stringify(await util.generateDataLog("ValidationId: " + cashierData.ValidationId, cashierData)))
-                const trans = await util.sendData(updateDataTransaction(tran.transactionId, TransactionStatus.Finished, JSON.stringify(cashierData), 0));
+            if (cashData.Code == 0) {
+                generateTranLog(tran.transactionId, TransactionStep.ReceiveFromCash, JSON.stringify(await util.generateDataLog("ValidationId: " + cashData.ValidationId, cashData)))
+                const trans = await util.sendData(updateDataTransaction(tran.transactionId, TransactionStatus.Finished, JSON.stringify(cashData), 0));
             }
 
         }
         catch (e) {
             console.error(e);
-            cashierData =
+            cashData =
             {
                 Code: -1,
                 Message: e.message,
                 ValidationId: '',
                 CreateDate: '',
                 ExpirateDate: '',
-                Sala: '',
+                Branch: '',
                 Data1: '',
                 Data2: '',
             }
         }
 
-        if (cashierData.Code != 0) {
+        if (cashData.Code != 0) {
             try {
                 errorcom = true;
-                const trancs = await util.sendData(updateDataTransaction(tran.transactionId, TransactionStatus.CancelCashierError, '', 0));
-                tran.status = TransactionStatus.CancelCashierError;
-                generateTranLog(tran.transactionId, TransactionStep.ReceiveCashierError, JSON.stringify(await util.generateDataLog("Error: " + cashierData.Message, cashierData)));
+                const trancs = await util.sendData(updateDataTransaction(tran.transactionId, TransactionStatus.CancelCashError, '', 0));
+                tran.status = TransactionStatus.CancelCashError;
+                generateTranLog(tran.transactionId, TransactionStep.ReceiveCashError, JSON.stringify(await util.generateDataLog("Error: " + cashData.Message, cashData)));
                 rtn = {
                     info: "Error en comunicación con el sistema de caja.",
                     error: "Error",
-                    message: cashierData.Message
+                    message: cashData.Message
                 };
             }
             catch (e) {
@@ -513,9 +512,9 @@ async function printTran(tran) {
     }
 
 
-    rtn = await PrintTicket(tran, cashierData)
+    rtn = await PrintTicket(tran, cashData)
     if (!errorcom) {
-        rtn = await PrintTito(tran, cashierData)
+        rtn = await PrintVoucher(tran, cashData)
     }
 
 

@@ -39,14 +39,14 @@ async function setConfigGeneral() {
         mpNotificationURL :  config.mpNotificationURL,
         taxPercentage :  config.taxPercentage,
         currencySimbol: config.currencySymbol,
-        salaName: config.salaName,
-        salaAddress: config.salaAddress,
-        takeSalaNameConfiguration: config.takeSalaNameConfiguration,
+        branchName: config.branchName,
+        branchAddress: config.branchAddress,
+        takeBranchNameConfiguration: config.takeBranchNameConfiguration,
         printCancelTransaction: config.printCancelTransaction,
-        TITOTitle: config.TITOTitle,
-        TITOLine1: config.TITOLine1,
-        TITOLine2: config.TITOLine2,
-        TITOLine3: config.TITOLine3,
+        voucherTitle: config.voucherTitle,
+        voucherLine1: config.voucherLine1,
+        voucherLine2: config.voucherLine2,
+        voucherLine3: config.voucherLine3,
     }
 
     mainWindow.webContents.executeJavaScript(`localStorage.setItem("config.mp.authorizationtoken", "${config.mpAuthorizationToken}");`, true);
@@ -57,8 +57,8 @@ async function setConfigGeneral() {
     mainWindow.webContents.executeJavaScript(`localStorage.setItem("config.mp.feeBorneClientCharge", "${config.feeBorneClientCharge}");`, true);
 
     util.saveLogo(config.logoMPImageData, 'views/assets/img/logomp.png');
-    util.saveLogo(config.logoSalaImageData, 'views/assets/img/logosala.png');
-    util.saveLogo(config.logoSielconImageData, 'views/assets/img/logosielcon.png');
+    util.saveLogo(config.logoBranchImageData, 'views/assets/img/logobranch.png');
+    util.saveLogo(config.logoCompanyImageData, 'views/assets/img/logocompany.png');
 }
 
 async function setConfigTerminal() {
@@ -73,15 +73,15 @@ async function setConfigTerminal() {
         modeQR: config.modeQR,
         modeFixed: config.modeFixed,
         status: config.status,
-        printTITO: config.printTITO,
+        printVoucher: config.printVoucher,
         printTicket: config.printTicket,
         printerTicketName: config.printerTicketName,
-        printerTITOCom: config.printerTITOCom,
+        printerVoucherCom: config.printerVoucherCom,
       
         definedValues :config.definedValues,
         storeId:  config.storeId,
         posId : config.posId,
-        useCashier: config.useCashier,
+        useCash: config.useCash,
       
 
         
@@ -168,28 +168,28 @@ function getPrinters() {
     return printers;
 }
 
-function setSalaName(tran, cashierData) {
+function setBranchName(tran, cashData) {
     if (tran.status == 2) {
-        if (cashierData.Sala != "" && !configGeneral.takeSalaNameConfiguration)
-            namesala = cashierData.Sala;
-        else if (configGeneral.salaName != "" && configGeneral.takeSalaNameConfiguration)
-            namesala = configGeneral.salaName;
+        if (cashData.Branch != "" && !configGeneral.takeBranchNameConfiguration)
+            namebranch = cashData.Branch;
+        else if (configGeneral.branchName != "" && configGeneral.takeBranchNameConfiguration)
+            namebranch = configGeneral.branchName;
 
-        if (namesala == "") {
-            if (cashierData.Sala != "")
-                namesala == cashierData.Sala;
+        if (namebranch == "") {
+            if (cashData.Branch != "")
+                namebranch == cashData.Branch;
             else
-                namesala = configGeneral.salaName;
+                namebranch = configGeneral.branchName;
 
         }
     }
     else {
-        namesala = configGeneral.salaName;
+        namebranch = configGeneral.branchName;
     }
-    if (namesala == "")
-        namesala = "-";
+    if (namebranch == "")
+        namebranch = "-";
 
-    return namesala
+    return namebranch
 }
 
 
@@ -231,12 +231,12 @@ const getCallbackURLMP = () => {
 
 
 
-const cashierComunication = (metodo, validationId, amount) => {
+const cashComunication = (metodo, validationId, amount) => {
     const urlApi = configg.api.url;
     const options = {
         method: 'Post',
         maxBodyLength: Infinity,
-        url: `${urlApi}/Cashier/${metodo}`,
+        url: `${urlApi}/Cash/${metodo}`,
         headers: {
             'Content-Type': 'application/json',
         },
@@ -259,7 +259,7 @@ module.exports = {
     init,
     setConfigGeneral,
     setConfigTerminal,
-    setSalaName,
+    setBranchName,
     getConfigGeneral,
     getTerminal,
     getConfig,
@@ -267,7 +267,7 @@ module.exports = {
     getOptionConfigGeneral,
     getoptionTerminal,
     getoptionStatusTerminal,
-    cashierComunication,
+    cashComunication,
     MPStatus,
     getCallbackURLMP
 

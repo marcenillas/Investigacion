@@ -43,10 +43,12 @@ export class SeedService {
     private async insertData() {
         let c = await this.configurationService.create({
             configurationId: '',
+            currencySymbol :'$',
             mpAuthorizationToken: 'APP_USR-6407024715531601-030609-c9114c3665d2c6cc85a26704d5cb545f-1713092135',
             mpUserId: '1713092135',
             mpNotificationURL: 'https://rare-eagles-laugh.loca.lt/api/transaction/ReceiveNotifications', //Esto hay que cambiar con cada arranque
             taxPercentage: 1,
+            voucherTitle : "CUPON DE PAGO"
         });
 
         c.logoMPImage = "logomp.png"
@@ -59,13 +61,15 @@ export class SeedService {
 
         const terminal_01 = await this.terminalService.create({
             terminalId: '',
-            name: 'Terminal Planta Baja',
-            description: 'Terminal ubicado en Planta Baja, habilitado sólo en horario diurno, modo QR Fijo y billetes de denominación general.',
+            code:'AAAAAAFFFFFF',
+            name: 'Terminal Generica',
+            description: 'Terminal ubicada en Planta Baja.',
             enabled: true, modeQR: true, modeFixed: false,
             status: TerminalStatus.Online,
             carrouselImage01: 'c1.png', carrouselImage02: 'c2.png', carrouselImage03: 'c3.png', carrouselImage04: 'c4.png', carrouselImage05: 'c5.png',
             definedValues: '100 | 200 | 500 | 1000 | 2000 | 5000 | 10000 | 50000',
-            storeId: '9998', posId: '99988', printVoucher: true, printTicket: true,
+            storeId: '9998', posId: '99988', printVoucher: false, printTicket: false,
+            useCash : false,
             printerTicketName: 'GP-80160(Cut) Series', printerVoucherCom: 'COM7',
 
         });

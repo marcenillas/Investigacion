@@ -53,7 +53,7 @@ function status() {
 
 }
 
-function generateData(tran, cashierData, test) {
+function generateData(tran, cashData, test) {
 
 if (test)
 {
@@ -84,9 +84,9 @@ else
     }
 }
 
-    let titoerror = ""
-    let tito = ""
-    let titoValue = ""
+    let vouchererror = ""
+    let voucher = ""
+    let voucherValue = ""
     let mpfee = "";
     let mpfeevalue = "";
     let orderPay = ""
@@ -97,12 +97,12 @@ else
         status = "PAGADA";
 
     if (tran.status == 2) {
-        if (cashierData.Code == 0) {
-            tito = "TITO";
-            titoValue = util.generateNumberValidation(cashierData.ValidationId);
+        if (cashData.Code == 0) {
+            voucher = "CUPON";
+            Value = util.generateNumberValidation(cashData.ValidationId);
         }
         else {
-            titoerror = cashierData.Message
+            vouchererror = cashData.Message
         }
     }
 
@@ -122,14 +122,14 @@ else
     const data = [
         {
             type: 'text',
-            value: admin.setSalaName(tran, cashierData),
+            value: admin.setBranchName(tran, cashData),
             style: { fontWeight: "900", textAlign: 'center', fontSize: "16px" }
         },
 
 
         {
             type: 'text',
-            value: admin.getConfigGeneral().salaAddress ?? '-',
+            value: admin.getConfigGeneral().branchAddress ?? '-',
             style: { fontWeight: "700", textAlign: 'center', fontSize: "12px" }
         },
 
@@ -168,12 +168,12 @@ else
                 [
                     {
                         type: 'text',
-                        value: tito,
+                        value: voucher,
                         style: { fontSize: "7px", textAlign: "left" }
                     },
                     {
                         type: 'text',
-                        value: titoValue,
+                        value: voucherValue,
                         style: { fontSize: "8px", textAlign: "right" }
 
                     },
@@ -305,7 +305,7 @@ else
 
         {
             type: 'text',
-            value: titoerror,
+            value: vouchererror,
             style: { fontWeight: "700", fontSize: "16px", textAlign: "center" }
         },
         {
@@ -317,7 +317,7 @@ else
 
         {
             type: 'text',
-            value: 'Sielcon Pay',
+            value: 'Totem',
             style: { fontSize: "12px", textAlign: "center" }
         },
     ]

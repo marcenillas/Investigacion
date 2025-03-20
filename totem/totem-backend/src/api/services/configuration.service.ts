@@ -36,7 +36,7 @@ export class ConfigurationService {
     }
 
     async update(id: string, d: ConfigurationUpdateDTO): Promise<Configuration> {
-        try {
+        try {           
             const row = await this.repo.preload({ configurationId: id, ...d, updatedBy: defaultDBUsers.updatedBy });
 
             if (!row) throw new NotFoundException(`Row with id: ${id} not found`);
@@ -66,7 +66,8 @@ export class ConfigurationService {
     }
 
     async findAll(): Promise<Configuration[]> {
-        return await this.repo.find({ take: 1 });
+        const data = await this.repo.find({ take: 1 });    
+        return data;
     }
 
     async deleteConfiguration() {

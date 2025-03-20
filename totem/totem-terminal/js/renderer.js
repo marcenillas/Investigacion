@@ -37,7 +37,7 @@ async function showCompleteMessage(vtitle, vtext, vicon, vconfirmButtonText, vca
         width: 600,
         confirmButtonColor: '#3085d6',
         confirmButtonText: vconfirmButtonText,
-        footer: 'SIELCON Pay',
+        footer: 'Totem',
         allowOutsideClick: false,
     };
     if (vcancelButtonText != '-') {
@@ -60,8 +60,8 @@ const getSatusData = () => {
         statusCENTRAL: getConfig('status.CENTRAL'),
         statusTERMINAL: getConfig('status.TERMINAL'),
         statusMP: getConfig('status.MP'),
-        statusCASHIER: getConfig('status.CASHIER'),
-        statusprintersTITO: getConfig('status.printers.TITO'),
+        statusCASH: getConfig('status.CASH'),
+        statusprintersVoucher: getConfig('status.printers.Voucher'),
         statusprintersTICKETS: getConfig('status.printers.TICKETS'),
         statusDoor: getConfig('status.Door'),
 
@@ -74,12 +74,12 @@ const validateStatus = (inmaintenance) => {
     const CENTRALStatus = getConfig('status.CENTRAL') == 'online';
     const TERMINALStatus = getConfig('status.TERMINAL') == 'enabled';
     const MPStatus = getConfig('status.MP') == 'online';
-    const CASHIERStatus = getConfig('status.CASHIER') == 'online';
-    const TITOStatus = getConfig('status.printers.TITO') == 'online';
+    const CASHStatus = getConfig('status.CASH') == 'online';
+    const VoucherStatus = getConfig('status.printers.Voucher') == 'online';
     const TICKETSStatus = getConfig('status.printers.TICKETS') == 'online';
     const DoorStatus = getConfig('status.Door') == 'close';
 
-    if (!TITOStatus || !TICKETSStatus || !CENTRALStatus || !TERMINALStatus || !MPStatus || !CASHIERStatus || !DoorStatus) {
+    if (!VoucherStatus || !TICKETSStatus || !CENTRALStatus || !TERMINALStatus || !MPStatus || !CASHStatus || !DoorStatus) {
 
         if (!inmaintenance) {
             Swal.fire({
@@ -87,7 +87,7 @@ const validateStatus = (inmaintenance) => {
                 html: 'Procesando información, espere unos segundos por favor.',
                 timer: 1000,
                 timerProgressBar: true,
-                footer: 'SIELCON Pay',
+                footer: 'Totem',
                 allowOutsideClick: false,
                 didOpen: () => {
                     Swal.showLoading()
@@ -108,14 +108,14 @@ const refreshStatus = () => {
         html: '<p></p>',
         timer: 3000,
         timerProgressBar: true,
-        footer: 'SIELCON Pay',
+        footer: 'Totem',
         allowOutsideClick: false,
         didOpen: () => {
             Swal.showLoading()
             const b = Swal.getHtmlContainer().querySelector('p')
             setInterval(() => {
                 if (Swal.getTimerLeft() > 750 * 3) {
-                    b.textContent = 'Validando estado de la impresora de TITO... '
+                    b.textContent = 'Validando estado de la impresora de Cupones... '
                 }
                 else if (Swal.getTimerLeft() > 750 * 2) {
                     b.textContent = 'Validando estado de la impresora de tickets...'
@@ -502,7 +502,7 @@ async function operadorRePrint(op, tran) {
                         r = await window.oprtk.operatorRePrintTicket(jtran)
                     }
                     else if (op == 2) {
-                        r = await window.oprti.operatorRePrintTito(jtran);
+                        r = await window.oprti.operatorRePrintVoucher(jtran);
                     }
                     if (r.hasOwnProperty("error")) {
                         await showMessage('Error', r.info, 'error');

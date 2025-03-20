@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>SIELCON Pay (maintenance)</title>
+	<title>Totem (maintenance)</title>
 
 	<link href="https://getbootstrap.com/docs/5.3/examples/cover/" rel="canonical">
 	<link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet">
@@ -43,11 +43,11 @@
 
 				document.getElementById('modeQR').textContent = defaultboolean(initialData.modeQR);
 				document.getElementById('modeFixed').textContent = defaultboolean(initialData.modeFixed);
-				document.getElementById('useCashier').textContent = defaultboolean(initialData.useCashier);
+				document.getElementById('useCash').textContent = defaultboolean(initialData.useCash);
 
 
-				document.getElementById('printTITO').textContent = defaultboolean(initialData.printTITO);
-				document.getElementById('printerTITOCom').textContent = initialData.printerTITOCom;
+				document.getElementById('printVoucher').textContent = defaultboolean(initialData.printVoucher);
+				document.getElementById('printerVoucherCom').textContent = initialData.printerVoucherCom;
 
 				document.getElementById('printTicket').textContent = defaultboolean(initialData.printTicket);
 				document.getElementById('printerTicketName').textContent = initialData.printerTicketName;
@@ -75,10 +75,10 @@
 				document.getElementById('printCancelTransaction').textContent = defaultboolean(initialDataG.printCancelTransaction);
 
 
-				document.getElementById('salaName').textContent = initialDataG.salaName;
-				document.getElementById('takeSalaNameConfiguration').textContent = defaultboolean(initialDataG.takeSalaNameConfiguration);
+				document.getElementById('branchName').textContent = initialDataG.branchName;
+				document.getElementById('takeBranchNameConfiguration').textContent = defaultboolean(initialDataG.takeBranchNameConfiguration);
 
-				document.getElementById('salaAddress').textContent = initialDataG.salaAddress;
+				document.getElementById('branchAddress').textContent = initialDataG.branchAddress;
 				
 
 
@@ -134,7 +134,7 @@
 		<div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
 			<header class="mb-auto">
 				<div>
-					<h3 class="float-md-start mb-0">SIELCON Pay</h3>
+					<h3 class="float-md-start mb-0">Totem</h3>
 				</div>
 				<div>
 					<a class="float-md-end mb-0" href="../00-operator/index.html">Volver</a>
@@ -205,20 +205,20 @@
 									<label id="modeFixed" name="modeFixed" class="form-control"></label>
 								</div>
 								<div class="col-4">
-									<label for="useCashier" class="form-label">Usa Cashier</label>
-									<label id="useCashier" name="modeFixed" class="form-control"></label>
+									<label for="useCash" class="form-label">Usa Cash</label>
+									<label id="useCash" name="modeFixed" class="form-control"></label>
 								</div>
 							</div>
 
 
 							<div class="row">
 								<div class="col-6 text-center">
-									<label for="printTITO" class="form-label">Imprime TITO</label>
-									<label id="printTITO" name="printTITO" class="form-control"></label>
+									<label for="printVoucher" class="form-label">Imprime Cupón</label>
+									<label id="printVoucher" name="printVoucher" class="form-control"></label>
 								</div>
 								<div class="col-6 text-start">
-									<label for="printerTITOCom" class="form-label">Puerto Com (TITO)</label>
-									<label id="printerTITOCom" name="printerTITOCom" class="form-control"></label>
+									<label for="printerVoucherCom" class="form-label">Puerto Com (Cupón)</label>
+									<label id="printerVoucherCom" name="printerVoucherCom" class="form-control"></label>
 								</div>
 							</div>
 							<div class="row">
@@ -316,9 +316,9 @@
 								</div>
 
 								<div class="col-6 text-center">
-									<label for="takeSalaNameConfiguration" class="form-label">Toma Nombre de Sala de
+									<label for="takeBranchNameConfiguration" class="form-label">Toma Nombre de la Sucursal de
 										Configuración</label>
-									<label id="takeSalaNameConfiguration" name="takeSalaNameConfiguration"
+									<label id="takeBranchNameConfiguration" name="takeBranchNameConfiguration"
 										class="form-control"></label>
 								</div>
 
@@ -327,16 +327,16 @@
 
 							<div class="row ">
 								<div class="col-12 text-start">
-									<label for="salaName" class="form-label">Nombre de Sala</label>
-									<label id="salaName" name="salaName" class="form-control"></label>
+									<label for="branchName" class="form-label">Nombre de Sucursal</label>
+									<label id="branchName" name="branchName" class="form-control"></label>
 								</div>
 							</div>
 						
 
 							<div class="row ">
 								<div class="col-12 text-start">
-									<label for="salaAddress" class="form-label">Dirección de Sala</label>
-									<label id="salaAddress" name="salaAddress" class="form-control"></label>
+									<label for="branchAddress" class="form-label">Dirección de Sucursal</label>
+									<label id="branchAddress" name="branchAddress" class="form-control"></label>
 								</div>
 							</div>
 
@@ -355,7 +355,7 @@
 							<p>NODE V<span id="node-version"></span> |
 								CHROME V<span id="chrome-version"></span> |
 								ELECTRON V<span id="electron-version"></span> |
-								SIELCON Pay - Todos los derechos reservados.</p>
+								Totem - Todos los derechos reservados.</p>
 						</div>
 					</div>
 			</footer>

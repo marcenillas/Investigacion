@@ -1,6 +1,6 @@
 const util = require('./util');
 const admin = require('./admin');
-const titoPrinter = require('./titoprinter');
+const voucherPrinter = require('./voucherprinter');
 const ticketPrinter = require('./ticketprinter');
 const transaction = require('./transaction');
 
@@ -11,8 +11,8 @@ const OpertorAction = {
 
     Entry: { value: 1, description: 'Ingreso' },
     PrintTestTicket: { value: 2, description: 'Impresión Ticket' },
-    PrintTestTITO: { value: 3, description: 'Impresión TITO' },
-    RePrintTransactionTITO: { value: 4, description: 'Re Impresión transacción TITO' },
+    PrintTestVoucher: { value: 3, description: 'Impresión Cupón' },
+    RePrintTransactionVoucher: { value: 4, description: 'Re Impresión transacción Cupón' },
     Exit: { value: 5, description: 'Salir' },
     Transactions: { value: 6, description: 'Transacciones' },
     RePrintTransactionTicket: { value: 7, description: 'Re Impresión transacción Ticket' },
@@ -99,26 +99,26 @@ async function handleOperatorPrint(event, options) {
 
     const dateone = new Date()
     dateone.setDate(dateone.getDate() + 1);
-    cashierData =
+    cashData =
     {
         Code: 0,
         Message: '',
         ValidationId: '000000000000000000',
         CreateDate: util.formatDateYYYYMMDDHHmmss(date),
         ExpirateDate: util.formatDateYYYYMMDDHHmmss(dateone),
-        Sala: 'SALA PRUEBA',
+        Branch: 'SUCURSAL PRUEBA',
         Data1: '',
         Data2: '',
     }
 
     if (options == 1) {
 
-        rtn = await PrintTicketOperator(tran, cashierData, true)
+        rtn = await PrintTicketOperator(tran, cashData, true)
 
     }
     else if (options == 2) {
 
-        rtn = await PrintTitoOperator(tran, cashierData, '*TITO DE PRUEBA*' , true)
+        rtn = await PrintVoucherOperator(tran, cashData, '*CUPON DE PRUEBA*' , true)
 
     }
 
@@ -176,24 +176,24 @@ async function generateOperatorLog(vaction, vdata) {
 
 }
 
-async function PrintTitoOperator(tran, cashierData, title , test) {
+async function PrintVoucherOperator(tran, cashData, title , test) {
     let rtn = {};
-    if (admin.getTerminal().printTITO && admin.getTerminal().printerTITOCom != null && admin.getTerminal().printerTITOCom !== "") {
+    if (admin.getTerminal().printVoucher && admin.getTerminal().printerVoucherCom != null && admin.getTerminal().printerVoucherCom !== "") {
         try {
-            let data = titoPrinter.generateData(tran, cashierData, title);
-            let dataStatus = titoPrinter.status();
+            let data = voucherPrinter.generateData(tran, cashData, title);
+            let dataStatus = voucherPrinter.status();
             setTimeout(() => {
             }, 2000);
             if (dataStatus == "online") {               
-                titoPrinter.printTito(data);
+                voucherPrinter.printVoucher(data);
                 if (test)
                 {                  
-                    generateOperatorLog(OpertorAction.PrintTestTITO, JSON.stringify(await util.generateDataLog(data.validationFormat, data)))
+                    generateOperatorLog(OpertorAction.PrintTestVoucher, JSON.stringify(await util.generateDataLog(data.validationFormat, data)))
                 }
             }
             else {
                 let str = "Impresora no disponible " + dataStatus + "."
-                generateOperatorLog(test?OpertorAction.PrintTestTITO : OpertorAction.handleOperatorRePrintTito, JSON.stringify(await util.generateDataLog("Error:" + str, data)))
+                generateOperatorLog(test?OpertorAction.PrintTestVoucher : OpertorAction.handleOperatorRePrintVoucher, JSON.stringify(await util.generateDataLog("Error:" + str, data)))
                 rtn = {
                     info: str,
                     error: str,
@@ -203,8 +203,8 @@ async function PrintTitoOperator(tran, cashierData, title , test) {
         }
         catch (e) {
             console.log(e);
-            let str = "Error al imprimir TITO."
-            generateOperatorLog(test?OpertorAction.PrintTestTITO : OpertorAction.handleOperatorRePrintTito , JSON.stringify(await util.generateDataLog(str, e)))
+            let str = "Error al imprimir cupón."
+            generateOperatorLog(test?OpertorAction.PrintTestVoucher : OpertorAction.handleOperatorRePrintVoucher , JSON.stringify(await util.generateDataLog(str, e)))
             rtn = {
                 info: str,
                 error: e.name,
@@ -214,7 +214,7 @@ async function PrintTitoOperator(tran, cashierData, title , test) {
     }
     else {
         let str = "Impresora no configurada."
-        generateOperatorLog(OpertorAction.PrintTestTITO, JSON.stringify(await util.generateDataLog("Error:" + str, admin.getTerminal())))
+        generateOperatorLog(OpertorAction.PrintTestVoucher, JSON.stringify(await util.generateDataLog("Error:" + str, admin.getTerminal())))
         rtn = {
             info: str,
             error: str,
@@ -225,7 +225,7 @@ async function PrintTitoOperator(tran, cashierData, title , test) {
 
 }
 
-async function PrintTicketOperator(tran, cashierData, test) {
+async function PrintTicketOperator(tran, cashData, test) {
     let rtn = {};
     if (admin.getTerminal().printTicket && admin.getTerminal().printerTicketName != null && admin.getTerminal().printerTicketName != "") {
 
@@ -234,7 +234,7 @@ async function PrintTicketOperator(tran, cashierData, test) {
             if (test) {
                 generateOperatorLog(OpertorAction.PrintTestTicket, JSON.stringify(await util.generateDataLog("Id:" + tran.transactionId, tran)))
             }
-            let datap = ticketPrinter.generateData(tran, cashierData, test)
+            let datap = ticketPrinter.generateData(tran, cashData, test)
             ticketPrinter.printTicket(datap)
 
         } catch (e) {
@@ -267,19 +267,19 @@ async function handleOperatorRePrintTicket(event, options) {
     let rtn = {};
     try {
 
-        let cashierData =
+        let cashData =
         {
             Code: 0,
             Message: '',
             ValidationId: '',
             CreateDate: '',
             ExpirateDate: '',
-            Sala: '',
+            Branch: '',
             Data1: '',
             Data2: '',
         }
-        if (options.data.cashierData)
-            cashierData = JSON.parse(options.data.cashierData)
+        if (options.data.cashData)
+            cashData = JSON.parse(options.data.cashData)
 
         opl = await generateOperatorLog(OpertorAction.RePrintTransactionTicket, JSON.stringify(await util.generateDataLog("Id:" + options.data.transactionId, options.data)))
 
@@ -288,7 +288,7 @@ async function handleOperatorRePrintTicket(event, options) {
 
 
 
-        rtn = await PrintTicketOperator(options.data, cashierData, false);
+        rtn = await PrintTicketOperator(options.data, cashData, false);
 
     }
     catch (error) {
@@ -302,13 +302,13 @@ async function handleOperatorRePrintTicket(event, options) {
     return rtn
 }
 
-async function handleOperatorRePrintTito(event, options) {
+async function handleOperatorRePrintVoucher(event, options) {
     let rtn = {};
     try {
         
-        opl = await generateOperatorLog(OpertorAction.RePrintTransactionTITO, JSON.stringify(await util.generateDataLog(util.generateNumberValidation(JSON.parse(options.data.cashierData).ValidationId) , options.data)))
+        opl = await generateOperatorLog(OpertorAction.RePrintTransactionVoucher, JSON.stringify(await util.generateDataLog(util.generateNumberValidation(JSON.parse(options.data.cashData).ValidationId) , options.data)))
 
-        transaction.generateTranLog(options.data.transactionId, transaction.TransactionStep.RePrintTITO,
+        transaction.generateTranLog(options.data.transactionId, transaction.TransactionStep.RePrintVoucher,
             JSON.stringify(await util.generateDataLog("Operator:" + operatormail, opl)), operatormail, opl.operatorLogId);
 
 
@@ -316,12 +316,12 @@ async function handleOperatorRePrintTito(event, options) {
         util.sendData(transaction.updateDataTransaction(options.data.transactionId, options.data.status, '', copies + 1));
 
 
-        if (options.data.status == transaction.TransactionStatus.Finished || options.data.status == transaction.TransactionStatus.FinishTITOError) {
-            rtn = await PrintTitoOperator(options.data, JSON.parse(options.data.cashierData), admin.getConfigGeneral().TITOTitle ,false);
+        if (options.data.status == transaction.TransactionStatus.Finished || options.data.status == transaction.TransactionStatus.FinishVoucherError) {
+            rtn = await PrintVoucherOperator(options.data, JSON.parse(options.data.cashData), admin.getConfigGeneral().voucherTitle ,false);
         }
         else
             rtn = {
-                info: "No se puede reimprimir el TITO transacción en estado no valido.",
+                info: "No se puede reimprimir el Cupón transacción en estado no valido.",
                 error: '',
                 message: ''
             };
@@ -329,7 +329,7 @@ async function handleOperatorRePrintTito(event, options) {
     catch (error) {
         console.error(error);
         rtn = {
-            info: "Error Reimprimiento TITO.",
+            info: "Error Reimprimiento Cupón.",
             error: error.name,
             message: error.message
         };
@@ -365,5 +365,5 @@ module.exports = {
     handleOperatorPrint,
     handleOperatorTran,
     handleOperatorRePrintTicket,
-    handleOperatorRePrintTito,
+    handleOperatorRePrintVoucher,
 };

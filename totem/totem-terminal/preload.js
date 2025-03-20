@@ -52,7 +52,7 @@ contextBridge.exposeInMainWorld('oprtk', {
 })
 
 contextBridge.exposeInMainWorld('oprti', {
-	operatorRePrintTito: (options) => ipcRenderer.invoke('operatorRePrintTito',options),
+	operatorRePrintVoucher: (options) => ipcRenderer.invoke('operatorRePrintVoucher',options),
 })
 
 contextBridge.exposeInMainWorld('admt', {

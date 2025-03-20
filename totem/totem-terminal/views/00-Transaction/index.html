@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>SIELCON Pay (maintenance)</title>
+	<title>Totem (maintenance)</title>
 
 	<link href="https://getbootstrap.com/docs/5.3/examples/cover/" rel="canonical">
 	<link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet">
@@ -85,8 +85,8 @@
 			Error: 3,
 			Cancel: 4,
 			CancelPayment: 5,
-			CancelCashierError: 6,
-			FinishTITOError: 7
+			CancelCashError: 6,
+			FinishVoucherError: 7
 		});
 
 
@@ -121,8 +121,8 @@
 				case Status.Error: return 'Error';
 				case Status.Cancel: return 'Cancelada';
 				case Status.CancelPayment: return 'Canc. Pagada';
-				case Status.CancelCashierError: return 'Canc. Error Caja';
-				case Status.FinishTITOError: return 'Fin. Error Imp.';
+				case Status.CancelCashError: return 'Canc. Error Caja';
+				case Status.FinishVoucherError: return 'Fin. Error Imp.';
 				default: return 'Unknown';
 			}
 		}
@@ -137,8 +137,8 @@
 				case Status.Error: return 'text-danger';
 				case Status.Cancel: return 'text-danger';
 				case Status.CancelPayment: return 'text-danger';
-				case Status.CancelCashierError: return 'text-danger';
-				case Status.FinishTITOError: return 'text-success';
+				case Status.CancelCashError: return 'text-danger';
+				case Status.FinishVoucherError: return 'text-success';
 				default: return 'text-dark';
 			}
 		}
@@ -155,8 +155,8 @@
 				case Status.Error: return 'btn-danger';
 				case Status.Cancel: return 'btn-danger';
 				case Status.CancelPayment: return 'btn-danger';
-				case Status.CancelCashierError: return 'btn-danger';
-				case Status.FinishTITOError: return 'btn-success';
+				case Status.CancelCashError: return 'btn-danger';
+				case Status.FinishVoucherError: return 'btn-success';
 				default: return 'btn-dark';
 			}
 		}
@@ -197,7 +197,7 @@
 		<div class="container d-flex w-100 h-100 p-3 mx-auto flex-column">
 			<header class="mb-auto">
 				<div>
-					<h3 class="float-md-start mb-0">SIELCON Pay</h3>
+					<h3 class="float-md-start mb-0">Totem</h3>
 				</div>
 				<div>
 					<a class="float-md-end mb-0" href="../00-operator/index.html">Volver</a>
@@ -224,7 +224,7 @@
 							<!-- <th>Retención</th>-->
 							<!--<th style="width: 10%;">Recibido</th>-->
 							<th style="width: 5%;">TCK.</th>
-							<th style="width: 5%;">TITO</th>
+							<th style="width: 5%;">Cupón</th>
 						</tr>
 					</thead>
 
@@ -245,7 +245,7 @@
 							<p>NODE V<span id="node-version"></span> |
 								CHROME V<span id="chrome-version"></span> |
 								ELECTRON V<span id="electron-version"></span> |
-								SIELCON Pay - Todos los derechos reservados.</p>
+								Totem - Todos los derechos reservados.</p>
 						</div>
 					</div>
 			</footer>

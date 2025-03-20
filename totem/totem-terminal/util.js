@@ -64,8 +64,13 @@ function formatCurrencyValues(inputValues) {
 
 function saveImagen(config, imageNumber) {
     try {
+        const dir = 'views/assets/img/carrousel';
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+        }
+
         const imageData = config[`carrouselImageData0${imageNumber}`];
-        const filename = `views/assets/img/carrousel/C${imageNumber}.jpg`;
+        const filename = `${dir}/C${imageNumber}.jpg`;
         if (imageData != null) {
             // Guardar la imagen
             const content = imageData.data;
