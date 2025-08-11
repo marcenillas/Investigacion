@@ -9,4 +9,4 @@ services:
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DATABASE}
-    restart: always
+    restart: no
